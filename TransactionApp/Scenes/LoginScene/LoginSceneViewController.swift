@@ -13,12 +13,23 @@ protocol LoginSceneDisplayLogic where Self: UIViewController {
 
 final class LoginSceneViewController: BaseViewController {
     
-    private var interactor: LoginSceneInteractable!
-    private var router: LoginSceneRouting!
-    
+    var interactor: LoginSceneInteractable!
+    var router: LoginSceneRouting!
+    private var userModel: UserModel?
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var loginView: LoginSceneView!
     @IBOutlet weak var baseScrollView: UIScrollView!
+    @IBOutlet weak var txtPassword: BindingTextField!{
+        didSet{
+            txtPassword.bind{self.userModel?.password = $0}
+        }
+    }
+    @IBOutlet weak var txtUsername: BindingTextField!{
+        didSet{
+            txtUsername.bind{self.userModel?.username = $0}
+        }
+    }
+    
+    @IBOutlet weak var btnLogin: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +50,12 @@ final class LoginSceneViewController: BaseViewController {
     @objc override func keyboardWillHide(_ notification: Notification) {
         self.baseScrollView.contentInset = .zero
         self.baseScrollView.scrollIndicatorInsets = .zero
+    }
+    @IBAction func didLoginTapped(_ sender: Any) {
+        self.view.endEditing(true)
+        guard let model = self.userModel else { return}
+        self.startActivity()
+        interactor.startLogin(user: model)
     }
 }
 
@@ -62,28 +79,17 @@ extension LoginSceneViewController: LoginSceneDisplayLogic {
 }
 
 
-// MARK: - LoginSceneViewDelegate
-extension LoginSceneViewController: LoginSceneViewDelegate {
-    //usually this delegate takes care of users actions and requests through UI
-    func didLoginButtonTapped(for model: UserModel) {
-        //validate data through interactor and call api accordinglys
-        self.startActivity()
-        interactor.startLogin(user: model)
-    }
-}
-
 
 // MARK: - Private Zone
 private extension LoginSceneViewController {
     func setup() {
+        userModel = UserModel()
         let manager = APIManager()
         let apiService = APIService(manager, EndPoints.login)
         self.interactor = LoginSceneInteractor(viewController: self,apiService: apiService)
         self.router = LoginSceneRouter(viewController: self)
-        
-        self.loginView.delegate = self
-        self.loginView.txtUserId.delegate = self
-        self.loginView.txtPassword.delegate = self
+        self.txtUsername.delegate = self
+        self.txtPassword.delegate = self
         
     }
 }
@@ -91,8 +97,8 @@ private extension LoginSceneViewController {
 //MARK:- UITextFieldDelegate
 extension LoginSceneViewController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == self.loginView.txtUserId {
-            self.loginView.txtPassword.becomeFirstResponder()
+        if textField == self.txtUsername {
+            self.txtPassword.becomeFirstResponder()
         }else{
             textField.resignFirstResponder()
         }

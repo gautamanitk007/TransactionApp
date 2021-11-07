@@ -11,7 +11,7 @@
         <!--Login Scene View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginSceneViewController" customModule="TransactionApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginScene" id="BYZ-38-t0r" customClass="LoginSceneViewController" customModule="TransactionApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -25,7 +25,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m3S-8h-TNT">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7xW-uT-Zhq" customClass="LoginSceneView" customModule="TransactionApp" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7xW-uT-Zhq">
                                                 <rect key="frame" x="8" y="381" width="398" height="152"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="#user Id" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kgz-v5-6yo" customClass="BindingTextField" customModule="TransactionApp" customModuleProvider="target">
@@ -49,7 +49,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Login"/>
                                                         <connections>
-                                                            <action selector="didLoginTapped:" destination="7xW-uT-Zhq" eventType="touchUpInside" id="Ihj-49-zZU"/>
+                                                            <action selector="didLoginTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qfs-ID-R2E"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -67,11 +67,6 @@
                                                     <constraint firstItem="Kgz-v5-6yo" firstAttribute="leading" secondItem="7xW-uT-Zhq" secondAttribute="leading" constant="8" id="qfA-yj-hAR"/>
                                                     <constraint firstAttribute="trailing" secondItem="abd-y2-v5y" secondAttribute="trailing" constant="8" id="tTJ-71-6Bo"/>
                                                 </constraints>
-                                                <connections>
-                                                    <outlet property="btnLogin" destination="abd-y2-v5y" id="iif-5S-V70"/>
-                                                    <outlet property="txtPassword" destination="pGf-1D-GZm" id="T5U-Ds-hEe"/>
-                                                    <outlet property="txtUserId" destination="Kgz-v5-6yo" id="5Ma-0B-wHs"/>
-                                                </connections>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -116,8 +111,10 @@
                     <navigationItem key="navigationItem" id="k9K-Y1-kdC"/>
                     <connections>
                         <outlet property="baseScrollView" destination="yCl-uf-UTx" id="c04-L1-r4h"/>
+                        <outlet property="btnLogin" destination="abd-y2-v5y" id="bcJ-W4-God"/>
                         <outlet property="containerView" destination="m3S-8h-TNT" id="F2R-z6-5aX"/>
-                        <outlet property="loginView" destination="7xW-uT-Zhq" id="YOf-1m-mZa"/>
+                        <outlet property="txtPassword" destination="pGf-1D-GZm" id="sHd-ge-XiK"/>
+                        <outlet property="txtUsername" destination="Kgz-v5-6yo" id="9iQ-T8-T53"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

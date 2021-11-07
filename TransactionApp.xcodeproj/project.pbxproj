@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		D22BFA792737D0DA00764BBB /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22BFA782737D0DA00764BBB /* Utils.swift */; };
 		D22BFA892737D48900764BBB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D22BFA882737D48900764BBB /* Localizable.strings */; };
+		D22BFA9A2737E54100764BBB /* Transactions.json in Resources */ = {isa = PBXBuildFile; fileRef = D22BFA992737E54100764BBB /* Transactions.json */; };
+		D22BFAA22737E54B00764BBB /* Payee.json in Resources */ = {isa = PBXBuildFile; fileRef = D22BFAA12737E54B00764BBB /* Payee.json */; };
+		D22BFAA72737E55200764BBB /* Balance.json in Resources */ = {isa = PBXBuildFile; fileRef = D22BFAA62737E55200764BBB /* Balance.json */; };
+		D22BFAD22737E61300764BBB /* LoginSceneViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22BFACE2737E61300764BBB /* LoginSceneViewControllerTests.swift */; };
 		D2C20D06273626CB0061D929 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20D05273626CB0061D929 /* AppDelegate.swift */; };
 		D2C20D08273626CB0061D929 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20D07273626CB0061D929 /* SceneDelegate.swift */; };
 		D2C20D0D273626CB0061D929 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2C20D0B273626CB0061D929 /* Main.storyboard */; };
@@ -35,13 +39,9 @@
 		D2C20D6B273629160061D929 /* TransferSceneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20D65273629160061D929 /* TransferSceneModel.swift */; };
 		D2C20D7527362EFE0061D929 /* BindingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20D7427362EFE0061D929 /* BindingTextField.swift */; };
 		D2C20D7E27362FB30061D929 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20D7D27362FB30061D929 /* UserModel.swift */; };
-		D2C20D89273632230061D929 /* LoginSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20D88273632230061D929 /* LoginSceneView.swift */; };
 		D2C20D8E273638E70061D929 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20D8D273638E70061D929 /* RoundedButton.swift */; };
 		D2C20D9C273652250061D929 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20D9B273652250061D929 /* BaseViewController.swift */; };
 		D2C20DA9273678030061D929 /* LoginResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D2C20DA8273678030061D929 /* LoginResponse.json */; };
-		D2C20DB3273678560061D929 /* Transactions.json in Resources */ = {isa = PBXBuildFile; fileRef = D2C20DB0273678560061D929 /* Transactions.json */; };
-		D2C20DB4273678560061D929 /* Balance.json in Resources */ = {isa = PBXBuildFile; fileRef = D2C20DB1273678560061D929 /* Balance.json */; };
-		D2C20DB5273678560061D929 /* Payee.json in Resources */ = {isa = PBXBuildFile; fileRef = D2C20DB2273678560061D929 /* Payee.json */; };
 		D2C20DC1273684A70061D929 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20DC0273684A70061D929 /* APIRequest.swift */; };
 		D2C20DCE273686FC0061D929 /* APIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20DCD273686FC0061D929 /* APIProtocol.swift */; };
 		D2C20DD3273694620061D929 /* Reponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20DD2273694620061D929 /* Reponse.swift */; };
@@ -71,6 +71,10 @@
 		D22BFA832737D41300764BBB /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/Main.strings; sourceTree = "<group>"; };
 		D22BFA842737D41300764BBB /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		D22BFA882737D48900764BBB /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		D22BFA992737E54100764BBB /* Transactions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Transactions.json; sourceTree = "<group>"; };
+		D22BFAA12737E54B00764BBB /* Payee.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Payee.json; sourceTree = "<group>"; };
+		D22BFAA62737E55200764BBB /* Balance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Balance.json; sourceTree = "<group>"; };
+		D22BFACE2737E61300764BBB /* LoginSceneViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSceneViewControllerTests.swift; sourceTree = "<group>"; };
 		D2C20D02273626CB0061D929 /* TransactionApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransactionApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2C20D05273626CB0061D929 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2C20D07273626CB0061D929 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,13 +107,9 @@
 		D2C20D65273629160061D929 /* TransferSceneModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferSceneModel.swift; sourceTree = "<group>"; };
 		D2C20D7427362EFE0061D929 /* BindingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingTextField.swift; sourceTree = "<group>"; };
 		D2C20D7D27362FB30061D929 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
-		D2C20D88273632230061D929 /* LoginSceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSceneView.swift; sourceTree = "<group>"; };
 		D2C20D8D273638E70061D929 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		D2C20D9B273652250061D929 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D2C20DA8273678030061D929 /* LoginResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LoginResponse.json; sourceTree = "<group>"; };
-		D2C20DB0273678560061D929 /* Transactions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Transactions.json; path = ../../../../../../Desktop/Certificate/Transactions.json; sourceTree = "<group>"; };
-		D2C20DB1273678560061D929 /* Balance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Balance.json; path = ../../../../../../Desktop/Certificate/Balance.json; sourceTree = "<group>"; };
-		D2C20DB2273678560061D929 /* Payee.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Payee.json; path = ../../../../../../Desktop/Certificate/Payee.json; sourceTree = "<group>"; };
 		D2C20DC0273684A70061D929 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		D2C20DCD273686FC0061D929 /* APIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProtocol.swift; sourceTree = "<group>"; };
 		D2C20DD2273694620061D929 /* Reponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reponse.swift; sourceTree = "<group>"; };
@@ -150,6 +150,40 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
+		D22BFA962737E4CD00764BBB /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				D22BFACD2737E5FF00764BBB /* Login */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		D22BFA972737E4DB00764BBB /* Networks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networks;
+			sourceTree = "<group>";
+		};
+		D22BFA982737E4F700764BBB /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				D2C20DA8273678030061D929 /* LoginResponse.json */,
+				D22BFAA62737E55200764BBB /* Balance.json */,
+				D22BFAA12737E54B00764BBB /* Payee.json */,
+				D22BFA992737E54100764BBB /* Transactions.json */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		D22BFACD2737E5FF00764BBB /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				D22BFACE2737E61300764BBB /* LoginSceneViewControllerTests.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		D2C20CF9273626CB0061D929 = {
 			isa = PBXGroup;
 			children = (
@@ -174,7 +208,6 @@
 			isa = PBXGroup;
 			children = (
 				D2C20DBF273684820061D929 /* Networks */,
-				D2C20DA72736778B0061D929 /* Mock */,
 				D2C20D7227362EC70061D929 /* Common */,
 				D2C20D38273626EF0061D929 /* Scenes */,
 				D2C20D05273626CB0061D929 /* AppDelegate.swift */,
@@ -191,6 +224,9 @@
 		D2C20D1B273626D80061D929 /* TransactionAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				D22BFA982737E4F700764BBB /* Mocks */,
+				D22BFA972737E4DB00764BBB /* Networks */,
+				D22BFA962737E4CD00764BBB /* Scenes */,
 				D2C20D1C273626D80061D929 /* TransactionAppTests.swift */,
 				D2C20D1E273626D80061D929 /* Info.plist */,
 			);
@@ -224,7 +260,6 @@
 				D2C20D3F273627710061D929 /* LoginSceneViewController.swift */,
 				D2C20D40273627710061D929 /* LoginSceneInteractor.swift */,
 				D2C20D42273627710061D929 /* LoginSceneModel.swift */,
-				D2C20D88273632230061D929 /* LoginSceneView.swift */,
 			);
 			path = LoginScene;
 			sourceTree = "<group>";
@@ -282,17 +317,6 @@
 				D2C20DD2273694620061D929 /* Reponse.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		D2C20DA72736778B0061D929 /* Mock */ = {
-			isa = PBXGroup;
-			children = (
-				D2C20DB1273678560061D929 /* Balance.json */,
-				D2C20DB0273678560061D929 /* Transactions.json */,
-				D2C20DB2273678560061D929 /* Payee.json */,
-				D2C20DA8273678030061D929 /* LoginResponse.json */,
-			);
-			path = Mock;
 			sourceTree = "<group>";
 		};
 		D2C20DBF273684820061D929 /* Networks */ = {
@@ -410,10 +434,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2C20DB3273678560061D929 /* Transactions.json in Resources */,
-				D2C20DB4273678560061D929 /* Balance.json in Resources */,
 				D2C20D12273626D70061D929 /* LaunchScreen.storyboard in Resources */,
-				D2C20DB5273678560061D929 /* Payee.json in Resources */,
 				D2C20DA9273678030061D929 /* LoginResponse.json in Resources */,
 				D22BFA892737D48900764BBB /* Localizable.strings in Resources */,
 				D2C20D0F273626D70061D929 /* Assets.xcassets in Resources */,
@@ -425,6 +446,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D22BFAA72737E55200764BBB /* Balance.json in Resources */,
+				D22BFAA22737E54B00764BBB /* Payee.json in Resources */,
+				D22BFA9A2737E54100764BBB /* Transactions.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,7 +489,6 @@
 				D2C20D46273627710061D929 /* LoginSceneInteractor.swift in Sources */,
 				D2C20D54273628FC0061D929 /* DashboardScenePresenter.swift in Sources */,
 				D2C20D6A273629160061D929 /* TransferSceneView.swift in Sources */,
-				D2C20D89273632230061D929 /* LoginSceneView.swift in Sources */,
 				D2C20D45273627710061D929 /* LoginSceneViewController.swift in Sources */,
 				D2C20D08273626CB0061D929 /* SceneDelegate.swift in Sources */,
 				D2C20D7527362EFE0061D929 /* BindingTextField.swift in Sources */,
@@ -480,6 +503,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2C20D1D273626D80061D929 /* TransactionAppTests.swift in Sources */,
+				D22BFAD22737E61300764BBB /* LoginSceneViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

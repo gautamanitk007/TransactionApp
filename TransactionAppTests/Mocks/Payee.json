@@ -1,0 +1,25 @@
+{
+    "status": "success",
+    "data": [
+        {
+            "id": "8a6da1a4-6f5f-4b53-9b90-0f8c57661a5d",
+            "accountNo": "8013-777-3232",
+            "accountHolderName": "Jason"
+        },
+        {
+            "id": "19bbc716-ddc3-48d1-a6f9-bb7b96749826",
+            "accountNo": "4489-991-0023",
+            "accountHolderName": "Jane"
+        },
+        {
+            "id": "bcb6f34e-412d-4424-8aa9-59a299f57eb1",
+            "accountNo": "1234-000-1234",
+            "accountHolderName": "Max Yee"
+        },
+        {
+            "id": "0348923c-cb08-4413-8683-5430769a5ee9",
+            "accountNo": "8182-321-9921",
+            "accountHolderName": "Daniel"
+        }
+    ]
+}

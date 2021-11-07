@@ -29,11 +29,11 @@ final class LoginSceneInteractor {
 // MARK: - LoginSceneBusinessLogic
 extension LoginSceneInteractor: LoginSceneBusinessLogic {
     func startLogin(user userModel: UserModel) {
-        guard userModel.username?.count != 0 else {
+        if userModel.username == nil || userModel.username?.count == 0 {
             self.presenter.didFinishLoginReponse(LoginSceneModel.Response(token: nil, error: NSLocalizedString("UserName_Empty",comment: "")))
             return
         }
-        guard userModel.password?.count != 0 else {
+        if userModel.password == nil || userModel.password?.count == 0 {
             self.presenter.didFinishLoginReponse(LoginSceneModel.Response(token: nil, error: NSLocalizedString("Password_Empty",comment: "")))
             return
         }

@@ -1,0 +1,65 @@
+{
+    "status": "success",
+    "data": [
+        {
+            "id": "39222a3e-3890-4091-8807-d92707355f8c",
+            "type": "receive",
+            "amount": 18.5,
+            "currency": "SGD",
+            "from": {
+                "accountNo": "1234-000-1234",
+                "accountHolderName": "Max Yee"
+            },
+            "description": null,
+            "date": "2021-09-12T02:13:03.054Z"
+        },
+        {
+            "id": "3c6bee24-072d-4919-aff9-b87d1f4c3895",
+            "type": "receive",
+            "amount": 23,
+            "currency": "SGD",
+            "from": {
+                "accountNo": "8182-321-9921",
+                "accountHolderName": "Daniel"
+            },
+            "description": "lunch",
+            "date": "2021-09-12T01:00:03.054Z"
+        },
+        {
+            "id": "3992c7d3-ad34-401a-b3c8-ce6df2471e37",
+            "type": "transfer",
+            "amount": 1800,
+            "currency": "SGD",
+            "to": {
+                "accountNo": "8013-777-3232",
+                "accountHolderName": "Jason"
+            },
+            "description": "September Rental",
+            "date": "2021-09-11T02:13:03.054Z"
+        },
+        {
+            "id": "001a18a2-fb41-46a2-bd20-0c389546ab64",
+            "type": "receive",
+            "amount": 450,
+            "currency": "SGD",
+            "from": {
+                "accountNo": "1234-000-1234",
+                "accountHolderName": "Max Yee"
+            },
+            "description": "rental",
+            "date": "2021-09-11T01:00:03.054Z"
+        },
+        {
+            "id": "0541c91f-dce4-4bf9-ba98-5c8c2f7afe62",
+            "type": "transfer",
+            "amount": 23.2,
+            "currency": "SGD",
+            "to": {
+                "accountNo": "4489-991-0023",
+                "accountHolderName": "Jane"
+            },
+            "description": "cafe",
+            "date": "2021-09-11T01:00:03.054Z"
+        }
+    ]
+}
