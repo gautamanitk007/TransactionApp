@@ -1,0 +1,9 @@
+
+/* Class = "UITextField"; placeholder = "#user Id"; ObjectID = "Kgz-v5-6yo"; */
+"Kgz-v5-6yo.placeholder" = "#user Id";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "abd-y2-v5y"; */
+"abd-y2-v5y.normalTitle" = "Login";
+
+/* Class = "UITextField"; placeholder = "#password"; ObjectID = "pGf-1D-GZm"; */
+"pGf-1D-GZm.placeholder" = "#password";

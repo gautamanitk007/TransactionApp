@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  TransactionApp
+
+  Created by Gautam Singh on 7/11/21.
+  
+*/
+"Login_Text_Field_Placeholder" = "#username";
+"Password_Text_Field_Placeholder" = "#password";
+"Login_Button_Title" = "Login";
+"Button_Logout_Title" = "Logout";
+"Page_User_List_Title" = "Welcome";
+"Button_Submit_Title" = "Submit";
+"Information_Title" = "Information";
+"Warning_Title" = "Warning";
+"Button_OK_Title" = "OK";
+"Button_Cancel_Title" = "Cancel";
+"Information_Error_Title" = "Error!";
+"UserName_Empty" = "Username is empty";
+"Password_Empty" = "Password is empty";
+"Error_Badrequest" = "Invalid Url";
+"Error_Token" = "Invalid token";
+"Error_Authentication" = "Failed to authenticate";
+"Error_timeout" = "Time out";
+"Error_Server_Unreachable" = "Server unreachable";
+"Error_Server_Down" = "Server down";
