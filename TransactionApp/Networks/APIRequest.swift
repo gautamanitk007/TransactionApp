@@ -41,20 +41,13 @@ enum EndPoints:String {
     case transactions = "account/transactions"
     case transfer = "transfer"
 }
-public enum ResponseCase<R> {
-    case Success(R)
-    case Failure(ResponseError, R?)
+public struct ApiError{
+    let statusCode:Int
+    let message:String?
 }
-public struct ResponseError: Error {
-    var code: String?
-    var description: String?
-    var localizedDescription: String?
-  
-    init(code: String? = nil, description:String? = nil, localizedDescription: String? = nil) {
-        self.code = code
-        self.description = description
-        self.localizedDescription = localizedDescription
-    }
+public struct Resource<T>{
+    let request: APIRequest
+    let parse:(Data) -> T?
 }
 public struct APIRequest {
     var endPoint: String
@@ -64,8 +57,7 @@ public struct APIRequest {
     var contentType: ContentType = .json
     var accept: Accept = .accept
     var timeout: Double = 60.0
-    var headers: [String:String]?
-    
+
     var urlString: String {
         return baseURL! + endPoint
     }
@@ -76,10 +68,8 @@ public struct APIRequest {
         request.httpMethod = self.httpMethod.rawValue
         request.timeoutInterval = self.timeout
         
-        if let headerValues = self.headers {
-            for header in headerValues {
-                request.setValue(header.value , forHTTPHeaderField: header.key)
-            }
+        if let token = Utils.getValue(forKey: "token"), token.count > 1 {
+            request.setValue(token , forHTTPHeaderField: "Authorization")
         }
         request.setValue(self.contentType.rawValue, forHTTPHeaderField: "Content-Type")
         request.setValue(self.accept.rawValue, forHTTPHeaderField: "Accept")

@@ -30,21 +30,21 @@ final class LoginSceneInteractor {
 extension LoginSceneInteractor: LoginSceneBusinessLogic {
     func startLogin(user userModel: UserModel) {
         if userModel.username == nil || userModel.username?.count == 0 {
-            self.presenter.didFinishLoginReponse(LoginSceneModel.Response(token: nil, error: NSLocalizedString("UserName_Empty",comment: "")))
+            self.presenter.didFinishLoginReponse(error: NSLocalizedString("UserName_Empty",comment: ""))
             return
         }
         if userModel.password == nil || userModel.password?.count == 0 {
-            self.presenter.didFinishLoginReponse(LoginSceneModel.Response(token: nil, error: NSLocalizedString("Password_Empty",comment: "")))
+            self.presenter.didFinishLoginReponse(error:NSLocalizedString("Password_Empty",comment: ""))
             return
         }
         DispatchQueue.global(qos: .userInitiated).async {[weak self] in
             guard let self = self else { return }
-            self.service?.startLogin(user: userModel, on: { (response) in
-                switch response {
-                case .Success(let tokenObj):
-                    self.presenter.didFinishLoginReponse(LoginSceneModel.Response(token: tokenObj.token,error: nil))
-                case .Failure(let error, _):
-                    self.presenter.didFinishLoginReponse(LoginSceneModel.Response(token: nil, error: error.description))
+            self.service?.startLogin(user: userModel, on: { (response,error) in
+                if let errorValue = error, errorValue.statusCode != ResponseCodes.success.rawValue {
+                    self.presenter.didFinishLoginReponse(error: errorValue.message)
+                } else if let tokenObj = response, let token = tokenObj.token {
+                    Utils.saveInDefaults(value: token, forKey: "token")
+                    self.presenter.didFinishLoginReponse(error: nil)
                 }
             })
         }

@@ -8,8 +8,7 @@
 import Foundation
 
 protocol LoginScenePresentationLogic {
-    func didFinishLoginReponse(_ response: LoginSceneModel.Response)
-    
+    func didFinishLoginReponse( error: String?)
 }
 
 final class LoginScenePresenter {
@@ -24,11 +23,11 @@ final class LoginScenePresenter {
 
 // MARK: - LoginScenePresentationLogic
 extension LoginScenePresenter: LoginScenePresentationLogic {
-    func didFinishLoginReponse(_ response: LoginSceneModel.Response){
-        if let error = response.error {
-            self.viewController?.loginFailed(message: error)
-        } else if let token = response.token {
-            self.viewController?.loginSuccess(token: token)
+    func didFinishLoginReponse( error: String?){
+        if let errorValue = error {
+            self.viewController?.loginFailed(message: errorValue)
+        } else {
+            self.viewController?.loginSuccess()
         }
     }
 }

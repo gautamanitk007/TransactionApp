@@ -10,25 +10,18 @@
 import Foundation
 
 enum DashboardSceneModel {
-  
-  enum Request {
-    case doSomething(item: Int)
-  }
-  
-  enum Response {
-    case doSomething(newItem: Int, isItem: Bool)
-  }
-  
-  enum ViewModel {
-    case doSomething(viewModelData: NSObject)
-  }
-  
-  enum Route {
-    case dismissDashboardSceneScene
-    case xScene(xData: Int)
-  }
-  
-  struct DataSource {
-    //var test: Int
-  }
+
+    struct BalanceViewModel {
+        var balance:String
+    }
+    
+    struct TransactionList {
+        var tansactions: [Transaction]
+    }
+    
+    struct Transaction {
+        var day: String
+        var transferRecieve: String
+        var amount: String
+    }
 }

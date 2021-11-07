@@ -14,27 +14,43 @@ public class APIService: ServiceProtocol {
         self.apiManager = apiManager
         self.endPoint = endPoint
     }
-    public func startLogin(user userModel:UserModel, on completion: @escaping(_ response: ResponseCase<LoginResponse>) -> Void) {
+    public func startLogin(user userModel:UserModel, on completion:@escaping(LoginResponse?,ApiError?)->()){
         let body = userModel.jsonValue()
         let request = APIRequest(endPoint: self.endPoint.rawValue, postBody: body!)
-        self.apiManager.runAPI(request) { (responseCase) in
-            completion(responseCase)
+        let loginResource = Resource<LoginResponse>(request: request) { data in
+            let loginResponse = try? JSONDecoder().decode(LoginResponse.self, from: data)
+            return loginResponse
+        }
+        self.apiManager.runAPI(resource: loginResource) { (response, error) in
+            completion(response,error)
         }
     }
-    
-    public func checkBalances(on completion: @escaping (ResponseCase<BalanceResponse>) -> Void) {
+    public func checkBalances(on completion: @escaping(BalanceResponse?,ApiError?)->()){
+        var request = APIRequest(endPoint: self.endPoint.rawValue, postBody: [:])
+        request.httpMethod = HttpMethod.get
+        let balanceResource = Resource<BalanceResponse>(request: request) { data in
+            let bResponse = try? JSONDecoder().decode(BalanceResponse.self, from: data)
+            return bResponse
+        }
+        self.apiManager.runAPI(resource: balanceResource) { (response, error) in
+            completion(response,error)
+        }
+    }
+    public func getAllPayee(on completion: @escaping(PayeeResponse?,ApiError?)->()){
         
     }
-    
-    public func getAllPayee(on completion: @escaping (ResponseCase<PayeeResponse>) -> Void) {
-        
+    public func getAllTransactions(on completion: @escaping(TransactionResponse?,ApiError?)->()){
+        var request = APIRequest(endPoint: self.endPoint.rawValue, postBody: [:])
+        request.httpMethod = HttpMethod.get
+        let transationResource = Resource<TransactionResponse>(request: request) { data in
+            let tResponse = try? JSONDecoder().decode(TransactionResponse.self, from: data)
+            return tResponse
+        }
+        self.apiManager.runAPI(resource: transationResource) { (response, error) in
+            completion(response,error)
+        }
     }
-    
-    public func getAllTransactions(on completion: @escaping (ResponseCase<TransactionResponse>) -> Void) {
-        
-    }
-    
-    public func fundTransfer(params: [String : Any], on completion: @escaping (ResponseCase<TransactionResponse>) -> Void) {
+    public func fundTransfer(params:[String:Any], on completion:@escaping(TransferResponse?,ApiError?)->()){
         
     }
 }

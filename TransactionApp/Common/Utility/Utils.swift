@@ -8,30 +8,23 @@
 import UIKit
 
 class Utils {
-    static func getAlert(title:String,message:String) -> UIAlertController {
+    class func getAlert(title:String,message:String) -> UIAlertController {
         let alert = UIAlertController(title:title, message:message, preferredStyle: UIAlertController.Style.alert)
         alert.modalPresentationStyle = .popover
         alert.addAction(UIAlertAction(title:NSLocalizedString("Button_OK_Title",comment: ""), style: .default) { _ in})
         return alert
     }
-    static func getErrorMessage(for response: HTTPURLResponse) -> String {
-        var errorMessage: String = ""
-        switch response.statusCode {
-        case ResponseCodes.badrequest.rawValue:
-                errorMessage = NSLocalizedString("Error_Badrequest",comment: "")
-        case ResponseCodes.token_invalid.rawValue:
-                errorMessage = NSLocalizedString("Error_Token",comment: "")
-        case ResponseCodes.login_auth_failed.rawValue:
-                errorMessage = NSLocalizedString("Error_Authentication",comment: "")
-        case ResponseCodes.network_timeout.rawValue:
-                errorMessage = NSLocalizedString("Error_timeout",comment: "")
-        case ResponseCodes.server_notReachable.rawValue:
-                errorMessage = NSLocalizedString("Error_Server_Unreachable",comment: "")
-        case ResponseCodes.server_down.rawValue:
-                errorMessage = NSLocalizedString("Error_Server_Down",comment: "")
-        default:
-            errorMessage = NSLocalizedString("Unknown",comment: "")
+    class func saveInDefaults(value str: String, forKey key: String){
+        let appDefaults = UserDefaults.standard
+        appDefaults.setValue(str, forKey: key)
+        appDefaults.synchronize()
+    }
+    class func getValue(forKey key: String) -> String?{
+        let appDefaults = UserDefaults.standard
+        if let value = appDefaults.value(forKey: key) as? String, value.count > 1 {
+            return value
+        }else{
+            return nil
         }
-        return errorMessage
     }
 }

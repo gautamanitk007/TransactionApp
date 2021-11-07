@@ -7,62 +7,34 @@
 
 import Foundation
 
-public typealias RequestCompletionHandler<R:Decodable> = (ResponseCase<R>) -> Void
-
 protocol APIManagerProtocol {
-    func runAPI<R: Decodable>(_ request: APIRequest, completionHandler:@escaping RequestCompletionHandler<R>)
+    func runAPI<T>(resource:Resource<T>,completion:@escaping(T?,ApiError?)->())
 }
 
 public class APIManager: APIManagerProtocol {
-    func runAPI<R: Decodable>(_ request: APIRequest, completionHandler:@escaping RequestCompletionHandler<R>) {
-        
-        guard let urlRequest = request.httpRequest else {
-            let error:ResponseError = ResponseError(code: "400", description: "Bad URL", localizedDescription: "")
-            let responseError: ResponseCase<R> = ResponseCase.Failure(error, nil)
-            completionHandler(responseError)
+    
+    func runAPI<T>(resource:Resource<T>,completion:@escaping(T?,ApiError?)->()){
+        guard let urlRequest = resource.request.httpRequest else {
+            completion(nil,ApiError(statusCode: ResponseCodes.badrequest.rawValue, message: "Bad request"))
             return
         }
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-            var genericError: ResponseError = self.genericError()
-            var responseCase: ResponseCase<R> = ResponseCase.Failure(genericError, nil)
-            if let errorObj = error {
-                genericError = self.errorValue(errorObj as NSError)
-                responseCase = .Failure(genericError, nil)
-            } else if let rawData = data  {
-                if let json = try? JSONSerialization.jsonObject(with: rawData, options: .allowFragments) {
-                    let responseObj = try? self.decodeObject(data: json as! [AnyHashable : Any], type: LoginResponse.self)
-                    if responseObj?.status == "failed" {
-                        genericError.description = Utils.getErrorMessage(for: response as! HTTPURLResponse)
-                        responseCase = .Failure(genericError, nil)
-                    }else{
-                        responseCase = .Success(responseObj as! R)
-                    }
+            var sError : ApiError?
+            if let resp = response as? HTTPURLResponse{
+                sError = ApiError(statusCode: resp.statusCode, message: HTTPURLResponse.localizedString(forStatusCode: resp.statusCode))
+            }
+            if let data = data {
+                //let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: [])
+                //print(jsonResponse)
+                completion(resource.parse(data),sError)
+            }else{
+                if let err = sError {
+                    completion(nil,err)
+                }else{
+                    completion(nil,ApiError(statusCode: -1009, message: error?.localizedDescription))
                 }
             }
-            completionHandler(responseCase)
         }.resume()
     }
 }
 
-extension APIManager {
-    func errorValue(_ error:NSError) -> ResponseError {
-        var genericError: ResponseError = self.genericError()
-        let userInfo = error.userInfo
-        
-        if let errorMsg = userInfo["responseDescription"] as? String {
-            genericError.description = errorMsg
-        } else {
-            genericError.code = "\(error.code)"
-            genericError.localizedDescription = error.localizedDescription
-        }
-        return genericError
-    }
-    func genericError() -> ResponseError {
-        return ResponseError(code: "0", description: "Unknown Error", localizedDescription: "")
-    }
-    
-    func decodeObject<R>(data: [AnyHashable: Any], type: R.Type) throws -> R? where R: Decodable {
-        let jsonData = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
-        return try JSONDecoder().decode(R.self, from:jsonData)
-    }
-}

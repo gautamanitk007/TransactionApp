@@ -8,57 +8,50 @@
 
 import Foundation
 
-typealias DashboardSceneInteractable = DashboardSceneBusinessLogic & DashboardSceneDataStore
+typealias DashboardSceneInteractable = DashboardSceneBusinessLogic
 
 protocol DashboardSceneBusinessLogic {
-  
-  func doRequest(_ request: DashboardSceneModel.Request)
+    func checkBalance(service: ServiceProtocol)
+    func getAllTransactions(service: ServiceProtocol)
 }
 
-protocol DashboardSceneDataStore {
-  var dataSource: DashboardSceneModel.DataSource { get }
-}
-
-final class DashboardSceneInteractor: DashboardSceneDataStore {
-  
-  var dataSource: DashboardSceneModel.DataSource
-  
-  private var presenter: DashboardScenePresentationLogic
-  
-  init(viewController: DashboardSceneDisplayLogic?, dataSource: DashboardSceneModel.DataSource) {
-    self.dataSource = dataSource
-    self.presenter = DashboardScenePresenter(viewController: viewController)
-  }
+final class DashboardSceneInteractor {
+    
+    private var presenter: DashboardScenePresentationLogic
+    
+    init(viewController: DashboardSceneDisplayLogic?) {
+     
+        self.presenter = DashboardScenePresenter(viewController: viewController)
+    }
 }
 
 
 // MARK: - DashboardSceneBusinessLogic
 extension DashboardSceneInteractor: DashboardSceneBusinessLogic {
-  
-  func doRequest(_ request: DashboardSceneModel.Request) {
-    DispatchQueue.global(qos: .userInitiated).async {
-      
-      switch request {
-        
-      case .doSomething(let item):
-        self.doSomething(item)
-      }
+    
+    func checkBalance(service: ServiceProtocol) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            service.checkBalances {[weak self] (response, error) in
+                guard let self = self else { return }
+                if let errorValue = error, errorValue.statusCode != ResponseCodes.success.rawValue {
+                    self.presenter.didFailedToLoad(error: errorValue.message)
+                } else if let balanceObj = response {
+                    self.presenter.showBalance(response: balanceObj)
+                }
+            }
+        }
     }
-  }
-}
-
-
-// MARK: - Private Zone
-private extension DashboardSceneInteractor {
-  
-  func doSomething(_ item: Int) {
     
-    //construct the Service right before using it
-    //let serviceX = factory.makeXService()
-    
-    // get new data async or sync
-    //let newData = serviceX.getNewData()
-    
-    presenter.presentResponse(.doSomething(newItem: item + 1, isItem: true))
-  }
+    func getAllTransactions(service: ServiceProtocol) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            service.getAllTransactions {[weak self] (response,error) in
+                guard let self = self else { return }
+                if let errorValue = error, errorValue.statusCode != ResponseCodes.success.rawValue{
+                    self.presenter.didFailedToLoad(error: errorValue.message)
+                } else if let transactions = response {
+                    self.presenter.showTransactions(response: transactions)
+                }
+            }
+        }
+    }
 }

@@ -26,7 +26,7 @@ public struct LoginResponse: Decodable {
 
 public struct BalanceResponse: Decodable {
     let status: String?
-    let balance: Double?
+    let balance: Int32?
     
     enum CodingKeys: String, CodingKey {
         case status
@@ -36,7 +36,7 @@ public struct BalanceResponse: Decodable {
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         status =  try values.decodeIfPresent(String.self, forKey: .status)
-        balance = try values.decodeIfPresent(Double.self, forKey: .balance)
+        balance = try values.decodeIfPresent(Int32.self, forKey: .balance)
     }
 }
 
@@ -52,7 +52,7 @@ public struct TransactionResponse: Decodable {
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         status =  try values.decodeIfPresent(String.self, forKey: .status)
-        data = try values.decodeIfPresent(Array.self, forKey: .data)
+        data = try values.decodeIfPresent([Account].self, forKey: .data)
     }
 }
 
@@ -139,8 +139,9 @@ public struct Account: Decodable {
     let amount:Double?
     let currency: String?
     let from: User?
+    let to: User?
     let description: String?
-    let date: Date?
+    let date: String?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -150,6 +151,7 @@ public struct Account: Decodable {
         case from
         case description
         case date
+        case to
     }
     
     public init(from decoder: Decoder) throws {
@@ -160,7 +162,8 @@ public struct Account: Decodable {
         currency = try values.decodeIfPresent(String.self, forKey: .currency)
         from = try values.decodeIfPresent(User.self, forKey: .from)
         description = try values.decodeIfPresent(String.self, forKey: .description)
-        date = try values.decodeIfPresent(Date.self, forKey: .date)
+        date = try values.decodeIfPresent(String.self, forKey: .date)
+        to = try values.decodeIfPresent(User.self, forKey: .to)
     }
 }
 

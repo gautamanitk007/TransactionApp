@@ -9,7 +9,7 @@
 "Password_Text_Field_Placeholder" = "#password";
 "Login_Button_Title" = "Login";
 "Button_Logout_Title" = "Logout";
-"Page_User_List_Title" = "Welcome";
+"Page_Dashboard_Title" = "Dashboard";
 "Button_Submit_Title" = "Submit";
 "Information_Title" = "Information";
 "Warning_Title" = "Warning";

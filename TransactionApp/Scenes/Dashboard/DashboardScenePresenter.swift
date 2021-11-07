@@ -9,7 +9,9 @@
 import Foundation
 
 protocol DashboardScenePresentationLogic {
-  func presentResponse(_ response: DashboardSceneModel.Response)
+    func showTransactions(response: TransactionResponse)
+    func showBalance(response:BalanceResponse)
+    func didFailedToLoad( error: String?)
 }
 
 final class DashboardScenePresenter {
@@ -23,25 +25,15 @@ final class DashboardScenePresenter {
 
 // MARK: - DashboardScenePresentationLogic
 extension DashboardScenePresenter: DashboardScenePresentationLogic {
-  
-  func presentResponse(_ response: DashboardSceneModel.Response) {
-    
-    switch response {
-      
-    case .doSomething(let newItem, let isItem):
-      presentDoSomething(newItem, isItem)
+    func showTransactions(response: TransactionResponse){
+        print("Transactions:\(response)")
     }
-  }
+    func showBalance(response: BalanceResponse) {
+        print("Balance:\(response)")
+    }
+    func didFailedToLoad( error: String?){
+        print("Error:\(error)")
+    }
 }
 
 
-// MARK: - Private Zone
-private extension DashboardScenePresenter {
-  
-  func presentDoSomething(_ newItem: Int, _ isItem: Bool) {
-    
-    //prepare data for display and send it further
-    
-    viewController?.displayViewModel(.doSomething(viewModelData: NSObject()))
-  }
-}

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol LoginSceneRouting {
-    func navigateToDestination(for indetifier:String, token:String)
+    func navigateToDestination(for indetifier:String)
     func showLogingFailure(message: String)
 }
 
@@ -22,7 +22,7 @@ final class LoginSceneRouter {
 
 // MARK: - LoginSceneRouting
 extension LoginSceneRouter: LoginSceneRouting {
-    func navigateToDestination(for indetifier:String, token:String) {
+    func navigateToDestination(for indetifier:String) {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         guard let destinationVC = storyboard.instantiateViewController(withIdentifier: indetifier) as? DashboardSceneViewController else {
             fatalError("Destination doesn't exist")

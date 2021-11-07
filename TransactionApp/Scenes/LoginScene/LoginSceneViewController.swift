@@ -7,7 +7,7 @@
 
 import UIKit
 protocol LoginSceneDisplayLogic where Self: UIViewController {
-    func loginSuccess(token: String)
+    func loginSuccess()
     func loginFailed(message: String)
 }
 
@@ -53,6 +53,8 @@ final class LoginSceneViewController: BaseViewController {
     }
     @IBAction func didLoginTapped(_ sender: Any) {
         self.view.endEditing(true)
+        self.userModel?.username = "ocbc"
+        self.userModel?.password = "123456"
         guard let model = self.userModel else { return}
         self.startActivity()
         interactor.startLogin(user: model)
@@ -62,11 +64,11 @@ final class LoginSceneViewController: BaseViewController {
 
 // MARK: - LoginSceneDisplayLogic
 extension LoginSceneViewController: LoginSceneDisplayLogic {
-    func loginSuccess(token: String) {
+    func loginSuccess() {
         DispatchQueue.main.async {[weak self] in
             guard let self = self else {return}
             self.stopActivity()
-            self.router.navigateToDestination(for: "showDashboard", token: token)
+            self.router.navigateToDestination(for: "showDashboard")
         }
     }
     func loginFailed(message: String) {
@@ -90,6 +92,10 @@ private extension LoginSceneViewController {
         self.router = LoginSceneRouter(viewController: self)
         self.txtUsername.delegate = self
         self.txtPassword.delegate = self
+        
+        self.txtUsername.placeholder = NSLocalizedString("Login_Text_Field_Placeholder",comment: "")
+        self.txtPassword.placeholder = NSLocalizedString("Password_Text_Field_Placeholder",comment: "")
+        self.btnLogin.setTitle(NSLocalizedString("Login_Button_Title",comment: ""), for: .normal)
         
     }
 }
