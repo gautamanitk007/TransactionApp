@@ -14,7 +14,7 @@ enum Identifier:String {
 protocol DashboardSceneDisplayLogic where Self: UIViewController {
   
     func displayBalanceViewModel(_ viewModel:BalanceViewModel)
-    func displayTransactionListViewModel(_ viewModels:[ViewTransaction])
+    func displayTransactionListViewModel(_ viewModels:[TransactionViewModel])
     func displayError(_ error:String)
 }
 
@@ -27,7 +27,7 @@ final class DashboardSceneViewController: UIViewController {
     private var interactor: DashboardSceneInteractable!
     private var router: TransactionSceneRouting!
     private var apiManager: APIManager!
-    private var datasource : TableViewDatasource<TransactionCell,ViewTransaction>!
+    private var datasource : TableViewDatasource<TransactionCell,TransactionViewModel>!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
@@ -61,7 +61,7 @@ extension DashboardSceneViewController: DashboardSceneDisplayLogic {
             self.lblAmount.text = viewModel.balance
         }
     }
-    func displayTransactionListViewModel(_ viewModels:[ViewTransaction]){
+    func displayTransactionListViewModel(_ viewModels:[TransactionViewModel]){
         self.datasource.removeAll()
         self.datasource.updateItems(viewModels)
         DispatchQueue.main.async {

@@ -26,7 +26,7 @@ final class DashboardScenePresenter {
 // MARK: - DashboardScenePresentationLogic
 extension DashboardScenePresenter: DashboardScenePresentationLogic {
     func showTransactions(response: TransactionResponse){
-        var accTrans = [ViewTransaction]()
+        var accTrans = [TransactionViewModel]()
         if let accounts = response.data {
             accTrans = self.createViewModel(for: accounts)
         }
@@ -44,13 +44,13 @@ extension DashboardScenePresenter: DashboardScenePresentationLogic {
 
 
 private extension DashboardScenePresenter {
-    func createViewModel(for accs:[Account]) -> [ViewTransaction] {
-        var transations = [ViewTransaction]()
+    func createViewModel(for accs:[Account]) -> [TransactionViewModel] {
+        var transations = [TransactionViewModel]()
         for account in accs {
             guard let isoDate = account.date, let date = isoDate.dateFromISO8601 else {
                 continue
             }
-            let accTrans = ViewTransaction(acc: account,date: date)
+            let accTrans = TransactionViewModel(acc: account,date: date)
             transations.append(accTrans)
             
         }

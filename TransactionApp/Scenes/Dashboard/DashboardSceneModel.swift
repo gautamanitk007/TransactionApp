@@ -12,7 +12,7 @@ import Foundation
 struct BalanceViewModel {
     let balance:String
 }
-public class ViewTransaction{
+public class TransactionViewModel{
     let account:Account
     let date: Date
     init(acc: Account, date:Date) {
