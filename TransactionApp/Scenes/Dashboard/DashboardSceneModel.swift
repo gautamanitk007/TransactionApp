@@ -9,19 +9,38 @@
 
 import Foundation
 
-enum DashboardSceneModel {
-
-    struct BalanceViewModel {
-        var balance:String
+struct BalanceViewModel {
+    let balance:String
+}
+public class ViewTransaction{
+    let account:Account
+    let date: Date
+    init(acc: Account, date:Date) {
+        self.account = acc
+        self.date = date
     }
     
-    struct TransactionList {
-        var tansactions: [Transaction]
+    var dayMonth:String{
+        return self.date.dayMonth
     }
-    
-    struct Transaction {
-        var day: String
-        var transferRecieve: String
-        var amount: String
+    var payToFrom:String{
+        var msg: String = ""
+        if let from = self.account.from, let user = from.accountHolderName {
+            msg = self.account.type!.capitalized + "d" + " from " + user
+        } else if let to = self.account.to, let user = to.accountHolderName {
+            msg = self.account.type!.capitalized + " to " + user
+        }
+        return msg
+    }
+    var amount:NSMutableAttributedString {
+        var coloredAmount = NSMutableAttributedString()
+        if let amt = self.account.amount {
+            if amt < 0 {
+                coloredAmount = Utils.getColoredText(txt: "\(amt)", color: .black)
+            } else{
+                coloredAmount = Utils.getColoredText(txt: "\(amt)", color: .green)
+            }
+        }
+        return coloredAmount
     }
 }

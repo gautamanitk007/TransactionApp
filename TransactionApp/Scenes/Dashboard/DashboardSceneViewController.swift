@@ -8,10 +8,14 @@
 
 import UIKit
 
+enum Identifier:String {
+    case TransactionCellIdentifier = "TransactionCelli"
+}
 protocol DashboardSceneDisplayLogic where Self: UIViewController {
   
-    func displayBalanceViewModel(_ viewModel: DashboardSceneModel.BalanceViewModel)
-    func dispalyTransactionListViewModel(_ viewModels: DashboardSceneModel.TransactionList)
+    func displayBalanceViewModel(_ viewModel:BalanceViewModel)
+    func displayTransactionListViewModel(_ viewModels:[ViewTransaction])
+    func displayError(_ error:String)
 }
 
 final class DashboardSceneViewController: UIViewController {
@@ -21,11 +25,17 @@ final class DashboardSceneViewController: UIViewController {
     @IBOutlet weak var lblAmount: UILabel!
     
     private var interactor: DashboardSceneInteractable!
-    private var router: DashboardSceneRouting!
+    private var router: TransactionSceneRouting!
     private var apiManager: APIManager!
+    private var datasource : TableViewDatasource<TransactionCell,ViewTransaction>!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
+        self.datasource = TableViewDatasource(cellIdentifier: Identifier.TransactionCellIdentifier.rawValue,
+                                              items: []){(cell,viewModel) in
+            cell.configure(viewModel)
+        }
+        self.activityTable.dataSource = self.datasource
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -43,15 +53,25 @@ final class DashboardSceneViewController: UIViewController {
     }
 }
 
-
 // MARK: - DashboardSceneDisplayLogic
 extension DashboardSceneViewController: DashboardSceneDisplayLogic {
 
-    func displayBalanceViewModel(_ viewModel: DashboardSceneModel.BalanceViewModel){
-        
+    func displayBalanceViewModel(_ viewModel: BalanceViewModel){
+        DispatchQueue.main.async {
+            self.lblAmount.text = viewModel.balance
+        }
     }
-    func dispalyTransactionListViewModel(_ viewModels: DashboardSceneModel.TransactionList){
-        
+    func displayTransactionListViewModel(_ viewModels:[ViewTransaction]){
+        self.datasource.removeAll()
+        self.datasource.updateItems(viewModels)
+        DispatchQueue.main.async {
+            self.activityTable.reloadData()
+        }
+    }
+    func displayError(_ error:String){
+        DispatchQueue.main.async {
+            self.router.showLogingFailure(message: error)
+        }
     }
 }
 
@@ -61,7 +81,7 @@ private extension DashboardSceneViewController {
     func setup(){
         apiManager = APIManager()
         interactor = DashboardSceneInteractor(viewController: self)
-        router = DashboardSceneRouter(viewController: self)
+        router = TransactionSceneRouter(viewController: self)
         
         self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.hidesBackButton = true
@@ -70,6 +90,8 @@ private extension DashboardSceneViewController {
         let logoutButton = UIBarButtonItem(title: NSLocalizedString("Button_Logout_Title",comment: ""),
                        style: .plain, target: self, action: #selector(DashboardSceneViewController.logoutTapped))
         self.navigationItem.rightBarButtonItem = logoutButton
+        self.activityTable.layer.borderWidth = 2
+        self.activityTable.layer.borderColor = UIColor.systemGroupedBackground.cgColor
     }
     
     func fetchBalance() {
@@ -82,3 +104,4 @@ private extension DashboardSceneViewController {
         self.interactor.getAllTransactions(service: apiService)
     }
 }
+

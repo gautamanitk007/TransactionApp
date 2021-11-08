@@ -14,7 +14,7 @@ protocol LoginSceneDisplayLogic where Self: UIViewController {
 final class LoginSceneViewController: BaseViewController {
     
     var interactor: LoginSceneInteractable!
-    var router: LoginSceneRouting!
+    var router: TransactionSceneRouting!
     private var userModel: UserModel?
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var baseScrollView: UIScrollView!
@@ -89,7 +89,7 @@ private extension LoginSceneViewController {
         let manager = APIManager()
         let apiService = APIService(manager, EndPoints.login)
         self.interactor = LoginSceneInteractor(viewController: self,apiService: apiService)
-        self.router = LoginSceneRouter(viewController: self)
+        self.router = TransactionSceneRouter(viewController: self)
         self.txtUsername.delegate = self
         self.txtPassword.delegate = self
         

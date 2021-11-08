@@ -26,14 +26,36 @@ final class DashboardScenePresenter {
 // MARK: - DashboardScenePresentationLogic
 extension DashboardScenePresenter: DashboardScenePresentationLogic {
     func showTransactions(response: TransactionResponse){
-        print("Transactions:\(response)")
+        var accTrans = [ViewTransaction]()
+        if let accounts = response.data {
+            accTrans = self.createViewModel(for: accounts)
+        }
+        
+        self.viewController?.displayTransactionListViewModel(accTrans)
     }
     func showBalance(response: BalanceResponse) {
-        print("Balance:\(response)")
+        
+        self.viewController?.displayBalanceViewModel(BalanceViewModel(balance: "S$ \(response.balance!)"))
     }
     func didFailedToLoad( error: String?){
-        print("Error:\(error)")
+        self.viewController?.displayError(error ?? "" )
     }
 }
 
 
+private extension DashboardScenePresenter {
+    func createViewModel(for accs:[Account]) -> [ViewTransaction] {
+        var transations = [ViewTransaction]()
+        for account in accs {
+            guard let isoDate = account.date, let date = isoDate.dateFromISO8601 else {
+                continue
+            }
+            let accTrans = ViewTransaction(acc: account,date: date)
+            transations.append(accTrans)
+            
+        }
+        return transations.sorted { (acc1, acc2) -> Bool in
+            return acc1.date > acc2.date
+        }
+    }
+}

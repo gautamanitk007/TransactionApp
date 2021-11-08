@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Foundation
 
 class Utils {
     class func getAlert(title:String,message:String) -> UIAlertController {
@@ -26,5 +27,11 @@ class Utils {
         }else{
             return nil
         }
+    }
+    class func getColoredText(txt: String,color:UIColor) -> NSMutableAttributedString{
+        let range = (txt as NSString).range(of: txt)
+        let colordValue = NSMutableAttributedString.init(string: txt)
+        colordValue.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
+        return colordValue
     }
 }
