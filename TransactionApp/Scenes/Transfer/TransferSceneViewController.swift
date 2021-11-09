@@ -23,6 +23,10 @@ final class TransferSceneViewController: UIViewController {
     self.setup()
   }
   
+    @objc func submitTapped(){
+        
+    }
+    
 }
 
 
@@ -41,11 +45,11 @@ private extension TransferSceneViewController {
         router = TransactionSceneRouter(viewController: self)
         
         self.navigationController?.navigationBar.isHidden = false
-        self.navigationItem.hidesBackButton = true
-        self.navigationItem.title =  NSLocalizedString("Page_Dashboard_Title",comment: "")
+        self.navigationItem.hidesBackButton = false
+        self.navigationItem.title =  NSLocalizedString("Page_Transfer_Title",comment: "")
         
-        let logoutButton = UIBarButtonItem(title: NSLocalizedString("Button_Logout_Title",comment: ""),
-                       style: .plain, target: self, action: #selector(DashboardSceneViewController.logoutTapped))
+        let logoutButton = UIBarButtonItem(title: NSLocalizedString("Button_Submit_Title",comment: ""),
+                       style: .plain, target: self, action: #selector(TransferSceneViewController.submitTapped))
         self.navigationItem.rightBarButtonItem = logoutButton
         
     }

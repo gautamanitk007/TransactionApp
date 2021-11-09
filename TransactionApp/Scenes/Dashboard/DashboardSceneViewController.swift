@@ -18,7 +18,7 @@ protocol DashboardSceneDisplayLogic where Self: UIViewController {
     func displayError(_ error:String)
 }
 
-final class DashboardSceneViewController: UIViewController {
+final class DashboardSceneViewController: BaseViewController {
   
     @IBOutlet weak var btnTransfer: RoundedButton!
     @IBOutlet weak var activityTable: UITableView!
@@ -36,6 +36,7 @@ final class DashboardSceneViewController: UIViewController {
             cell.configure(viewModel)
         }
         self.activityTable.dataSource = self.datasource
+        self.startActivity()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -58,6 +59,7 @@ extension DashboardSceneViewController: DashboardSceneDisplayLogic {
 
     func displayBalanceViewModel(_ viewModel: BalanceViewModel){
         DispatchQueue.main.async {
+            self.stopActivity()
             self.lblAmount.text = viewModel.balance
         }
     }
@@ -65,11 +67,13 @@ extension DashboardSceneViewController: DashboardSceneDisplayLogic {
         self.datasource.removeAll()
         self.datasource.updateItems(viewModels)
         DispatchQueue.main.async {
+            self.stopActivity()
             self.activityTable.reloadData()
         }
     }
     func displayError(_ error:String){
         DispatchQueue.main.async {
+            self.stopActivity()
             self.router.showLogingFailure(message: error)
         }
     }
