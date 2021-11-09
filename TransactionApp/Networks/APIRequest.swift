@@ -29,17 +29,12 @@ public enum ContentType: String {
 public enum Accept: String {
     case accept = "application/json"
 }
-
-public enum Server:String{
-    case baseURL = "http://127.0.0.1:8080/"
-}
-
 enum EndPoints:String {
-    case login = "authenticate/login"
-    case balances = "account/balances"
-    case payees = "account/payees"
-    case transactions = "account/transactions"
-    case transfer = "transfer"
+    case login = "/authenticate/login"
+    case balances = "/account/balances"
+    case payees = "/account/payees"
+    case transactions = "/account/transactions"
+    case transfer = "/transfer"
 }
 public struct ApiError{
     let statusCode:Int
@@ -52,14 +47,13 @@ public struct Resource<T>{
 public struct APIRequest {
     var endPoint: String
     var body: [String : Any]
-    var baseURL:String? = Server.baseURL.rawValue
     var httpMethod: HttpMethod = .post
     var contentType: ContentType = .json
     var accept: Accept = .accept
     var timeout: Double = 60.0
 
     var urlString: String {
-        return baseURL! + endPoint
+        return TransactionManager.shared.baseURL + endPoint
     }
     
     var httpRequest: URLRequest? {
@@ -68,8 +62,8 @@ public struct APIRequest {
         request.httpMethod = self.httpMethod.rawValue
         request.timeoutInterval = self.timeout
         
-        if let token = Utils.getValue(forKey: "token"), token.count > 1 {
-            request.setValue(token , forHTTPHeaderField: "Authorization")
+        if TransactionManager.shared.token.count > 1 {
+            request.setValue(TransactionManager.shared.token , forHTTPHeaderField: "Authorization")
         }
         request.setValue(self.contentType.rawValue, forHTTPHeaderField: "Content-Type")
         request.setValue(self.accept.rawValue, forHTTPHeaderField: "Accept")

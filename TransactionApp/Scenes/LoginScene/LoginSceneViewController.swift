@@ -86,9 +86,7 @@ extension LoginSceneViewController: LoginSceneDisplayLogic {
 private extension LoginSceneViewController {
     func setup() {
         userModel = UserModel()
-        let manager = APIManager()
-        let apiService = APIService(manager, EndPoints.login)
-        self.interactor = LoginSceneInteractor(viewController: self,apiService: apiService)
+        self.interactor = LoginSceneInteractor(viewController: self)
         self.router = TransactionSceneRouter(viewController: self)
         self.txtUsername.delegate = self
         self.txtPassword.delegate = self
@@ -96,7 +94,6 @@ private extension LoginSceneViewController {
         self.txtUsername.placeholder = NSLocalizedString("Login_Text_Field_Placeholder",comment: "")
         self.txtPassword.placeholder = NSLocalizedString("Password_Text_Field_Placeholder",comment: "")
         self.btnLogin.setTitle(NSLocalizedString("Login_Button_Title",comment: ""), for: .normal)
-        
     }
 }
 

@@ -20,7 +20,7 @@ final class TransferSceneViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    //interactor.doSomething(item: 22)
+    self.setup()
   }
   
 }
@@ -32,6 +32,23 @@ extension TransferSceneViewController: TransferSceneDisplayLogic {
   func displayViewModel(_ viewModel: TransferSceneModel.ViewModel) {
     
   }
+}
+
+private extension TransferSceneViewController {
+    func setup(){
+        let apiManager = APIManager()
+        interactor = TransferSceneInteractor(viewController: self)
+        router = TransactionSceneRouter(viewController: self)
+        
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationItem.hidesBackButton = true
+        self.navigationItem.title =  NSLocalizedString("Page_Dashboard_Title",comment: "")
+        
+        let logoutButton = UIBarButtonItem(title: NSLocalizedString("Button_Logout_Title",comment: ""),
+                       style: .plain, target: self, action: #selector(DashboardSceneViewController.logoutTapped))
+        self.navigationItem.rightBarButtonItem = logoutButton
+        
+    }
 }
 
 

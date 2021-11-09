@@ -8,25 +8,19 @@
 
 import Foundation
 
-typealias TransferSceneInteractable = TransferSceneBusinessLogic & TransferSceneDataStore
+typealias TransferSceneInteractable = TransferSceneBusinessLogic
 
 protocol TransferSceneBusinessLogic {
   
   func doRequest(_ request: TransferSceneModel.Request)
 }
 
-protocol TransferSceneDataStore {
-  var dataSource: TransferSceneModel.DataSource { get }
-}
-
-final class TransferSceneInteractor: TransferSceneDataStore {
-  
-  var dataSource: TransferSceneModel.DataSource
+final class TransferSceneInteractor {
   
   private var presenter: TransferScenePresentationLogic
   
-  init(viewController: TransferSceneDisplayLogic?, dataSource: TransferSceneModel.DataSource) {
-    self.dataSource = dataSource
+  init(viewController: TransferSceneDisplayLogic?) {
+   
     self.presenter = TransferScenePresenter(viewController: viewController)
   }
 }
@@ -36,14 +30,7 @@ final class TransferSceneInteractor: TransferSceneDataStore {
 extension TransferSceneInteractor: TransferSceneBusinessLogic {
   
   func doRequest(_ request: TransferSceneModel.Request) {
-    DispatchQueue.global(qos: .userInitiated).async {
-      
-      switch request {
-        
-      case .doSomething(let item):
-        self.doSomething(item)
-      }
-    }
+    
   }
 }
 
@@ -51,14 +38,5 @@ extension TransferSceneInteractor: TransferSceneBusinessLogic {
 // MARK: - Private Zone
 private extension TransferSceneInteractor {
   
-  func doSomething(_ item: Int) {
-    
-    //construct the Service right before using it
-    //let serviceX = factory.makeXService()
-    
-    // get new data async or sync
-    //let newData = serviceX.getNewData()
-    
-    presenter.presentResponse(.doSomething(newItem: item + 1, isItem: true))
-  }
+  
 }

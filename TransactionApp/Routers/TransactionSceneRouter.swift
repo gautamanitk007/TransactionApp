@@ -34,7 +34,7 @@ extension TransactionSceneRouter: TransactionSceneRouting {
         self.viewController?.present(alertController, animated: true)
     }
     func popToPrevious() {
-        Utils.saveInDefaults(value: "", forKey: "token")
+        TransactionManager.shared.token = ""
         self.viewController?.navigationController?.popViewController(animated: true)
     }
 

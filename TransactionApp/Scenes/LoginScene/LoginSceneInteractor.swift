@@ -19,9 +19,9 @@ final class LoginSceneInteractor {
     private var presenter: LoginScenePresentationLogic
     private var service: ServiceProtocol?
     
-    init(viewController: LoginSceneDisplayLogic?, apiService: ServiceProtocol) {
+    init(viewController: LoginSceneDisplayLogic?) {
         self.presenter = LoginScenePresenter(viewController: viewController)
-        self.service = apiService
+        self.service = APIService(APIManager(), EndPoints.login)
     }
 }
 
@@ -43,7 +43,7 @@ extension LoginSceneInteractor: LoginSceneBusinessLogic {
                 if let errorValue = error, errorValue.statusCode != ResponseCodes.success.rawValue {
                     self.presenter.didFinishLoginReponse(error: errorValue.message)
                 } else if let tokenObj = response, let token = tokenObj.token {
-                    Utils.saveInDefaults(value: token, forKey: "token")
+                    TransactionManager.shared.token = token
                     self.presenter.didFinishLoginReponse(error: nil)
                 }
             })

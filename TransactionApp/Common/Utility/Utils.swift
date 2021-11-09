@@ -15,23 +15,32 @@ class Utils {
         alert.addAction(UIAlertAction(title:NSLocalizedString("Button_OK_Title",comment: ""), style: .default) { _ in})
         return alert
     }
-    class func saveInDefaults(value str: String, forKey key: String){
-        let appDefaults = UserDefaults.standard
-        appDefaults.setValue(str, forKey: key)
-        appDefaults.synchronize()
-    }
-    class func getValue(forKey key: String) -> String?{
-        let appDefaults = UserDefaults.standard
-        if let value = appDefaults.value(forKey: key) as? String, value.count > 1 {
-            return value
-        }else{
-            return nil
+    class func load<T:Decodable>(bundle:Bundle, fileName: String) -> T?{
+        do{
+            let data = try bundle.path(forResource: fileName, ofType: "json",inDirectory: nil).flatMap({ jPath in
+                return try Data(contentsOf: URL(fileURLWithPath: jPath))
+            })
+            let response: T? = try data.flatMap({ jsonData in
+                return try JSONDecoder().decode(T.self, from: jsonData)
+            })
+            return response
+        }catch {
+            print("Failed to load data")
         }
+        return nil
     }
     class func getColoredText(txt: String,color:UIColor) -> NSMutableAttributedString{
         let range = (txt as NSString).range(of: txt)
         let colordValue = NSMutableAttributedString.init(string: txt)
         colordValue.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
         return colordValue
+    }
+    class func getFormator() -> DateFormatter{
+        let formatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .iso8601)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+        return formatter
     }
 }
