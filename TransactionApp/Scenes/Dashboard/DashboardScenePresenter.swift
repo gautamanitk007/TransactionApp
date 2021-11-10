@@ -38,7 +38,7 @@ extension DashboardScenePresenter: DashboardScenePresentationLogic {
         self.viewController?.displayBalanceViewModel(BalanceViewModel(balance: "S$ \(response.balance!)"))
     }
     func didFailedToLoad( error: String?){
-        self.viewController?.displayError(error ?? "" )
+        self.viewController?.displayError(error ?? NSLocalizedString("Unkown",comment: ""))
     }
 }
 

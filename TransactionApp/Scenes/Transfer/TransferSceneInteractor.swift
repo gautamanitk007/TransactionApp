@@ -11,32 +11,30 @@ import Foundation
 typealias TransferSceneInteractable = TransferSceneBusinessLogic
 
 protocol TransferSceneBusinessLogic {
-  
-  func doRequest(_ request: TransferSceneModel.Request)
+    func getAllPayee(service: ServiceProtocol)
 }
 
 final class TransferSceneInteractor {
-  
-  private var presenter: TransferScenePresentationLogic
-  
-  init(viewController: TransferSceneDisplayLogic?) {
-   
-    self.presenter = TransferScenePresenter(viewController: viewController)
-  }
+    private var presenter: TransferScenePresentationLogic
+    
+    init(viewController: TransferSceneDisplayLogic?) {
+        self.presenter = TransferScenePresenter(viewController: viewController)
+    }
 }
 
 
 // MARK: - TransferSceneBusinessLogic
 extension TransferSceneInteractor: TransferSceneBusinessLogic {
-  
-  func doRequest(_ request: TransferSceneModel.Request) {
-    
-  }
-}
-
-
-// MARK: - Private Zone
-private extension TransferSceneInteractor {
-  
-  
+    func getAllPayee(service: ServiceProtocol) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            service.getAllPayee { [weak self] (response,error) in
+                guard let self = self else { return }
+                if let errorValue = error, errorValue.statusCode != ResponseCodes.success.rawValue{
+                    self.presenter.didFailedToLoad(error: errorValue.message)
+                } else if let payeeList = response {
+                    self.presenter.showPayeeList(response: payeeList)
+                }
+            }
+        }
+    }
 }

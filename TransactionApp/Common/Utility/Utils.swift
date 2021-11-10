@@ -43,4 +43,14 @@ class Utils {
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
         return formatter
     }
+    
+    class func createButton(textField: UITextField,imgName:String) -> UIButton {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(named: imgName), for: .normal)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
+        button.frame = CGRect(x: CGFloat(textField.frame.size.width - 25), y: CGFloat(5), width: CGFloat(25), height: CGFloat(25))
+        textField.rightView = button
+        textField.rightViewMode = .always
+        return button
+    }
 }

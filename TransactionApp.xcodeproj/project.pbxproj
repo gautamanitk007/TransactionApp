@@ -30,7 +30,6 @@
 		D2C20D66273629160061D929 /* TransferScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20D60273629160061D929 /* TransferScenePresenter.swift */; };
 		D2C20D68273629160061D929 /* TransferSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20D62273629160061D929 /* TransferSceneViewController.swift */; };
 		D2C20D69273629160061D929 /* TransferSceneInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20D63273629160061D929 /* TransferSceneInteractor.swift */; };
-		D2C20D6B273629160061D929 /* TransferSceneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20D65273629160061D929 /* TransferSceneModel.swift */; };
 		D2C20D7527362EFE0061D929 /* BindingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20D7427362EFE0061D929 /* BindingTextField.swift */; };
 		D2C20D7E27362FB30061D929 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20D7D27362FB30061D929 /* UserModel.swift */; };
 		D2C20D8E273638E70061D929 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20D8D273638E70061D929 /* RoundedButton.swift */; };
@@ -43,6 +42,9 @@
 		D2C20DE02736AECB0061D929 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20DDF2736AECB0061D929 /* APIManager.swift */; };
 		D2C289C5273AC5FC00E79627 /* TransactionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C289C4273AC5FC00E79627 /* TransactionManager.swift */; };
 		D2C289CA273ACCE700E79627 /* Transfer.json in Resources */ = {isa = PBXBuildFile; fileRef = D2C289C9273ACCE700E79627 /* Transfer.json */; };
+		D2C38040273BE07700F71879 /* DropdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3803F273BE07700F71879 /* DropdownViewController.swift */; };
+		D2C38046273BE12B00F71879 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C38045273BE12B00F71879 /* UserViewModel.swift */; };
+		D2C3804B273BE41E00F71879 /* GeneralCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3804A273BE41E00F71879 /* GeneralCell.swift */; };
 		D2F9126E27395EA500FC5487 /* TableViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F9126D27395EA500FC5487 /* TableViewDatasource.swift */; };
 		D2F9127627395FBB00FC5487 /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F9127527395FBB00FC5487 /* TransactionCell.swift */; };
 		D2F9127C27396DB800FC5487 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F9127B27396DB800FC5487 /* Extensions.swift */; };
@@ -98,7 +100,6 @@
 		D2C20D60273629160061D929 /* TransferScenePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferScenePresenter.swift; sourceTree = "<group>"; };
 		D2C20D62273629160061D929 /* TransferSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferSceneViewController.swift; sourceTree = "<group>"; };
 		D2C20D63273629160061D929 /* TransferSceneInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferSceneInteractor.swift; sourceTree = "<group>"; };
-		D2C20D65273629160061D929 /* TransferSceneModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferSceneModel.swift; sourceTree = "<group>"; };
 		D2C20D7427362EFE0061D929 /* BindingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingTextField.swift; sourceTree = "<group>"; };
 		D2C20D7D27362FB30061D929 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		D2C20D8D273638E70061D929 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
@@ -111,6 +112,9 @@
 		D2C20DDF2736AECB0061D929 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		D2C289C4273AC5FC00E79627 /* TransactionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionManager.swift; sourceTree = "<group>"; };
 		D2C289C9273ACCE700E79627 /* Transfer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Transfer.json; sourceTree = "<group>"; };
+		D2C3803F273BE07700F71879 /* DropdownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownViewController.swift; sourceTree = "<group>"; };
+		D2C38045273BE12B00F71879 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		D2C3804A273BE41E00F71879 /* GeneralCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralCell.swift; sourceTree = "<group>"; };
 		D2F9126D27395EA500FC5487 /* TableViewDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDatasource.swift; sourceTree = "<group>"; };
 		D2F9127527395FBB00FC5487 /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
 		D2F9127B27396DB800FC5487 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -282,7 +286,6 @@
 				D2C20D60273629160061D929 /* TransferScenePresenter.swift */,
 				D2C20D62273629160061D929 /* TransferSceneViewController.swift */,
 				D2C20D63273629160061D929 /* TransferSceneInteractor.swift */,
-				D2C20D65273629160061D929 /* TransferSceneModel.swift */,
 			);
 			path = Transfer;
 			sourceTree = "<group>";
@@ -290,11 +293,12 @@
 		D2C20D7227362EC70061D929 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				D2C38044273BE10B00F71879 /* ViewModels */,
+				D2C3803E273BE04600F71879 /* Datasource */,
+				D2C3803D273BE03C00F71879 /* Controllers */,
 				D22BFA6F2737CDB100764BBB /* Utility */,
 				D2C20D7C27362FA30061D929 /* Models */,
 				D2C20D7327362ECE0061D929 /* Views */,
-				D2C20D9B273652250061D929 /* BaseViewController.swift */,
-				D2F9126D27395EA500FC5487 /* TableViewDatasource.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -306,6 +310,7 @@
 				D2C20D8D273638E70061D929 /* RoundedButton.swift */,
 				D22BFAEE27382AC900764BBB /* RoundedView.swift */,
 				D2F9127527395FBB00FC5487 /* TransactionCell.swift */,
+				D2C3804A273BE41E00F71879 /* GeneralCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -336,6 +341,31 @@
 				D2C289C4273AC5FC00E79627 /* TransactionManager.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		D2C3803D273BE03C00F71879 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D2C20D9B273652250061D929 /* BaseViewController.swift */,
+				D2C3803F273BE07700F71879 /* DropdownViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D2C3803E273BE04600F71879 /* Datasource */ = {
+			isa = PBXGroup;
+			children = (
+				D2F9126D27395EA500FC5487 /* TableViewDatasource.swift */,
+			);
+			path = Datasource;
+			sourceTree = "<group>";
+		};
+		D2C38044273BE10B00F71879 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				D2C38045273BE12B00F71879 /* UserViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		D2F9129027398DCE00FC5487 /* Routers */ = {
@@ -492,21 +522,23 @@
 				D2C20D9C273652250061D929 /* BaseViewController.swift in Sources */,
 				D22BFAEF27382AC900764BBB /* RoundedView.swift in Sources */,
 				D2C20DCE273686FC0061D929 /* APIProtocol.swift in Sources */,
+				D2C3804B273BE41E00F71879 /* GeneralCell.swift in Sources */,
 				D2C20D69273629160061D929 /* TransferSceneInteractor.swift in Sources */,
 				D2C20D68273629160061D929 /* TransferSceneViewController.swift in Sources */,
 				D2C20D59273628FC0061D929 /* DashboardSceneModel.swift in Sources */,
 				D2C289C5273AC5FC00E79627 /* TransactionManager.swift in Sources */,
 				D2C20D06273626CB0061D929 /* AppDelegate.swift in Sources */,
+				D2C38040273BE07700F71879 /* DropdownViewController.swift in Sources */,
 				D2C20D7E27362FB30061D929 /* UserModel.swift in Sources */,
 				D2C20DDB2736A26D0061D929 /* APIService.swift in Sources */,
 				D2C20D56273628FC0061D929 /* DashboardSceneViewController.swift in Sources */,
-				D2C20D6B273629160061D929 /* TransferSceneModel.swift in Sources */,
 				D2C20D46273627710061D929 /* LoginSceneInteractor.swift in Sources */,
 				D2C20D54273628FC0061D929 /* DashboardScenePresenter.swift in Sources */,
 				D2F9127627395FBB00FC5487 /* TransactionCell.swift in Sources */,
 				D2C20D45273627710061D929 /* LoginSceneViewController.swift in Sources */,
 				D2C20D08273626CB0061D929 /* SceneDelegate.swift in Sources */,
 				D2F9127C27396DB800FC5487 /* Extensions.swift in Sources */,
+				D2C38046273BE12B00F71879 /* UserViewModel.swift in Sources */,
 				D2C20D7527362EFE0061D929 /* BindingTextField.swift in Sources */,
 				D22BFA792737D0DA00764BBB /* Utils.swift in Sources */,
 				D2C20D43273627710061D929 /* LoginScenePresenter.swift in Sources */,

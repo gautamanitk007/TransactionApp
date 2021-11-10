@@ -10,7 +10,9 @@ import UIKit
 
 enum Identifier:String {
     case TransactionCellIdentifier = "TransactionCelli"
+    case GeneralCellIdentifier = "GeneralCelli"
 }
+
 protocol DashboardSceneDisplayLogic where Self: UIViewController {
   
     func displayBalanceViewModel(_ viewModel:BalanceViewModel)
@@ -37,15 +39,12 @@ final class DashboardSceneViewController: BaseViewController {
         }
         self.activityTable.dataSource = self.datasource
         self.startActivity()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         self.fetchBalance()
         self.fetchAllTransactions()
     }
     
     @objc func logoutTapped(_ sender: Any) {
+        TransactionManager.shared.token = ""
         self.router.popToPrevious()
     }
  
@@ -74,7 +73,7 @@ extension DashboardSceneViewController: DashboardSceneDisplayLogic {
     func displayError(_ error:String){
         DispatchQueue.main.async {
             self.stopActivity()
-            self.router.showLogingFailure(message: error)
+            self.router.showFailure(message: error)
         }
     }
 }

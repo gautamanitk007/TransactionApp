@@ -9,39 +9,34 @@
 import Foundation
 
 protocol TransferScenePresentationLogic {
-  func presentResponse(_ response: TransferSceneModel.Response)
+    func showPayeeList(response: PayeeResponse)
+    func didFailedToLoad( error: String?)
 }
 
 final class TransferScenePresenter {
-  private weak var viewController: TransferSceneDisplayLogic?
+    private weak var viewController: TransferSceneDisplayLogic?
   
-  init(viewController: TransferSceneDisplayLogic?) {
-    self.viewController = viewController
-  }
+    init(viewController: TransferSceneDisplayLogic?) {
+        self.viewController = viewController
+    }
 }
 
 
 // MARK: - TransferScenePresentationLogic
 extension TransferScenePresenter: TransferScenePresentationLogic {
-  
-  func presentResponse(_ response: TransferSceneModel.Response) {
-    
-    switch response {
-      
-    case .doSomething(let newItem, let isItem):
-      presentDoSomething(newItem, isItem)
+    func showPayeeList(response: PayeeResponse) {
+        if let payeeList = response.data, payeeList.count > 0{
+            let sortedPayeeList = payeeList.sorted { (payee1, payee2) -> Bool in
+                return payee1.accountHolderName! > payee2.accountHolderName!
+            }
+            self.viewController?.dispayPayee(payeeList: sortedPayeeList)
+        } else {
+            self.viewController?.displayError(NSLocalizedString("Payee_Not_Exist",comment: ""))
+        }
     }
-  }
+    func didFailedToLoad(error: String?) {
+        self.viewController?.displayError(error ?? NSLocalizedString("Unkown",comment: ""))
+    }
 }
 
 
-// MARK: - Private Zone
-private extension TransferScenePresenter {
-  
-  func presentDoSomething(_ newItem: Int, _ isItem: Bool) {
-    
-    //prepare data for display and send it further
-    
-    viewController?.displayViewModel(.doSomething(viewModelData: NSObject()))
-  }
-}

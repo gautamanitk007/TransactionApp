@@ -10,7 +10,7 @@ import UIKit
 
 protocol TransactionSceneRouting {
     func navigateToDestination(for indetifier:String)
-    func showLogingFailure(message: String)
+    func showFailure(message: String)
     func popToPrevious()
 }
 
@@ -24,18 +24,27 @@ final class TransactionSceneRouter {
 
 // MARK: - LoginSceneRouting
 extension TransactionSceneRouter: TransactionSceneRouting {
-    func navigateToDestination(for indetifier:String) {
+    func navigateToDestination(for indentifier:String) {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let destinationVC = storyboard.instantiateViewController(withIdentifier: indetifier)
+        let destinationVC = storyboard.instantiateViewController(withIdentifier: indentifier)
         self.viewController?.navigationController?.pushViewController(destinationVC, animated: true)
     }
-    func showLogingFailure(message: String) {
+    func showFailure(message: String) {
         let alertController = Utils.getAlert(title:NSLocalizedString("Information_Error_Title",comment: ""),message:message)
         self.viewController?.present(alertController, animated: true)
     }
     func popToPrevious() {
-        TransactionManager.shared.token = ""
         self.viewController?.navigationController?.popViewController(animated: true)
+    }
+    
+    func showPopOver(for indetifier:String, popoverList:[Payee], delegate:DropdownViewControllerDelegate){
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let destinationVC = storyboard.instantiateViewController(withIdentifier: indetifier) as! DropdownViewController
+        destinationVC.payeeList = popoverList
+        destinationVC.modalPresentationStyle = .popover
+        destinationVC.delegate = delegate
+        let popover: UIPopoverPresentationController = destinationVC.popoverPresentationController!
+        self.viewController?.present(destinationVC, animated: true, completion: nil)
     }
 
 }

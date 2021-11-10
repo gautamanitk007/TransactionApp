@@ -5,8 +5,12 @@
   Created by Gautam Singh on 7/11/21.
   
 */
-"Login_Text_Field_Placeholder" = "#username";
-"Password_Text_Field_Placeholder" = "#password";
+"Login_Text_Field_Placeholder" = "Username";
+"Password_Text_Field_Placeholder" = "Password";
+"Recipient_Text_Field_Placeholder" = "Recipient";
+"DateOfTransfer_Text_Field_Placeholder" = "Date of Transfer";
+"Description_Text_Field_Placeholder" = "Description";
+"Amount_Text_Field_Placeholder" = "Amount";
 "Login_Button_Title" = "Login";
 "Button_Logout_Title" = "Logout";
 "Page_Dashboard_Title" = "Dashboard";
@@ -25,3 +29,5 @@
 "Error_timeout" = "Time out";
 "Error_Server_Unreachable" = "Server unreachable";
 "Error_Server_Down" = "Server down";
+"Payee_Not_Exist" = "No any payee exist";
+"Unkown" = "Unkown Error";

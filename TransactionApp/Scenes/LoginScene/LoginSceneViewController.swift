@@ -75,7 +75,7 @@ extension LoginSceneViewController: LoginSceneDisplayLogic {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {return}
             self.stopActivity()
-            self.router.showLogingFailure(message: message)
+            self.router.showFailure(message: message)
         }
     }
 }
