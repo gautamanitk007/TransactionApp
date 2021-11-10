@@ -17,11 +17,27 @@ final class TransferSceneViewController: BaseViewController {
 
     private var interactor: TransferSceneInteractable!
     private var router: TransactionSceneRouting!
-    
-    @IBOutlet weak var recipientTextField: UITextField!
-    @IBOutlet weak var dateOfTransferTextField: UITextField!
-    @IBOutlet weak var descTextField: UITextField!
-    @IBOutlet weak var amountTextField: UITextField!
+    private var transferModel:TransferSceneModel?
+    @IBOutlet weak var recipientTextField: BindingTextField!{
+        didSet{
+            recipientTextField.bind{self.transferModel?.recipientAccountNo = $0}
+        }
+    }
+    @IBOutlet weak var dateOfTransferTextField: BindingTextField!{
+        didSet{
+            dateOfTransferTextField.bind{self.transferModel?.date = $0}
+        }
+    }
+    @IBOutlet weak var descTextField: BindingTextField!{
+        didSet{
+            descTextField.bind{self.transferModel?.description = $0}
+        }
+    }
+    @IBOutlet weak var amountTextField: BindingTextField!{
+        didSet{
+            amountTextField.bind{self.transferModel?.amount = $0}
+        }
+    }
     @IBOutlet weak var btnCancel: RoundedButton!
     @IBOutlet weak var btnSubmit: RoundedButton!
     
@@ -39,7 +55,8 @@ final class TransferSceneViewController: BaseViewController {
     }
   
     @IBAction func submitTapped(){
-        
+        self.startActivity()
+        self.interactor.transferTo(payee: self.transferModel!,service: APIService(APIManager(),EndPoints.transfer))
     }
     
     @IBAction func cancelTapped(){
@@ -61,12 +78,13 @@ final class TransferSceneViewController: BaseViewController {
 }
 private extension TransferSceneViewController {
     func setup(){
+        transferModel = TransferSceneModel()
         interactor = TransferSceneInteractor(viewController: self)
         router = TransactionSceneRouter(viewController: self)
     
         self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.hidesBackButton = false
-        self.navigationItem.title =  NSLocalizedString("Page_Transfer_Title",comment: "")
+        self.navigationItem.title =  Utils.getLocalisedValue(key:"Page_Transfer_Title")
         
         let recipientButton = Utils.createButton(textField: self.recipientTextField, imgName: "drop.png")
         recipientButton.addTarget(self, action: #selector(self.showDropdown), for: .touchUpInside)
@@ -74,10 +92,10 @@ private extension TransferSceneViewController {
         let dateOfTransferButton = Utils.createButton(textField: self.dateOfTransferTextField, imgName: "calendar.png")
         dateOfTransferButton.addTarget(self, action: #selector(self.showCalendar), for: .touchUpInside)
         
-        self.recipientTextField.placeholder = NSLocalizedString("Recipient_Text_Field_Placeholder",comment: "")
-        self.dateOfTransferTextField.placeholder = NSLocalizedString("DateOfTransfer_Text_Field_Placeholder",comment: "")
-        self.descTextField.placeholder = NSLocalizedString("Description_Text_Field_Placeholder",comment: "")
-        self.amountTextField.placeholder = NSLocalizedString("Amount_Text_Field_Placeholder",comment: "")
+        self.recipientTextField.placeholder = Utils.getLocalisedValue(key:"Recipient_Text_Field_Placeholder")
+        self.dateOfTransferTextField.placeholder = Utils.getLocalisedValue(key:"DateOfTransfer_Text_Field_Placeholder")
+        self.descTextField.placeholder = Utils.getLocalisedValue(key:"Description_Text_Field_Placeholder")
+        self.amountTextField.placeholder = Utils.getLocalisedValue(key:"Amount_Text_Field_Placeholder")
         
         for txtField in [self.recipientTextField,self.dateOfTransferTextField,self.descTextField,self.amountTextField] {
             txtField?.delegate = self

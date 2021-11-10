@@ -10,7 +10,7 @@ import Foundation
 
 protocol TransferScenePresentationLogic {
     func showPayeeList(response: PayeeResponse)
-    func didFailedToLoad( error: String?)
+    func showErrorMessage( error: String?)
 }
 
 final class TransferScenePresenter {
@@ -31,11 +31,11 @@ extension TransferScenePresenter: TransferScenePresentationLogic {
             }
             self.viewController?.dispayPayee(payeeList: sortedPayeeList)
         } else {
-            self.viewController?.displayError(NSLocalizedString("Payee_Not_Exist",comment: ""))
+            self.viewController?.displayError(Utils.getLocalisedValue(key:"Payee_Not_Exist"))
         }
     }
-    func didFailedToLoad(error: String?) {
-        self.viewController?.displayError(error ?? NSLocalizedString("Unkown",comment: ""))
+    func showErrorMessage(error: String?) {
+        self.viewController?.displayError(error ?? Utils.getLocalisedValue(key:"Unkown"))
     }
 }
 

@@ -88,9 +88,9 @@ private extension DashboardSceneViewController {
         
         self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.hidesBackButton = true
-        self.navigationItem.title =  NSLocalizedString("Page_Dashboard_Title",comment: "")
+        self.navigationItem.title = Utils.getLocalisedValue(key:"Page_Dashboard_Title")
         
-        let logoutButton = UIBarButtonItem(title: NSLocalizedString("Button_Logout_Title",comment: ""),
+        let logoutButton = UIBarButtonItem(title:Utils.getLocalisedValue(key:"Button_Logout_Title"),
                        style: .plain, target: self, action: #selector(DashboardSceneViewController.logoutTapped))
         self.navigationItem.rightBarButtonItem = logoutButton
         self.activityTable.layer.borderWidth = 2

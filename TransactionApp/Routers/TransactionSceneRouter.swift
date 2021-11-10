@@ -30,7 +30,7 @@ extension TransactionSceneRouter: TransactionSceneRouting {
         self.viewController?.navigationController?.pushViewController(destinationVC, animated: true)
     }
     func showFailure(message: String) {
-        let alertController = Utils.getAlert(title:NSLocalizedString("Information_Error_Title",comment: ""),message:message)
+        let alertController = Utils.getAlert(title:Utils.getLocalisedValue(key:"Information_Error_Title"),message:message)
         self.viewController?.present(alertController, animated: true)
     }
     func popToPrevious() {

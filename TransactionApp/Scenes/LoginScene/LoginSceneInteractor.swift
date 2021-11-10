@@ -30,11 +30,11 @@ final class LoginSceneInteractor {
 extension LoginSceneInteractor: LoginSceneBusinessLogic {
     func startLogin(user userModel: UserModel) {
         if userModel.username == nil || userModel.username?.count == 0 {
-            self.presenter.didFinishLoginReponse(error: NSLocalizedString("UserName_Empty",comment: ""))
+            self.presenter.didFinishLoginReponse(error: Utils.getLocalisedValue(key:"UserName_Empty"))
             return
         }
         if userModel.password == nil || userModel.password?.count == 0 {
-            self.presenter.didFinishLoginReponse(error:NSLocalizedString("Password_Empty",comment: ""))
+            self.presenter.didFinishLoginReponse(error:Utils.getLocalisedValue(key:"Password_Empty"))
             return
         }
         DispatchQueue.global(qos: .userInitiated).async {[weak self] in

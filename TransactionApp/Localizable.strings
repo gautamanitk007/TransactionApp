@@ -31,3 +31,8 @@
 "Error_Server_Down" = "Server down";
 "Payee_Not_Exist" = "No any payee exist";
 "Unkown" = "Unkown Error";
+
+"Amount_Key" = "Amount cannot be empty";
+"Description_Key" = "Descripion cannot be empty";
+"Recipient_Key" = "Recipient cannot be empty";
+"Amount_Overflow" = "Your account balance is less than entered amount";

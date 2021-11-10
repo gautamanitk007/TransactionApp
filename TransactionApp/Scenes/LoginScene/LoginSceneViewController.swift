@@ -91,9 +91,9 @@ private extension LoginSceneViewController {
         self.txtUsername.delegate = self
         self.txtPassword.delegate = self
         
-        self.txtUsername.placeholder = NSLocalizedString("Login_Text_Field_Placeholder",comment: "")
-        self.txtPassword.placeholder = NSLocalizedString("Password_Text_Field_Placeholder",comment: "")
-        self.btnLogin.setTitle(NSLocalizedString("Login_Button_Title",comment: ""), for: .normal)
+        self.txtUsername.placeholder = Utils.getLocalisedValue(key:"Login_Text_Field_Placeholder")
+        self.txtPassword.placeholder = Utils.getLocalisedValue(key:"Password_Text_Field_Placeholder")
+        self.btnLogin.setTitle(Utils.getLocalisedValue(key:"Login_Button_Title"), for: .normal)
     }
 }
 

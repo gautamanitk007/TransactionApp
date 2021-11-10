@@ -304,22 +304,22 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="OEQ-Af-Pa4">
                                         <rect key="frame" x="8" y="8" width="382" height="184"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zcj-KM-W5e">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zcj-KM-W5e" customClass="BindingTextField" customModule="TransactionApp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zma-qP-Raj">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zma-qP-Raj" customClass="BindingTextField" customModule="TransactionApp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="48" width="382" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iAc-cA-vqa">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iAc-cA-vqa" customClass="BindingTextField" customModule="TransactionApp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="96" width="382" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6C0-ez-sax">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6C0-ez-sax" customClass="BindingTextField" customModule="TransactionApp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="144" width="382" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="Gst-aI-ttT"/>
@@ -386,12 +386,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="6cO-Ly-VeR"/>
                     <connections>
-                        <outlet property="amountTextField" destination="6C0-ez-sax" id="pJK-1E-Vem"/>
+                        <outlet property="amountTextField" destination="6C0-ez-sax" id="mDD-b5-Huv"/>
                         <outlet property="btnCancel" destination="1mR-eu-jca" id="MfI-Tp-LUm"/>
                         <outlet property="btnSubmit" destination="K3I-8u-jdc" id="Nb0-59-3m2"/>
-                        <outlet property="dateOfTransferTextField" destination="zma-qP-Raj" id="WXG-wn-GxA"/>
-                        <outlet property="descTextField" destination="iAc-cA-vqa" id="U3M-3Y-eVn"/>
-                        <outlet property="recipientTextField" destination="Zcj-KM-W5e" id="sb7-9a-KLe"/>
+                        <outlet property="dateOfTransferTextField" destination="zma-qP-Raj" id="C2N-t6-nHt"/>
+                        <outlet property="descTextField" destination="iAc-cA-vqa" id="6qs-cf-CL3"/>
+                        <outlet property="recipientTextField" destination="Zcj-KM-W5e" id="xtt-CB-hUg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xmd-ew-sBz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

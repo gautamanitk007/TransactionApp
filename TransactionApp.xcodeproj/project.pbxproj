@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D20B871E273C0D2700959452 /* TransferSceneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20B871D273C0D2700959452 /* TransferSceneModel.swift */; };
 		D22BFA792737D0DA00764BBB /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22BFA782737D0DA00764BBB /* Utils.swift */; };
 		D22BFA892737D48900764BBB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D22BFA882737D48900764BBB /* Localizable.strings */; };
 		D22BFA9A2737E54100764BBB /* Transactions.json in Resources */ = {isa = PBXBuildFile; fileRef = D22BFA992737E54100764BBB /* Transactions.json */; };
@@ -69,6 +70,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D20B871D273C0D2700959452 /* TransferSceneModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferSceneModel.swift; sourceTree = "<group>"; };
 		D22BFA782737D0DA00764BBB /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		D22BFA832737D41300764BBB /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/Main.strings; sourceTree = "<group>"; };
 		D22BFA842737D41300764BBB /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 				D2C20D60273629160061D929 /* TransferScenePresenter.swift */,
 				D2C20D62273629160061D929 /* TransferSceneViewController.swift */,
 				D2C20D63273629160061D929 /* TransferSceneInteractor.swift */,
+				D20B871D273C0D2700959452 /* TransferSceneModel.swift */,
 			);
 			path = Transfer;
 			sourceTree = "<group>";
@@ -535,6 +538,7 @@
 				D2C20D46273627710061D929 /* LoginSceneInteractor.swift in Sources */,
 				D2C20D54273628FC0061D929 /* DashboardScenePresenter.swift in Sources */,
 				D2F9127627395FBB00FC5487 /* TransactionCell.swift in Sources */,
+				D20B871E273C0D2700959452 /* TransferSceneModel.swift in Sources */,
 				D2C20D45273627710061D929 /* LoginSceneViewController.swift in Sources */,
 				D2C20D08273626CB0061D929 /* SceneDelegate.swift in Sources */,
 				D2F9127C27396DB800FC5487 /* Extensions.swift in Sources */,

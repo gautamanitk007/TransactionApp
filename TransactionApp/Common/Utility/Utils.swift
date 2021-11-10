@@ -12,7 +12,7 @@ class Utils {
     class func getAlert(title:String,message:String) -> UIAlertController {
         let alert = UIAlertController(title:title, message:message, preferredStyle: UIAlertController.Style.alert)
         alert.modalPresentationStyle = .popover
-        alert.addAction(UIAlertAction(title:NSLocalizedString("Button_OK_Title",comment: ""), style: .default) { _ in})
+        alert.addAction(UIAlertAction(title:Utils.getLocalisedValue(key:"Button_OK_Title"), style: .default) { _ in})
         return alert
     }
     class func load<T:Decodable>(bundle:Bundle, fileName: String) -> T?{
@@ -52,5 +52,8 @@ class Utils {
         textField.rightView = button
         textField.rightViewMode = .always
         return button
+    }
+    class func getLocalisedValue(key:String) -> String{
+        return NSLocalizedString(key,comment: "")
     }
 }
