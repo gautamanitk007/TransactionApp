@@ -11,6 +11,7 @@ import UIKit
 protocol TransferSceneDisplayLogic where Self: UIViewController {
     func dispayPayee(payeeList:[Payee])
     func displayError(_ error:String)
+    func transferSuccess(msg:String)
 }
 
 final class TransferSceneViewController: BaseViewController {
@@ -44,6 +45,7 @@ final class TransferSceneViewController: BaseViewController {
     var selectedPayee:Payee?{
         didSet{
             self.recipientTextField.text = selectedPayee?.accountHolderName
+            self.transferModel?.recipientAccountNo = selectedPayee?.accountNo
         }
     }
     var payeeList: [Payee]?
@@ -55,6 +57,7 @@ final class TransferSceneViewController: BaseViewController {
     }
   
     @IBAction func submitTapped(){
+        self.transferModel?.date = Date().convertToString()
         self.startActivity()
         self.interactor.transferTo(payee: self.transferModel!,service: APIService(APIManager(),EndPoints.transfer))
     }
@@ -75,10 +78,22 @@ final class TransferSceneViewController: BaseViewController {
         destinationVC.modalPresentationStyle = .popover
         self.present(destinationVC, animated: true, completion: nil)
     }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch: UITouch? = touches.first
+        if touch?.view == self.view {
+            if self.amountTextField.isFirstResponder {
+                self.amountTextField.resignFirstResponder()
+            }
+            if self.descTextField.isFirstResponder {
+                self.descTextField.resignFirstResponder()
+            }
+        }
+    }
 }
 private extension TransferSceneViewController {
     func setup(){
         transferModel = TransferSceneModel()
+        
         interactor = TransferSceneInteractor(viewController: self)
         router = TransactionSceneRouter(viewController: self)
     
@@ -105,13 +120,24 @@ private extension TransferSceneViewController {
         
         let tapCalendarGesture = UITapGestureRecognizer(target: self, action: #selector(showCalendar))
         self.dateOfTransferTextField.addGestureRecognizer(tapCalendarGesture)
-        
     }
     func fetchPayee(){
         let apiService = APIService(APIManager(), EndPoints.payees)
         self.interactor.getAllPayee(service: apiService)
     }
    
+    func clearInput(){
+        self.amountTextField.text = ""
+        self.dateOfTransferTextField.text = ""
+        self.descTextField.text = ""
+        self.recipientTextField.text = ""
+        
+        self.transferModel?.amount = ""
+        self.transferModel?.recipientAccountNo = ""
+        self.transferModel?.date = ""
+        self.transferModel?.description = ""
+    }
+    
 }
 // MARK: - TransferSceneDisplayLogic
 extension TransferSceneViewController: TransferSceneDisplayLogic {
@@ -126,6 +152,13 @@ extension TransferSceneViewController: TransferSceneDisplayLogic {
         DispatchQueue.main.async {
             self.stopActivity()
             self.payeeList = payeeList
+        }
+    }
+    func transferSuccess(msg:String){
+        DispatchQueue.main.async {
+            self.stopActivity()
+            self.clearInput()
+            self.router.showSuccess(msg: msg)
         }
     }
 }

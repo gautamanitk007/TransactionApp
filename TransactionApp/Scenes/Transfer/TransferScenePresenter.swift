@@ -11,6 +11,7 @@ import Foundation
 protocol TransferScenePresentationLogic {
     func showPayeeList(response: PayeeResponse)
     func showErrorMessage( error: String?)
+    func transferSuccess(response:TransferResponse)
 }
 
 final class TransferScenePresenter {
@@ -24,6 +25,8 @@ final class TransferScenePresenter {
 
 // MARK: - TransferScenePresentationLogic
 extension TransferScenePresenter: TransferScenePresentationLogic {
+   
+    
     func showPayeeList(response: PayeeResponse) {
         if let payeeList = response.data, payeeList.count > 0{
             let sortedPayeeList = payeeList.sorted { (payee1, payee2) -> Bool in
@@ -36,6 +39,11 @@ extension TransferScenePresenter: TransferScenePresentationLogic {
     }
     func showErrorMessage(error: String?) {
         self.viewController?.displayError(error ?? Utils.getLocalisedValue(key:"Unkown"))
+    }
+    func transferSuccess(response: TransferResponse) {
+        let amount = response.data?.amount?.floatValue ?? 0.0
+        TransactionManager.shared.totalBalance -= amount
+        self.viewController?.transferSuccess(msg: Utils.getLocalisedValue(key: "Payment_Success"))
     }
 }
 

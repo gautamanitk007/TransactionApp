@@ -11,6 +11,7 @@ import UIKit
 protocol TransactionSceneRouting {
     func navigateToDestination(for indetifier:String)
     func showFailure(message: String)
+    func showSuccess(msg:String)
     func popToPrevious()
 }
 
@@ -36,7 +37,10 @@ extension TransactionSceneRouter: TransactionSceneRouting {
     func popToPrevious() {
         self.viewController?.navigationController?.popViewController(animated: true)
     }
-    
+    func showSuccess(msg:String){
+        let alertController = Utils.getAlert(title:Utils.getLocalisedValue(key:"Success_Title"),message:msg)
+        self.viewController?.present(alertController, animated: true)
+    }
     func showPopOver(for indetifier:String, popoverList:[Payee], delegate:DropdownViewControllerDelegate){
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let destinationVC = storyboard.instantiateViewController(withIdentifier: indetifier) as! DropdownViewController

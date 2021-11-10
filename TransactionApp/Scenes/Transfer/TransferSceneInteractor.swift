@@ -38,12 +38,19 @@ extension TransferSceneInteractor: TransferSceneBusinessLogic {
         }
     }
     func transferTo(payee:TransferSceneModel,service:ServiceProtocol){
-        if payee.recipientAccountNo == nil  {
+        
+        if payee.recipientAccountNo == nil || payee.recipientAccountNo?.count == 0  {
             self.presenter.showErrorMessage(error: Utils.getLocalisedValue(key:"Recipient_Key"))
             return
         }
+    
         if payee.description == nil || payee.description?.count == 0 {
             self.presenter.showErrorMessage(error:Utils.getLocalisedValue(key:"Description_Key"))
+            return
+        }
+        
+        if payee.date == nil {
+            self.presenter.showErrorMessage(error:Utils.getLocalisedValue(key:"Date_Key"))
             return
         }
         
@@ -51,11 +58,24 @@ extension TransferSceneInteractor: TransferSceneBusinessLogic {
             self.presenter.showErrorMessage(error:Utils.getLocalisedValue(key:"Amount_Key"))
             return
         }
-        if Float(payee.amount!)! > Float(payee.payorBalance!)!   {
+        if payee.amount!.floatValue > TransactionManager.shared.totalBalance  {
             self.presenter.showErrorMessage(error: Utils.getLocalisedValue(key: "Amount_Overflow"))
             return
         }
-    
-
+        if let json = payee.jsonValue(){
+            DispatchQueue.global(qos: .userInitiated).async {
+                service.fundTransfer(params: json) {[weak self] (response, error) in
+                    guard let self = self else { return }
+                    if let errorValue = error, errorValue.statusCode != ResponseCodes.success.rawValue {
+                        self.presenter.showErrorMessage(error: errorValue.message)
+                    } else if let tResponse = response {
+                        self.presenter.transferSuccess(response: tResponse)
+                    }
+                }
+            }
+        } else {
+            self.presenter.showErrorMessage(error: Utils.getLocalisedValue(key: "Unkown"))
+        }
+        
     }
 }

@@ -39,8 +39,12 @@ final class DashboardSceneViewController: BaseViewController {
         }
         self.activityTable.dataSource = self.datasource
         self.startActivity()
-        self.fetchBalance()
-        self.fetchAllTransactions()
+        self.refreshPage()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.lblAmount.text = "S$\(TransactionManager.shared.totalBalance)"
     }
     
     @objc func logoutTapped(_ sender: Any) {
@@ -90,9 +94,16 @@ private extension DashboardSceneViewController {
         self.navigationItem.hidesBackButton = true
         self.navigationItem.title = Utils.getLocalisedValue(key:"Page_Dashboard_Title")
         
-        let logoutButton = UIBarButtonItem(title:Utils.getLocalisedValue(key:"Button_Logout_Title"),
-                       style: .plain, target: self, action: #selector(DashboardSceneViewController.logoutTapped))
-        self.navigationItem.rightBarButtonItem = logoutButton
+        let logoutButton = UIBarButtonItem(image: UIImage(named: "logout.png"),
+                                           style: .plain, target: self,
+                                           action: #selector(DashboardSceneViewController.logoutTapped))
+        self.navigationItem.leftBarButtonItem = logoutButton
+        
+        let refreshButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.refresh,
+                                        target: self, action: #selector(DashboardSceneViewController.refreshPage))
+        self.navigationItem.rightBarButtonItem = refreshButton
+        
+        
         self.activityTable.layer.borderWidth = 2
         self.activityTable.layer.borderColor = UIColor.systemGroupedBackground.cgColor
     }
@@ -105,6 +116,12 @@ private extension DashboardSceneViewController {
     func fetchAllTransactions(){
         let apiService = APIService(apiManager, EndPoints.transactions)
         self.interactor.getAllTransactions(service: apiService)
+    }
+    
+    @objc func refreshPage(){
+        self.startActivity()
+        self.fetchBalance()
+        self.fetchAllTransactions()
     }
 }
 

@@ -7,10 +7,19 @@
 
 import Foundation
 
-struct TransferSceneModel {
+struct TransferSceneModel:Encodable {
     var recipientAccountNo: String?
     var amount: String?
     var date:String?
     var description:String?
-    var payorBalance:String?
+}
+
+extension TransferSceneModel{
+    func jsonValue() -> [String:AnyObject]?{
+        let jsonEncoder = JSONEncoder()
+        if let jsonData = try? jsonEncoder.encode(self){
+            return try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers) as? [String:AnyObject]
+        }
+        return nil
+    }
 }

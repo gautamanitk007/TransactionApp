@@ -34,7 +34,7 @@ extension DashboardScenePresenter: DashboardScenePresentationLogic {
         self.viewController?.displayTransactionListViewModel(accTrans)
     }
     func showBalance(response: BalanceResponse) {
-        
+        TransactionManager.shared.totalBalance = Float(response.balance!)
         self.viewController?.displayBalanceViewModel(BalanceViewModel(balance: "S$ \(response.balance!)"))
     }
     func didFailedToLoad( error: String?){

@@ -103,6 +103,7 @@ public class APIService: ServiceProtocol {
         }else{
             var request = APIRequest(endPoint: self.endPoint.rawValue, postBody: [:])
             request.httpMethod = HttpMethod.post
+            request.body = params
             let tResource = Resource<TransferResponse>(request: request) { data in
                 let tResponse = try? JSONDecoder().decode(TransferResponse.self, from: data)
                 return tResponse

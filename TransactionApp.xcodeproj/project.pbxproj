@@ -44,7 +44,6 @@
 		D2C289C5273AC5FC00E79627 /* TransactionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C289C4273AC5FC00E79627 /* TransactionManager.swift */; };
 		D2C289CA273ACCE700E79627 /* Transfer.json in Resources */ = {isa = PBXBuildFile; fileRef = D2C289C9273ACCE700E79627 /* Transfer.json */; };
 		D2C38040273BE07700F71879 /* DropdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3803F273BE07700F71879 /* DropdownViewController.swift */; };
-		D2C38046273BE12B00F71879 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C38045273BE12B00F71879 /* UserViewModel.swift */; };
 		D2C3804B273BE41E00F71879 /* GeneralCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3804A273BE41E00F71879 /* GeneralCell.swift */; };
 		D2F9126E27395EA500FC5487 /* TableViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F9126D27395EA500FC5487 /* TableViewDatasource.swift */; };
 		D2F9127627395FBB00FC5487 /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F9127527395FBB00FC5487 /* TransactionCell.swift */; };
@@ -115,7 +114,6 @@
 		D2C289C4273AC5FC00E79627 /* TransactionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionManager.swift; sourceTree = "<group>"; };
 		D2C289C9273ACCE700E79627 /* Transfer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Transfer.json; sourceTree = "<group>"; };
 		D2C3803F273BE07700F71879 /* DropdownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownViewController.swift; sourceTree = "<group>"; };
-		D2C38045273BE12B00F71879 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		D2C3804A273BE41E00F71879 /* GeneralCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralCell.swift; sourceTree = "<group>"; };
 		D2F9126D27395EA500FC5487 /* TableViewDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDatasource.swift; sourceTree = "<group>"; };
 		D2F9127527395FBB00FC5487 /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
@@ -296,7 +294,6 @@
 		D2C20D7227362EC70061D929 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				D2C38044273BE10B00F71879 /* ViewModels */,
 				D2C3803E273BE04600F71879 /* Datasource */,
 				D2C3803D273BE03C00F71879 /* Controllers */,
 				D22BFA6F2737CDB100764BBB /* Utility */,
@@ -361,14 +358,6 @@
 				D2F9126D27395EA500FC5487 /* TableViewDatasource.swift */,
 			);
 			path = Datasource;
-			sourceTree = "<group>";
-		};
-		D2C38044273BE10B00F71879 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				D2C38045273BE12B00F71879 /* UserViewModel.swift */,
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		D2F9129027398DCE00FC5487 /* Routers */ = {
@@ -542,7 +531,6 @@
 				D2C20D45273627710061D929 /* LoginSceneViewController.swift in Sources */,
 				D2C20D08273626CB0061D929 /* SceneDelegate.swift in Sources */,
 				D2F9127C27396DB800FC5487 /* Extensions.swift in Sources */,
-				D2C38046273BE12B00F71879 /* UserViewModel.swift in Sources */,
 				D2C20D7527362EFE0061D929 /* BindingTextField.swift in Sources */,
 				D22BFA792737D0DA00764BBB /* Utils.swift in Sources */,
 				D2C20D43273627710061D929 /* LoginScenePresenter.swift in Sources */,

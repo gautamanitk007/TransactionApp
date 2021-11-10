@@ -17,6 +17,8 @@
 "Page_Transfer_Title" = "Transfer";
 "Button_Submit_Title" = "Submit";
 "Information_Title" = "Information";
+"Success_Title" = "Congratulations";
+"Payment_Success" = "Payment successful";
 "Warning_Title" = "Warning";
 "Button_OK_Title" = "OK";
 "Button_Cancel_Title" = "Cancel";

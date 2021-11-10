@@ -91,8 +91,8 @@ public struct TransferResponse: Decodable {
 public struct Transfer:Decodable{
     let id: String?
     let recipientAccountNo: String?
-    let amount: Double?
-    let date: Date?
+    let amount: String?
+    let date: String?
     let description: String?
     
     enum CodingKeys: String, CodingKey {
@@ -107,10 +107,9 @@ public struct Transfer:Decodable{
         let values = try decoder.container(keyedBy: CodingKeys.self)
         id =  try values.decodeIfPresent(String.self, forKey: .id)
         recipientAccountNo = try values.decodeIfPresent(String.self, forKey: .recipientAccountNo)
-        amount = try values.decodeIfPresent(Double.self, forKey: .amount)
-        date = try values.decodeIfPresent(Date.self, forKey: .date)
+        amount = try values.decodeIfPresent(String.self, forKey: .amount)
+        date = try values.decodeIfPresent(String.self, forKey: .date)
         description = try values.decodeIfPresent(String.self, forKey: .description)
-        
     }
 }
 
