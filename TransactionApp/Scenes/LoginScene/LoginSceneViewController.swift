@@ -53,11 +53,8 @@ final class LoginSceneViewController: BaseViewController {
     }
     @IBAction func didLoginTapped(_ sender: Any) {
         self.view.endEditing(true)
-        self.userModel?.username = "ocbc"
-        self.userModel?.password = "123456"
-        guard let model = self.userModel else { return}
         self.startActivity()
-        interactor.startLogin(user: model)
+        interactor.startLogin(user: self.userModel!)
     }
 }
 

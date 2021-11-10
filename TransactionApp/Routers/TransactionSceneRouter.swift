@@ -13,6 +13,7 @@ protocol TransactionSceneRouting {
     func showFailure(message: String)
     func showSuccess(msg:String)
     func popToPrevious()
+    func showPopOver(for indetifier:String, popoverList:[Payee], delegate:DropdownViewControllerDelegate)
 }
 
 final class TransactionSceneRouter {
@@ -43,12 +44,11 @@ extension TransactionSceneRouter: TransactionSceneRouting {
     }
     func showPopOver(for indetifier:String, popoverList:[Payee], delegate:DropdownViewControllerDelegate){
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let destinationVC = storyboard.instantiateViewController(withIdentifier: indetifier) as! DropdownViewController
+        let destinationVC = storyboard.instantiateViewController(withIdentifier: "showPopover") as! DropdownViewController
         destinationVC.payeeList = popoverList
-        destinationVC.modalPresentationStyle = .popover
         destinationVC.delegate = delegate
-        let popover: UIPopoverPresentationController = destinationVC.popoverPresentationController!
-        self.viewController?.present(destinationVC, animated: true, completion: nil)
+        destinationVC.modalPresentationStyle = .popover
+        self.viewController!.present(destinationVC, animated: true, completion: nil)
     }
 
 }

@@ -30,7 +30,7 @@ extension TransferScenePresenter: TransferScenePresentationLogic {
     func showPayeeList(response: PayeeResponse) {
         if let payeeList = response.data, payeeList.count > 0{
             let sortedPayeeList = payeeList.sorted { (payee1, payee2) -> Bool in
-                return payee1.accountHolderName! > payee2.accountHolderName!
+                return payee1.accountHolderName! < payee2.accountHolderName!
             }
             self.viewController?.dispayPayee(payeeList: sortedPayeeList)
         } else {

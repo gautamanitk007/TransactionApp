@@ -41,7 +41,7 @@ final class TransferSceneViewController: BaseViewController {
     }
     @IBOutlet weak var btnCancel: RoundedButton!
     @IBOutlet weak var btnSubmit: RoundedButton!
-    
+    var datePicker: UIDatePicker?
     var selectedPayee:Payee?{
         didSet{
             self.recipientTextField.text = selectedPayee?.accountHolderName
@@ -52,8 +52,8 @@ final class TransferSceneViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
-        self.startActivity()
         self.fetchPayee()
+        self.createDatePicker()
     }
   
     @IBAction func submitTapped(){
@@ -67,16 +67,19 @@ final class TransferSceneViewController: BaseViewController {
     }
     
     @objc func showCalendar(){
-        print("show date picker")
+        self.dateOfTransferTextField.becomeFirstResponder()
     }
-    
+    @objc func pickerDateValue(){
+        self.view.endEditing(true)
+        self.dateOfTransferTextField.text = "\(self.datePicker!.date)"
+        self.transferModel?.date = self.datePicker?.date.convertToString()
+    }
     @objc func showDropdown(){
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let destinationVC = storyboard.instantiateViewController(withIdentifier: "showPopover") as! DropdownViewController
-        destinationVC.payeeList = self.payeeList
-        destinationVC.delegate = self
-        destinationVC.modalPresentationStyle = .popover
-        self.present(destinationVC, animated: true, completion: nil)
+        guard let pList = self.payeeList else {
+            self.router.showFailure(message: Utils.getLocalisedValue(key: "NoPayee"))
+            return
+        }
+        self.router.showPopOver(for: "showPopover", popoverList: pList ,delegate: self)
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch: UITouch? = touches.first
@@ -86,6 +89,9 @@ final class TransferSceneViewController: BaseViewController {
             }
             if self.descTextField.isFirstResponder {
                 self.descTextField.resignFirstResponder()
+            }
+            if self.dateOfTransferTextField.isFirstResponder {
+                self.dateOfTransferTextField.resignFirstResponder()
             }
         }
     }
@@ -101,9 +107,13 @@ private extension TransferSceneViewController {
         self.navigationItem.hidesBackButton = false
         self.navigationItem.title =  Utils.getLocalisedValue(key:"Page_Transfer_Title")
         
+        let refreshButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.refresh,
+                                        target: self, action: #selector(TransferSceneViewController.fetchPayee))
+        self.navigationItem.rightBarButtonItem = refreshButton
+        
         let recipientButton = Utils.createButton(textField: self.recipientTextField, imgName: "drop.png")
         recipientButton.addTarget(self, action: #selector(self.showDropdown), for: .touchUpInside)
-        
+       
         let dateOfTransferButton = Utils.createButton(textField: self.dateOfTransferTextField, imgName: "calendar.png")
         dateOfTransferButton.addTarget(self, action: #selector(self.showCalendar), for: .touchUpInside)
         
@@ -117,15 +127,23 @@ private extension TransferSceneViewController {
         }
         let tapRecipientGesture = UITapGestureRecognizer(target: self, action: #selector(showDropdown))
         self.recipientTextField.addGestureRecognizer(tapRecipientGesture)
-        
-        let tapCalendarGesture = UITapGestureRecognizer(target: self, action: #selector(showCalendar))
-        self.dateOfTransferTextField.addGestureRecognizer(tapCalendarGesture)
     }
-    func fetchPayee(){
-        let apiService = APIService(APIManager(), EndPoints.payees)
-        self.interactor.getAllPayee(service: apiService)
+    
+    func createDatePicker(){
+        self.datePicker = UIDatePicker()
+        self.datePicker?.datePickerMode = .dateAndTime
+        self.datePicker?.translatesAutoresizingMaskIntoConstraints = false
+        let toolbar = UIToolbar()
+        toolbar.barTintColor = .systemBlue
+        toolbar.sizeToFit()
+        let barButtonDone = UIBarButtonItem(barButtonSystemItem: .done, target: self,
+                                            action: #selector(TransferSceneViewController.pickerDateValue))
+        barButtonDone.tintColor = .white
+        toolbar.setItems([barButtonDone], animated: true)
+        dateOfTransferTextField.inputAccessoryView = toolbar
+        dateOfTransferTextField.inputView = datePicker
     }
-   
+
     func clearInput(){
         self.amountTextField.text = ""
         self.dateOfTransferTextField.text = ""
@@ -137,7 +155,11 @@ private extension TransferSceneViewController {
         self.transferModel?.date = ""
         self.transferModel?.description = ""
     }
-    
+    @objc func fetchPayee(){
+        self.startActivity()
+        let apiService = APIService(APIManager(), EndPoints.payees)
+        self.interactor.getAllPayee(service: apiService)
+    }
 }
 // MARK: - TransferSceneDisplayLogic
 extension TransferSceneViewController: TransferSceneDisplayLogic {
@@ -151,6 +173,7 @@ extension TransferSceneViewController: TransferSceneDisplayLogic {
     func dispayPayee(payeeList: [Payee]) {
         DispatchQueue.main.async {
             self.stopActivity()
+            self.payeeList?.removeAll()
             self.payeeList = payeeList
         }
     }
@@ -185,7 +208,7 @@ extension TransferSceneViewController: UITextFieldDelegate{
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if textField == self.recipientTextField || textField == dateOfTransferTextField{
+        if textField == self.recipientTextField{
             return false
         }
         return true
