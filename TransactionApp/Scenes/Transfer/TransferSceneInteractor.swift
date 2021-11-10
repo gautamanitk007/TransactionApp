@@ -12,6 +12,7 @@ typealias TransferSceneInteractable = TransferSceneBusinessLogic
 
 protocol TransferSceneBusinessLogic {
     func getAllPayee(service: ServiceProtocol)
+    func transferTo(amount:Double,toPayee:Payee)
 }
 
 final class TransferSceneInteractor {
@@ -36,5 +37,8 @@ extension TransferSceneInteractor: TransferSceneBusinessLogic {
                 }
             }
         }
+    }
+    func transferTo(amount:Double,toPayee:Payee){
+        
     }
 }

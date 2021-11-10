@@ -17,11 +17,6 @@ class DropdownViewController: UIViewController {
     var payeeList:[Payee]!
     weak var delegate:DropdownViewControllerDelegate?
     private var datasource : TableViewDatasource<GeneralCell,Payee>!
-    var contentSize:CGSize?{
-        didSet{
-            self.preferredContentSize = contentSize!
-        }
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.datasource = TableViewDatasource(cellIdentifier: Identifier.GeneralCellIdentifier.rawValue,items:self.payeeList){(cell,model) in
@@ -29,12 +24,20 @@ class DropdownViewController: UIViewController {
         }
         self.customTable.dataSource = self.datasource
         self.customTable.delegate = self
-        contentSize = CGSize.init(width: 160, height: 260)
     }
     
+    @IBAction func btnCancelTapped(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     deinit {
         self.datasource = nil
         self.payeeList = nil
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch: UITouch? = touches.first
+        if touch?.view == self.view {
+            dismiss(animated: true, completion: nil)
+        }
     }
 }
 //MARK:- UITableViewDelegate
@@ -44,3 +47,4 @@ extension DropdownViewController:UITableViewDelegate{
         self.dismiss(animated: true, completion: nil)
     }
 }
+

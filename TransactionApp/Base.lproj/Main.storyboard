@@ -406,44 +406,68 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LFi-f5-jwh">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GeneralCelli" id="45G-uc-tcn" customClass="GeneralCell" customModule="TransactionApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="59"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="45G-uc-tcn" id="Hso-33-9cs">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="59"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y3B-GO-KfG">
-                                                    <rect key="frame" x="28" y="19" width="358" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="y3B-GO-KfG" secondAttribute="trailing" constant="8" id="1pW-Db-9HN"/>
-                                                <constraint firstItem="y3B-GO-KfG" firstAttribute="leading" secondItem="Hso-33-9cs" secondAttribute="leadingMargin" constant="8" id="Qxw-UG-O3U"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="y3B-GO-KfG" secondAttribute="bottom" constant="8" id="UIj-mL-V2r"/>
-                                                <constraint firstItem="y3B-GO-KfG" firstAttribute="top" secondItem="Hso-33-9cs" secondAttribute="topMargin" constant="8" id="twQ-AS-er0"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="p7B-3E-x9K">
+                                <rect key="frame" x="0.0" y="596" width="414" height="300"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rQe-1a-h2N">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
+                                        <color key="backgroundColor" systemColor="linkColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="AbX-P8-C9n"/>
+                                        </constraints>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
-                                            <outlet property="lblName" destination="y3B-GO-KfG" id="vk6-o4-3hi"/>
+                                            <action selector="btnCancelTapped:" destination="wP8-ei-aDk" eventType="touchUpInside" id="HtZ-nN-toN"/>
                                         </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
+                                    </button>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LFi-f5-jwh">
+                                        <rect key="frame" x="0.0" y="40" width="414" height="260"/>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GeneralCelli" id="45G-uc-tcn" customClass="GeneralCell" customModule="TransactionApp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="414" height="59"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="45G-uc-tcn" id="Hso-33-9cs">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="59"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y3B-GO-KfG">
+                                                            <rect key="frame" x="28" y="19" width="358" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="y3B-GO-KfG" secondAttribute="trailing" constant="8" id="1pW-Db-9HN"/>
+                                                        <constraint firstItem="y3B-GO-KfG" firstAttribute="leading" secondItem="Hso-33-9cs" secondAttribute="leadingMargin" constant="8" id="Qxw-UG-O3U"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="y3B-GO-KfG" secondAttribute="bottom" constant="8" id="UIj-mL-V2r"/>
+                                                        <constraint firstItem="y3B-GO-KfG" firstAttribute="top" secondItem="Hso-33-9cs" secondAttribute="topMargin" constant="8" id="twQ-AS-er0"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="lblName" destination="y3B-GO-KfG" id="vk6-o4-3hi"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="04A-fQ-bWA"/>
+                                    <constraint firstItem="rQe-1a-h2N" firstAttribute="top" secondItem="p7B-3E-x9K" secondAttribute="top" id="LVu-NJ-8PD"/>
+                                    <constraint firstItem="rQe-1a-h2N" firstAttribute="leading" secondItem="p7B-3E-x9K" secondAttribute="leading" id="ctI-IT-s0V"/>
+                                    <constraint firstAttribute="trailing" secondItem="rQe-1a-h2N" secondAttribute="trailing" id="tMW-e5-ywF"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yqx-1O-xSk"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="LFi-f5-jwh" firstAttribute="leading" secondItem="yqx-1O-xSk" secondAttribute="leading" id="O2b-9h-hfw"/>
-                            <constraint firstAttribute="bottom" secondItem="LFi-f5-jwh" secondAttribute="bottom" id="Vv2-e6-5cN"/>
-                            <constraint firstItem="LFi-f5-jwh" firstAttribute="top" secondItem="yqx-1O-xSk" secondAttribute="top" id="dvy-JC-Hkr"/>
-                            <constraint firstItem="LFi-f5-jwh" firstAttribute="trailing" secondItem="yqx-1O-xSk" secondAttribute="trailing" id="sFb-0H-Nwa"/>
+                            <constraint firstItem="p7B-3E-x9K" firstAttribute="leading" secondItem="yqx-1O-xSk" secondAttribute="leading" id="306-76-Eot"/>
+                            <constraint firstItem="p7B-3E-x9K" firstAttribute="trailing" secondItem="yqx-1O-xSk" secondAttribute="trailing" id="Kvf-MP-cVz"/>
+                            <constraint firstAttribute="bottom" secondItem="p7B-3E-x9K" secondAttribute="bottom" id="jpE-hz-Too"/>
                         </constraints>
                     </view>
                     <connections>
@@ -475,6 +499,9 @@
     </scenes>
     <resources>
         <image name="home" width="640" height="400"/>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
