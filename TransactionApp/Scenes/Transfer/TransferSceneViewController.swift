@@ -8,35 +8,40 @@
 
 import UIKit
 
-protocol TransferSceneDisplayLogic where Self: UIViewController {
+protocol TransferSceneViewControllerInput:AnyObject {
     func dispayPayee(payeeList:[Payee])
     func displayError(_ error:String)
     func transferSuccess(msg:String)
 }
+protocol TransferSceneViewControllerOutput:AnyObject {
+    func getAllPayee()
+    func transferTo(payee:TransferSceneModel)
+}
 
 final class TransferSceneViewController: BaseViewController {
 
-    private var interactor: TransferSceneInteractable!
-    private var router: TransactionSceneRouting!
-    private var transferModel:TransferSceneModel?
+    var interactor: TransferSceneInteractorInput!
+    var router: TransferSceneRouting!
+    var transferModel:TransferSceneModel!
+    
     @IBOutlet weak var recipientTextField: BindingTextField!{
         didSet{
-            recipientTextField.bind{self.transferModel?.recipientAccountNo = $0}
+            recipientTextField.bind{self.transferModel.recipientAccountNo = $0}
         }
     }
     @IBOutlet weak var dateOfTransferTextField: BindingTextField!{
         didSet{
-            dateOfTransferTextField.bind{self.transferModel?.date = $0}
+            dateOfTransferTextField.bind{self.transferModel.date = $0}
         }
     }
     @IBOutlet weak var descTextField: BindingTextField!{
         didSet{
-            descTextField.bind{self.transferModel?.description = $0}
+            descTextField.bind{self.transferModel.description = $0}
         }
     }
     @IBOutlet weak var amountTextField: BindingTextField!{
         didSet{
-            amountTextField.bind{self.transferModel?.amount = $0}
+            amountTextField.bind{self.transferModel.amount = $0}
         }
     }
     @IBOutlet weak var btnCancel: RoundedButton!
@@ -45,7 +50,7 @@ final class TransferSceneViewController: BaseViewController {
     var selectedPayee:Payee?{
         didSet{
             self.recipientTextField.text = selectedPayee?.accountHolderName
-            self.transferModel?.recipientAccountNo = selectedPayee?.accountNo
+            self.transferModel.recipientAccountNo = selectedPayee?.accountNo
         }
     }
     var payeeList: [Payee]?
@@ -59,7 +64,7 @@ final class TransferSceneViewController: BaseViewController {
     @IBAction func submitTapped(){
         self.transferModel?.date = Date().convertToString()
         self.startActivity()
-        self.interactor.transferTo(payee: self.transferModel!,service: APIService(APIManager()))
+        self.interactor.transferTo(payee: self.transferModel!)
     }
     
     @IBAction func cancelTapped(){
@@ -79,7 +84,7 @@ final class TransferSceneViewController: BaseViewController {
             self.router.showFailure(message: Utils.getLocalisedValue(key: "NoPayee"))
             return
         }
-        self.router.showPopOver(for: "showPopover", popoverList: pList ,delegate: self)
+       self.router.showPopOver(for: "showPopover", popoverList: pList ,delegate: self)
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch: UITouch? = touches.first
@@ -98,11 +103,6 @@ final class TransferSceneViewController: BaseViewController {
 }
 private extension TransferSceneViewController {
     func setup(){
-        transferModel = TransferSceneModel()
-        
-        interactor = TransferSceneInteractor(viewController: self)
-        router = TransactionSceneRouter(viewController: self)
-    
         self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.hidesBackButton = false
         self.navigationItem.title =  Utils.getLocalisedValue(key:"Page_Transfer_Title")
@@ -157,32 +157,25 @@ private extension TransferSceneViewController {
     }
     @objc func fetchPayee(){
         self.startActivity()
-        let apiService = APIService(APIManager())
-        self.interactor.getAllPayee(service: apiService)
+        self.interactor.getAllPayee()
     }
 }
 // MARK: - TransferSceneDisplayLogic
-extension TransferSceneViewController: TransferSceneDisplayLogic {
+extension TransferSceneViewController: TransferSceneViewControllerInput {
     func displayError(_ error: String) {
-        DispatchQueue.main.async {
-            self.stopActivity()
-            self.router.showFailure(message: error)
-        }
+        self.stopActivity()
+        self.router.showFailure(message: error)
     }
     
     func dispayPayee(payeeList: [Payee]) {
-        DispatchQueue.main.async {
-            self.stopActivity()
-            self.payeeList?.removeAll()
-            self.payeeList = payeeList
-        }
+        self.stopActivity()
+        self.payeeList?.removeAll()
+        self.payeeList = payeeList
     }
     func transferSuccess(msg:String){
-        DispatchQueue.main.async {
-            self.stopActivity()
-            self.clearInput()
-            self.router.showSuccess(msg: msg)
-        }
+        self.stopActivity()
+        self.clearInput()
+        self.router.showSuccess(msg: msg)
     }
 }
 

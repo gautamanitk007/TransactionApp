@@ -8,25 +8,17 @@
 
 import Foundation
 
-protocol TransferScenePresentationLogic {
-    func showPayeeList(response: PayeeResponse)
-    func showErrorMessage( error: String?)
-    func transferSuccess(response:TransferResponse)
-}
+typealias TransferScenePresenterInput = TransferSceneInteractorOutput
+typealias TransferScenePresenterOutput = TransferSceneViewControllerInput
+
 
 final class TransferScenePresenter {
-    private weak var viewController: TransferSceneDisplayLogic?
-  
-    init(viewController: TransferSceneDisplayLogic?) {
-        self.viewController = viewController
-    }
+    weak var viewController: TransferScenePresenterOutput?
 }
 
 
 // MARK: - TransferScenePresentationLogic
-extension TransferScenePresenter: TransferScenePresentationLogic {
-   
-    
+extension TransferScenePresenter: TransferScenePresenterInput {
     func showPayeeList(response: PayeeResponse) {
         if let payeeList = response.data, payeeList.count > 0{
             let sortedPayeeList = payeeList.sorted { (payee1, payee2) -> Bool in

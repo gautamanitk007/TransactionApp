@@ -20,17 +20,19 @@ final class DefaultTransferSceneConfigurator: TransferSceneConfigurator {
     
     @discardableResult
     func configured(_ vc: TransferSceneViewController) -> TransferSceneViewController  {
-        /*sceneFactory.transferConfigurator = self
+        sceneFactory.transferConfigurator = self
         let service = APIService(APIManager())
         let interactor = TransferSceneInteractor()
         let presenter = TransferScenePresenter()
-        let router = DashboardSceneRouter(sceneFactory: sceneFactory)
+        let router = TransferSceneRouter(sceneFactory: sceneFactory)
+        let transferModel = TransferSceneModel()
         router.source = vc
         presenter.viewController = vc
         interactor.presenter = presenter
         interactor.service = service
         vc.interactor = interactor
-        vc.router = router*/
+        vc.router = router
+        vc.transferModel = transferModel
         return vc
     }
 }

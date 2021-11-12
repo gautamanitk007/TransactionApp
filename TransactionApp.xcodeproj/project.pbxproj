@@ -45,7 +45,6 @@
 		D2F9126E27395EA500FC5487 /* TableViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F9126D27395EA500FC5487 /* TableViewDatasource.swift */; };
 		D2F9127627395FBB00FC5487 /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F9127527395FBB00FC5487 /* TransactionCell.swift */; };
 		D2F9127C27396DB800FC5487 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F9127B27396DB800FC5487 /* Extensions.swift */; };
-		D2F9129227398DED00FC5487 /* TransactionSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F9129127398DED00FC5487 /* TransactionSceneRouter.swift */; };
 		D2FD1DC4273DEEF3001386D3 /* Balance.json in Resources */ = {isa = PBXBuildFile; fileRef = D2FD1DC3273DEEF2001386D3 /* Balance.json */; };
 		D2FD1DCF273DEF13001386D3 /* Transactions.json in Resources */ = {isa = PBXBuildFile; fileRef = D2FD1DCE273DEF13001386D3 /* Transactions.json */; };
 		D2FD1DDA273DEF42001386D3 /* Payee.json in Resources */ = {isa = PBXBuildFile; fileRef = D2FD1DD9273DEF42001386D3 /* Payee.json */; };
@@ -69,6 +68,7 @@
 		D2FD1E6D273E4B67001386D3 /* TransfeSceneViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E69273E4B67001386D3 /* TransfeSceneViewControllerTests.swift */; };
 		D2FD1E6E273E4B67001386D3 /* TransfeSceneInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E6A273E4B67001386D3 /* TransfeSceneInteractorTests.swift */; };
 		D2FD1E70273E4B67001386D3 /* TransfeScenePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E6C273E4B67001386D3 /* TransfeScenePresenterTests.swift */; };
+		D2FD1E7B273E742F001386D3 /* TransferSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E7A273E742F001386D3 /* TransferSceneRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,7 +135,6 @@
 		D2F9126D27395EA500FC5487 /* TableViewDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDatasource.swift; sourceTree = "<group>"; };
 		D2F9127527395FBB00FC5487 /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
 		D2F9127B27396DB800FC5487 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		D2F9129127398DED00FC5487 /* TransactionSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSceneRouter.swift; sourceTree = "<group>"; };
 		D2FD1DC3273DEEF2001386D3 /* Balance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Balance.json; sourceTree = "<group>"; };
 		D2FD1DCE273DEF13001386D3 /* Transactions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Transactions.json; sourceTree = "<group>"; };
 		D2FD1DD9273DEF42001386D3 /* Payee.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Payee.json; sourceTree = "<group>"; };
@@ -154,6 +153,7 @@
 		D2FD1E69273E4B67001386D3 /* TransfeSceneViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransfeSceneViewControllerTests.swift; sourceTree = "<group>"; };
 		D2FD1E6A273E4B67001386D3 /* TransfeSceneInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransfeSceneInteractorTests.swift; sourceTree = "<group>"; };
 		D2FD1E6C273E4B67001386D3 /* TransfeScenePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransfeScenePresenterTests.swift; sourceTree = "<group>"; };
+		D2FD1E7A273E742F001386D3 /* TransferSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferSceneRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,7 +254,6 @@
 			children = (
 				D2FD1E2F273E0544001386D3 /* Factories */,
 				D2C289C3273AC5E200E79627 /* Manager */,
-				D2F9129027398DCE00FC5487 /* Routers */,
 				D2C20DBF273684820061D929 /* Networks */,
 				D2C20D7227362EC70061D929 /* Common */,
 				D2C20D38273626EF0061D929 /* Scenes */,
@@ -333,6 +332,7 @@
 				D2C20D63273629160061D929 /* TransferSceneInteractor.swift */,
 				D20B871D273C0D2700959452 /* TransferSceneModel.swift */,
 				D2FD1E60273E48D2001386D3 /* TransferSceneConfigurator.swift */,
+				D2FD1E7A273E742F001386D3 /* TransferSceneRouter.swift */,
 			);
 			path = Transfer;
 			sourceTree = "<group>";
@@ -404,14 +404,6 @@
 				D2F9126D27395EA500FC5487 /* TableViewDatasource.swift */,
 			);
 			path = Datasource;
-			sourceTree = "<group>";
-		};
-		D2F9129027398DCE00FC5487 /* Routers */ = {
-			isa = PBXGroup;
-			children = (
-				D2F9129127398DED00FC5487 /* TransactionSceneRouter.swift */,
-			);
-			path = Routers;
 			sourceTree = "<group>";
 		};
 		D2FD1E2F273E0544001386D3 /* Factories */ = {
@@ -590,7 +582,6 @@
 				D2C20DC1273684A70061D929 /* APIRequest.swift in Sources */,
 				D2C20D66273629160061D929 /* TransferScenePresenter.swift in Sources */,
 				D2FD1E36273E07A4001386D3 /* LoginSceneRouter.swift in Sources */,
-				D2F9129227398DED00FC5487 /* TransactionSceneRouter.swift in Sources */,
 				D2F9126E27395EA500FC5487 /* TableViewDatasource.swift in Sources */,
 				D2C20D57273628FC0061D929 /* DashboardSceneInteractor.swift in Sources */,
 				D2C20D9C273652250061D929 /* BaseViewController.swift in Sources */,
@@ -606,6 +597,7 @@
 				D2C38040273BE07700F71879 /* DropdownViewController.swift in Sources */,
 				D2FD1E2B273E034A001386D3 /* LoginSceneConfigurator.swift in Sources */,
 				D2C20D7E27362FB30061D929 /* UserModel.swift in Sources */,
+				D2FD1E7B273E742F001386D3 /* TransferSceneRouter.swift in Sources */,
 				D2C20DDB2736A26D0061D929 /* APIService.swift in Sources */,
 				D2C20D56273628FC0061D929 /* DashboardSceneViewController.swift in Sources */,
 				D2C20D46273627710061D929 /* LoginSceneInteractor.swift in Sources */,
