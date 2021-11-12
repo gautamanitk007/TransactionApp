@@ -31,7 +31,7 @@ final class DashboardSceneViewController: BaseViewController {
     
     var interactor: DashboardSceneInteractorInput!
     var router: DashboardSceneRouting!
-    private var datasource : TableViewDatasource<TransactionCell,TransactionViewModel>!
+    var datasource : TableViewDatasource<TransactionCell,TransactionViewModel>!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
@@ -57,9 +57,14 @@ final class DashboardSceneViewController: BaseViewController {
     @IBAction func didTransferTapped(_ sender: Any) {
         self.router.showNextController()
     }
+    @objc func refreshPage(){
+        self.startActivity()
+        self.fetchBalance()
+        self.fetchAllTransactions()
+    }
 }
 
-// MARK: - DashboardSceneDisplayLogic
+// MARK: - DashboardSceneViewControllerInput
 extension DashboardSceneViewController: DashboardSceneViewControllerInput{
 
     func displayBalanceViewModel(_ viewModel: BalanceViewModel){
@@ -78,7 +83,7 @@ extension DashboardSceneViewController: DashboardSceneViewControllerInput{
     }
 }
 
-// MARK: - Private Zone
+// MARK: - Private 
 private extension DashboardSceneViewController {
     func setup(){
         self.navigationController?.navigationBar.isHidden = false
@@ -103,12 +108,6 @@ private extension DashboardSceneViewController {
     }
     func fetchAllTransactions(){
         self.interactor.getAllTransactions()
-    }
-    
-    @objc func refreshPage(){
-        self.startActivity()
-        self.fetchBalance()
-        self.fetchAllTransactions()
     }
 }
 

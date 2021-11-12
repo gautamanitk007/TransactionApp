@@ -35,19 +35,44 @@ final class LoginSceneViewControllerTests: XCTestCase {
     }
     
     func test_correct_credentials() {
+        //Given
         sut.userModel?.username = "ocbc"
         sut.userModel?.password = "123456"
+        
+        //When
         sut.didLoginTapped(UIButton() as Any)
     }
     
     func test_router_call_success() {
+        //When
         sut.loginSuccess()
+        //Then
         XCTAssertTrue(router.loginSuccess)
     }
     
     func test_router_call_failed() {
+        //When
         sut.loginFailed(message: "Failed to load")
+        //Then
         XCTAssertTrue(router.loginFailed)
+    }
+    
+    func test_viewDidLoad(){
+        // Given
+        let txtFieldUser = BindingTextField()
+        let txtFieldPass = BindingTextField()
+        let btnLogin = UIButton()
+        sut.txtPassword = txtFieldPass
+        sut.txtUsername = txtFieldUser
+        sut.btnLogin = btnLogin
+        //When
+        sut.viewDidLoad()
+        //Then
+        XCTAssertEqual(sut.txtUsername.text, "")
+        XCTAssertEqual(sut.txtPassword.text, "")
+        XCTAssertEqual(sut.txtUsername.placeholder, Utils.getLocalisedValue(key: "Login_Text_Field_Placeholder"))
+        XCTAssertEqual(sut.txtPassword.placeholder, Utils.getLocalisedValue(key: "Password_Text_Field_Placeholder"))
+        
     }
 }
 private final class LoginSceneInteractorMock: LoginSceneInteractorInput {

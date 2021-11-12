@@ -58,15 +58,13 @@ final class LoginSceneViewController: BaseViewController {
     }
     @IBAction func didLoginTapped(_ sender: Any) {
         self.view.endEditing(true)
-        self.userModel?.username = "ocbc"
-        self.userModel?.password = "123456"
         self.startActivity()
         interactor.startLogin(user: self.userModel!)
     }
 }
 
 
-// MARK: - LoginSceneDisplayLogic
+// MARK: - LoginSceneViewControllerInput
 extension LoginSceneViewController: LoginSceneViewControllerInput {
     func loginSuccess() {
         self.stopActivity()
@@ -77,10 +75,7 @@ extension LoginSceneViewController: LoginSceneViewControllerInput {
         self.router.showFailure(message: message)
     }
 }
-
-
-
-// MARK: - Private Zone
+// MARK: - Private 
 private extension LoginSceneViewController {
     func setup() {
         self.txtUsername.delegate = self

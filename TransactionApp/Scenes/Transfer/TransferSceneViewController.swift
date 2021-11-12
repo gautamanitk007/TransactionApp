@@ -160,7 +160,7 @@ private extension TransferSceneViewController {
         self.interactor.getAllPayee()
     }
 }
-// MARK: - TransferSceneDisplayLogic
+// MARK: - TransferSceneViewControllerInput
 extension TransferSceneViewController: TransferSceneViewControllerInput {
     func displayError(_ error: String) {
         self.stopActivity()
