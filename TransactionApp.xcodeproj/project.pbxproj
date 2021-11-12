@@ -63,10 +63,12 @@
 		D2FD1E48273E336A001386D3 /* LoginScenePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E47273E336A001386D3 /* LoginScenePresenterTests.swift */; };
 		D2FD1E51273E373A001386D3 /* DashboardSceneViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E4D273E373A001386D3 /* DashboardSceneViewControllerTests.swift */; };
 		D2FD1E52273E373A001386D3 /* DashboardSceneInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E4E273E373A001386D3 /* DashboardSceneInteractorTests.swift */; };
-		D2FD1E53273E373A001386D3 /* DashboardSceneRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E4F273E373A001386D3 /* DashboardSceneRouterTests.swift */; };
 		D2FD1E54273E373A001386D3 /* DashboardScenePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E50273E373A001386D3 /* DashboardScenePresenterTests.swift */; };
 		D2FD1E5C273E3F97001386D3 /* DashboardSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E5B273E3F97001386D3 /* DashboardSceneRouter.swift */; };
 		D2FD1E61273E48D2001386D3 /* TransferSceneConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E60273E48D2001386D3 /* TransferSceneConfigurator.swift */; };
+		D2FD1E6D273E4B67001386D3 /* TransfeSceneViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E69273E4B67001386D3 /* TransfeSceneViewControllerTests.swift */; };
+		D2FD1E6E273E4B67001386D3 /* TransfeSceneInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E6A273E4B67001386D3 /* TransfeSceneInteractorTests.swift */; };
+		D2FD1E70273E4B67001386D3 /* TransfeScenePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E6C273E4B67001386D3 /* TransfeScenePresenterTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,10 +148,12 @@
 		D2FD1E47273E336A001386D3 /* LoginScenePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScenePresenterTests.swift; sourceTree = "<group>"; };
 		D2FD1E4D273E373A001386D3 /* DashboardSceneViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSceneViewControllerTests.swift; sourceTree = "<group>"; };
 		D2FD1E4E273E373A001386D3 /* DashboardSceneInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSceneInteractorTests.swift; sourceTree = "<group>"; };
-		D2FD1E4F273E373A001386D3 /* DashboardSceneRouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSceneRouterTests.swift; sourceTree = "<group>"; };
 		D2FD1E50273E373A001386D3 /* DashboardScenePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardScenePresenterTests.swift; sourceTree = "<group>"; };
 		D2FD1E5B273E3F97001386D3 /* DashboardSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSceneRouter.swift; sourceTree = "<group>"; };
 		D2FD1E60273E48D2001386D3 /* TransferSceneConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferSceneConfigurator.swift; sourceTree = "<group>"; };
+		D2FD1E69273E4B67001386D3 /* TransfeSceneViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransfeSceneViewControllerTests.swift; sourceTree = "<group>"; };
+		D2FD1E6A273E4B67001386D3 /* TransfeSceneInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransfeSceneInteractorTests.swift; sourceTree = "<group>"; };
+		D2FD1E6C273E4B67001386D3 /* TransfeScenePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransfeScenePresenterTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +193,7 @@
 		D22BFA962737E4CD00764BBB /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				D2FD1E68273E4B47001386D3 /* Transfer */,
 				D2FD1E4C273E3712001386D3 /* Dashboard */,
 				D22BFACD2737E5FF00764BBB /* Login */,
 			);
@@ -422,10 +427,19 @@
 			children = (
 				D2FD1E4D273E373A001386D3 /* DashboardSceneViewControllerTests.swift */,
 				D2FD1E4E273E373A001386D3 /* DashboardSceneInteractorTests.swift */,
-				D2FD1E4F273E373A001386D3 /* DashboardSceneRouterTests.swift */,
 				D2FD1E50273E373A001386D3 /* DashboardScenePresenterTests.swift */,
 			);
 			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		D2FD1E68273E4B47001386D3 /* Transfer */ = {
+			isa = PBXGroup;
+			children = (
+				D2FD1E69273E4B67001386D3 /* TransfeSceneViewControllerTests.swift */,
+				D2FD1E6A273E4B67001386D3 /* TransfeSceneInteractorTests.swift */,
+				D2FD1E6C273E4B67001386D3 /* TransfeScenePresenterTests.swift */,
+			);
+			path = Transfer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -617,8 +631,10 @@
 				D2FD1E51273E373A001386D3 /* DashboardSceneViewControllerTests.swift in Sources */,
 				D2FD1E26273DF995001386D3 /* LoginSceneInteractorTests.swift in Sources */,
 				D2C20D1D273626D80061D929 /* TransactionAppTests.swift in Sources */,
-				D2FD1E53273E373A001386D3 /* DashboardSceneRouterTests.swift in Sources */,
+				D2FD1E6D273E4B67001386D3 /* TransfeSceneViewControllerTests.swift in Sources */,
 				D22BFAD22737E61300764BBB /* LoginSceneViewControllerTests.swift in Sources */,
+				D2FD1E70273E4B67001386D3 /* TransfeScenePresenterTests.swift in Sources */,
+				D2FD1E6E273E4B67001386D3 /* TransfeSceneInteractorTests.swift in Sources */,
 				D2FD1E52273E373A001386D3 /* DashboardSceneInteractorTests.swift in Sources */,
 				D2FD1E54273E373A001386D3 /* DashboardScenePresenterTests.swift in Sources */,
 				D2FD1E48273E336A001386D3 /* LoginScenePresenterTests.swift in Sources */,

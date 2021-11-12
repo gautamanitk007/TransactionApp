@@ -12,7 +12,13 @@ import XCTest
 
 final class DashboardSceneViewControllerTests: XCTestCase {
   
-  
+    override func setUp() {
+     
+    }
+    
+    override func tearDown() {
+      
+    }
 }
 
 

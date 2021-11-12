@@ -1,5 +1,5 @@
 //
-//  DashboardSceneInteractorTests.swift
+//  TransfeSceneViewControllerTests.swift
 //  TransactionApp
 //
 //  Created by Gautam Singh on 12/11/21.
@@ -10,13 +10,16 @@ import XCTest
 @testable import TransactionApp
 
 
-final class DashboardSceneInteractorTests: XCTestCase {
-    
-  override func setUp() {
-   
-  }
+final class TransfeSceneViewControllerTests: XCTestCase {
   
-  override func tearDown() {
+    override func setUp() {
+     
+    }
     
-  }
+    override func tearDown() {
+      
+    }
 }
+
+
+
