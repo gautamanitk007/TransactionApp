@@ -15,9 +15,10 @@ public class APIService: ServiceProtocol {
         self.endPoint = endPoint
     }
     public func startLogin(user userModel:UserModel, on completion:@escaping(LoginResponse?,ApiError?)->()){
+        
         if TransactionManager.shared.enableMock {
             guard let rsp: LoginResponse = Utils.load(bundle: Bundle(for: APIService.self), fileName: "LoginResponse") else {
-                completion(nil,nil)
+                completion(nil,ApiError(statusCode: -2, message: "Login mock parsing error"))
                 return
             }
             completion(rsp,nil)
@@ -36,7 +37,7 @@ public class APIService: ServiceProtocol {
     public func checkBalances(on completion: @escaping(BalanceResponse?,ApiError?)->()){
         if TransactionManager.shared.enableMock {
             guard let rsp: BalanceResponse = Utils.load(bundle: Bundle(for: APIService.self), fileName: "Balance") else {
-                completion(nil,nil)
+                completion(nil,ApiError(statusCode: -2, message: "Balance check parsing error"))
                 return
             }
             completion(rsp,nil)
@@ -55,8 +56,8 @@ public class APIService: ServiceProtocol {
     }
     public func getAllPayee(on completion: @escaping(PayeeResponse?,ApiError?)->()){
         if TransactionManager.shared.enableMock {
-            guard let rsp: PayeeResponse = Utils.load(bundle: Bundle(for: APIService.self), fileName: "payee") else {
-                completion(nil,nil)
+            guard let rsp: PayeeResponse = Utils.load(bundle: Bundle(for: APIService.self), fileName: "Payee") else {
+                completion(nil,ApiError(statusCode: -2, message: "Payee parsing error"))
                 return
             }
             completion(rsp,nil)
@@ -76,7 +77,7 @@ public class APIService: ServiceProtocol {
         
         if TransactionManager.shared.enableMock {
             guard let rsp: TransactionResponse = Utils.load(bundle: Bundle(for: APIService.self), fileName: "Transactions") else {
-                completion(nil,nil)
+                completion(nil,ApiError(statusCode: -2, message: "Transaction parsing error"))
                 return
             }
             completion(rsp,nil)
@@ -96,7 +97,7 @@ public class APIService: ServiceProtocol {
     public func fundTransfer(params:[String:Any], on completion:@escaping(TransferResponse?,ApiError?)->()){
         if TransactionManager.shared.enableMock {
             guard let rsp: TransferResponse = Utils.load(bundle: Bundle(for: APIService.self), fileName: "Transfer") else {
-                completion(nil,nil)
+                completion(nil,ApiError(statusCode: -2, message: "Transfer parsing error"))
                 return
             }
             completion(rsp,nil)

@@ -10,8 +10,6 @@
 		D20B871E273C0D2700959452 /* TransferSceneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20B871D273C0D2700959452 /* TransferSceneModel.swift */; };
 		D22BFA792737D0DA00764BBB /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22BFA782737D0DA00764BBB /* Utils.swift */; };
 		D22BFA892737D48900764BBB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D22BFA882737D48900764BBB /* Localizable.strings */; };
-		D22BFA9A2737E54100764BBB /* Transactions.json in Resources */ = {isa = PBXBuildFile; fileRef = D22BFA992737E54100764BBB /* Transactions.json */; };
-		D22BFAA22737E54B00764BBB /* Payee.json in Resources */ = {isa = PBXBuildFile; fileRef = D22BFAA12737E54B00764BBB /* Payee.json */; };
 		D22BFAD22737E61300764BBB /* LoginSceneViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22BFACE2737E61300764BBB /* LoginSceneViewControllerTests.swift */; };
 		D22BFAEF27382AC900764BBB /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22BFAEE27382AC900764BBB /* RoundedView.swift */; };
 		D2C20D06273626CB0061D929 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20D05273626CB0061D929 /* AppDelegate.swift */; };
@@ -42,13 +40,21 @@
 		D2C20DDB2736A26D0061D929 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20DDA2736A26D0061D929 /* APIService.swift */; };
 		D2C20DE02736AECB0061D929 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20DDF2736AECB0061D929 /* APIManager.swift */; };
 		D2C289C5273AC5FC00E79627 /* TransactionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C289C4273AC5FC00E79627 /* TransactionManager.swift */; };
-		D2C289CA273ACCE700E79627 /* Transfer.json in Resources */ = {isa = PBXBuildFile; fileRef = D2C289C9273ACCE700E79627 /* Transfer.json */; };
 		D2C38040273BE07700F71879 /* DropdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3803F273BE07700F71879 /* DropdownViewController.swift */; };
 		D2C3804B273BE41E00F71879 /* GeneralCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3804A273BE41E00F71879 /* GeneralCell.swift */; };
 		D2F9126E27395EA500FC5487 /* TableViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F9126D27395EA500FC5487 /* TableViewDatasource.swift */; };
 		D2F9127627395FBB00FC5487 /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F9127527395FBB00FC5487 /* TransactionCell.swift */; };
 		D2F9127C27396DB800FC5487 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F9127B27396DB800FC5487 /* Extensions.swift */; };
 		D2F9129227398DED00FC5487 /* TransactionSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F9129127398DED00FC5487 /* TransactionSceneRouter.swift */; };
+		D2FD1DC4273DEEF3001386D3 /* Balance.json in Resources */ = {isa = PBXBuildFile; fileRef = D2FD1DC3273DEEF2001386D3 /* Balance.json */; };
+		D2FD1DCF273DEF13001386D3 /* Transactions.json in Resources */ = {isa = PBXBuildFile; fileRef = D2FD1DCE273DEF13001386D3 /* Transactions.json */; };
+		D2FD1DDA273DEF42001386D3 /* Payee.json in Resources */ = {isa = PBXBuildFile; fileRef = D2FD1DD9273DEF42001386D3 /* Payee.json */; };
+		D2FD1DE5273DEF7E001386D3 /* Transfer.json in Resources */ = {isa = PBXBuildFile; fileRef = D2FD1DE4273DEF7E001386D3 /* Transfer.json */; };
+		D2FD1DF0273DF292001386D3 /* LoginResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D2C20DA8273678030061D929 /* LoginResponse.json */; };
+		D2FD1DFD273DF3C0001386D3 /* Balance.json in Resources */ = {isa = PBXBuildFile; fileRef = D2FD1DC3273DEEF2001386D3 /* Balance.json */; };
+		D2FD1E04273DF3E1001386D3 /* Transactions.json in Resources */ = {isa = PBXBuildFile; fileRef = D2FD1DCE273DEF13001386D3 /* Transactions.json */; };
+		D2FD1E15273DF438001386D3 /* Payee.json in Resources */ = {isa = PBXBuildFile; fileRef = D2FD1DD9273DEF42001386D3 /* Payee.json */; };
+		D2FD1E19273DF4BA001386D3 /* Transfer.json in Resources */ = {isa = PBXBuildFile; fileRef = D2FD1DE4273DEF7E001386D3 /* Transfer.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,8 +80,6 @@
 		D22BFA832737D41300764BBB /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/Main.strings; sourceTree = "<group>"; };
 		D22BFA842737D41300764BBB /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		D22BFA882737D48900764BBB /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
-		D22BFA992737E54100764BBB /* Transactions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Transactions.json; sourceTree = "<group>"; };
-		D22BFAA12737E54B00764BBB /* Payee.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Payee.json; sourceTree = "<group>"; };
 		D22BFACE2737E61300764BBB /* LoginSceneViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSceneViewControllerTests.swift; sourceTree = "<group>"; };
 		D22BFAEE27382AC900764BBB /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		D2C20D02273626CB0061D929 /* TransactionApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransactionApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,13 +116,16 @@
 		D2C20DDA2736A26D0061D929 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		D2C20DDF2736AECB0061D929 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		D2C289C4273AC5FC00E79627 /* TransactionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionManager.swift; sourceTree = "<group>"; };
-		D2C289C9273ACCE700E79627 /* Transfer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Transfer.json; sourceTree = "<group>"; };
 		D2C3803F273BE07700F71879 /* DropdownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownViewController.swift; sourceTree = "<group>"; };
 		D2C3804A273BE41E00F71879 /* GeneralCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralCell.swift; sourceTree = "<group>"; };
 		D2F9126D27395EA500FC5487 /* TableViewDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDatasource.swift; sourceTree = "<group>"; };
 		D2F9127527395FBB00FC5487 /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
 		D2F9127B27396DB800FC5487 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D2F9129127398DED00FC5487 /* TransactionSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSceneRouter.swift; sourceTree = "<group>"; };
+		D2FD1DC3273DEEF2001386D3 /* Balance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Balance.json; sourceTree = "<group>"; };
+		D2FD1DCE273DEF13001386D3 /* Transactions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Transactions.json; sourceTree = "<group>"; };
+		D2FD1DD9273DEF42001386D3 /* Payee.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Payee.json; sourceTree = "<group>"; };
+		D2FD1DE4273DEF7E001386D3 /* Transfer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Transfer.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,10 +180,11 @@
 		D22BFA982737E4F700764BBB /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				D2C289C9273ACCE700E79627 /* Transfer.json */,
+				D2FD1DD9273DEF42001386D3 /* Payee.json */,
+				D2FD1DCE273DEF13001386D3 /* Transactions.json */,
+				D2FD1DC3273DEEF2001386D3 /* Balance.json */,
+				D2FD1DE4273DEF7E001386D3 /* Transfer.json */,
 				D2C20DA8273678030061D929 /* LoginResponse.json */,
-				D22BFAA12737E54B00764BBB /* Payee.json */,
-				D22BFA992737E54100764BBB /* Transactions.json */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -472,10 +480,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2FD1E19273DF4BA001386D3 /* Transfer.json in Resources */,
 				D2C20D12273626D70061D929 /* LaunchScreen.storyboard in Resources */,
+				D2FD1E04273DF3E1001386D3 /* Transactions.json in Resources */,
+				D2FD1DFD273DF3C0001386D3 /* Balance.json in Resources */,
 				D2C20DA9273678030061D929 /* LoginResponse.json in Resources */,
 				D22BFA892737D48900764BBB /* Localizable.strings in Resources */,
 				D2C20D0F273626D70061D929 /* Assets.xcassets in Resources */,
+				D2FD1E15273DF438001386D3 /* Payee.json in Resources */,
 				D2C20D0D273626CB0061D929 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -484,9 +496,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D22BFAA22737E54B00764BBB /* Payee.json in Resources */,
-				D2C289CA273ACCE700E79627 /* Transfer.json in Resources */,
-				D22BFA9A2737E54100764BBB /* Transactions.json in Resources */,
+				D2FD1DCF273DEF13001386D3 /* Transactions.json in Resources */,
+				D2FD1DDA273DEF42001386D3 /* Payee.json in Resources */,
+				D2FD1DF0273DF292001386D3 /* LoginResponse.json in Resources */,
+				D2FD1DE5273DEF7E001386D3 /* Transfer.json in Resources */,
+				D2FD1DC4273DEEF3001386D3 /* Balance.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

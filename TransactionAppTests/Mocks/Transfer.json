@@ -1,10 +1,1 @@
-{
-    "status": "success",
-    "data": {
-        "id": "536775d9-62d2-4324-adc6-d38fe5d5b1d7",
-        "recipientAccountNo": "4992-992-9021",
-        "amount": 100,
-        "date": "2021-09-12T00:00:00.000Z",
-        "description": "room rental"
-    }
-}
+{"status":"success","data":{"id":"8315fc0e-b9e5-4faa-85fd-7b168722a9a0","amount":"500","recipientAccountNo":"4489-991-0023","date":"2021-11-12T00:40:04.384Z","description":"xxxx"}}

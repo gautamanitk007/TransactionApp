@@ -37,4 +37,3 @@ public class APIManager: APIManagerProtocol {
         }.resume()
     }
 }
-
