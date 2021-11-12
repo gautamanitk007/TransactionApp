@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D20B871E273C0D2700959452 /* TransferSceneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20B871D273C0D2700959452 /* TransferSceneModel.swift */; };
+		D2214E2C273EE842002FD69F /* APIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2214E2B273EE842002FD69F /* APIServiceTests.swift */; };
 		D22BFA792737D0DA00764BBB /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22BFA782737D0DA00764BBB /* Utils.swift */; };
 		D22BFA892737D48900764BBB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D22BFA882737D48900764BBB /* Localizable.strings */; };
 		D22BFAD22737E61300764BBB /* LoginSceneViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22BFACE2737E61300764BBB /* LoginSceneViewControllerTests.swift */; };
@@ -90,6 +91,7 @@
 
 /* Begin PBXFileReference section */
 		D20B871D273C0D2700959452 /* TransferSceneModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferSceneModel.swift; sourceTree = "<group>"; };
+		D2214E2B273EE842002FD69F /* APIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceTests.swift; sourceTree = "<group>"; };
 		D22BFA782737D0DA00764BBB /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		D22BFA832737D41300764BBB /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/Main.strings; sourceTree = "<group>"; };
 		D22BFA842737D41300764BBB /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 		D22BFA972737E4DB00764BBB /* Networks */ = {
 			isa = PBXGroup;
 			children = (
+				D2214E2B273EE842002FD69F /* APIServiceTests.swift */,
 			);
 			path = Networks;
 			sourceTree = "<group>";
@@ -623,6 +626,7 @@
 				D2FD1E51273E373A001386D3 /* DashboardSceneViewControllerTests.swift in Sources */,
 				D2FD1E26273DF995001386D3 /* LoginSceneInteractorTests.swift in Sources */,
 				D2C20D1D273626D80061D929 /* TransactionAppTests.swift in Sources */,
+				D2214E2C273EE842002FD69F /* APIServiceTests.swift in Sources */,
 				D2FD1E6D273E4B67001386D3 /* TransfeSceneViewControllerTests.swift in Sources */,
 				D22BFAD22737E61300764BBB /* LoginSceneViewControllerTests.swift in Sources */,
 				D2FD1E70273E4B67001386D3 /* TransfeScenePresenterTests.swift in Sources */,

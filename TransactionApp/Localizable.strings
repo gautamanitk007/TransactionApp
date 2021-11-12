@@ -38,3 +38,6 @@
 "Description_Key" = "Descripion cannot be empty";
 "Recipient_Key" = "Recipient cannot be empty";
 "Amount_Overflow" = "Your account balance is less than entered amount";
+"Bad_Request" = "bad request";
+"ForBidden" = "forbidden";
+"Failed" = "failed";
