@@ -55,6 +55,12 @@
 		D2FD1E04273DF3E1001386D3 /* Transactions.json in Resources */ = {isa = PBXBuildFile; fileRef = D2FD1DCE273DEF13001386D3 /* Transactions.json */; };
 		D2FD1E15273DF438001386D3 /* Payee.json in Resources */ = {isa = PBXBuildFile; fileRef = D2FD1DD9273DEF42001386D3 /* Payee.json */; };
 		D2FD1E19273DF4BA001386D3 /* Transfer.json in Resources */ = {isa = PBXBuildFile; fileRef = D2FD1DE4273DEF7E001386D3 /* Transfer.json */; };
+		D2FD1E26273DF995001386D3 /* LoginSceneInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E25273DF995001386D3 /* LoginSceneInteractorTests.swift */; };
+		D2FD1E2B273E034A001386D3 /* LoginSceneConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E2A273E034A001386D3 /* LoginSceneConfigurator.swift */; };
+		D2FD1E31273E0594001386D3 /* SceneFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E30273E0594001386D3 /* SceneFactory.swift */; };
+		D2FD1E36273E07A4001386D3 /* LoginSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E35273E07A4001386D3 /* LoginSceneRouter.swift */; };
+		D2FD1E3B273E1A91001386D3 /* DashboardSceneConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E3A273E1A91001386D3 /* DashboardSceneConfigurator.swift */; };
+		D2FD1E48273E336A001386D3 /* LoginScenePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E47273E336A001386D3 /* LoginScenePresenterTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +132,12 @@
 		D2FD1DCE273DEF13001386D3 /* Transactions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Transactions.json; sourceTree = "<group>"; };
 		D2FD1DD9273DEF42001386D3 /* Payee.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Payee.json; sourceTree = "<group>"; };
 		D2FD1DE4273DEF7E001386D3 /* Transfer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Transfer.json; sourceTree = "<group>"; };
+		D2FD1E25273DF995001386D3 /* LoginSceneInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSceneInteractorTests.swift; sourceTree = "<group>"; };
+		D2FD1E2A273E034A001386D3 /* LoginSceneConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSceneConfigurator.swift; sourceTree = "<group>"; };
+		D2FD1E30273E0594001386D3 /* SceneFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneFactory.swift; sourceTree = "<group>"; };
+		D2FD1E35273E07A4001386D3 /* LoginSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSceneRouter.swift; sourceTree = "<group>"; };
+		D2FD1E3A273E1A91001386D3 /* DashboardSceneConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSceneConfigurator.swift; sourceTree = "<group>"; };
+		D2FD1E47273E336A001386D3 /* LoginScenePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScenePresenterTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +205,8 @@
 			isa = PBXGroup;
 			children = (
 				D22BFACE2737E61300764BBB /* LoginSceneViewControllerTests.swift */,
+				D2FD1E25273DF995001386D3 /* LoginSceneInteractorTests.swift */,
+				D2FD1E47273E336A001386D3 /* LoginScenePresenterTests.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -220,6 +234,7 @@
 		D2C20D04273626CB0061D929 /* TransactionApp */ = {
 			isa = PBXGroup;
 			children = (
+				D2FD1E2F273E0544001386D3 /* Factories */,
 				D2C289C3273AC5E200E79627 /* Manager */,
 				D2F9129027398DCE00FC5487 /* Routers */,
 				D2C20DBF273684820061D929 /* Networks */,
@@ -273,6 +288,8 @@
 				D2C20D3D273627710061D929 /* LoginScenePresenter.swift */,
 				D2C20D3F273627710061D929 /* LoginSceneViewController.swift */,
 				D2C20D40273627710061D929 /* LoginSceneInteractor.swift */,
+				D2FD1E2A273E034A001386D3 /* LoginSceneConfigurator.swift */,
+				D2FD1E35273E07A4001386D3 /* LoginSceneRouter.swift */,
 			);
 			path = LoginScene;
 			sourceTree = "<group>";
@@ -284,6 +301,7 @@
 				D2C20D50273628FC0061D929 /* DashboardSceneViewController.swift */,
 				D2C20D51273628FC0061D929 /* DashboardSceneInteractor.swift */,
 				D2C20D53273628FC0061D929 /* DashboardSceneModel.swift */,
+				D2FD1E3A273E1A91001386D3 /* DashboardSceneConfigurator.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -374,6 +392,14 @@
 				D2F9129127398DED00FC5487 /* TransactionSceneRouter.swift */,
 			);
 			path = Routers;
+			sourceTree = "<group>";
+		};
+		D2FD1E2F273E0544001386D3 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				D2FD1E30273E0594001386D3 /* SceneFactory.swift */,
+			);
+			path = Factories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -519,9 +545,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2C20DD3273694620061D929 /* Reponse.swift in Sources */,
+				D2FD1E31273E0594001386D3 /* SceneFactory.swift in Sources */,
 				D2C20D8E273638E70061D929 /* RoundedButton.swift in Sources */,
 				D2C20DC1273684A70061D929 /* APIRequest.swift in Sources */,
 				D2C20D66273629160061D929 /* TransferScenePresenter.swift in Sources */,
+				D2FD1E36273E07A4001386D3 /* LoginSceneRouter.swift in Sources */,
 				D2F9129227398DED00FC5487 /* TransactionSceneRouter.swift in Sources */,
 				D2F9126E27395EA500FC5487 /* TableViewDatasource.swift in Sources */,
 				D2C20D57273628FC0061D929 /* DashboardSceneInteractor.swift in Sources */,
@@ -535,6 +563,7 @@
 				D2C289C5273AC5FC00E79627 /* TransactionManager.swift in Sources */,
 				D2C20D06273626CB0061D929 /* AppDelegate.swift in Sources */,
 				D2C38040273BE07700F71879 /* DropdownViewController.swift in Sources */,
+				D2FD1E2B273E034A001386D3 /* LoginSceneConfigurator.swift in Sources */,
 				D2C20D7E27362FB30061D929 /* UserModel.swift in Sources */,
 				D2C20DDB2736A26D0061D929 /* APIService.swift in Sources */,
 				D2C20D56273628FC0061D929 /* DashboardSceneViewController.swift in Sources */,
@@ -542,6 +571,7 @@
 				D2C20D54273628FC0061D929 /* DashboardScenePresenter.swift in Sources */,
 				D2F9127627395FBB00FC5487 /* TransactionCell.swift in Sources */,
 				D20B871E273C0D2700959452 /* TransferSceneModel.swift in Sources */,
+				D2FD1E3B273E1A91001386D3 /* DashboardSceneConfigurator.swift in Sources */,
 				D2C20D45273627710061D929 /* LoginSceneViewController.swift in Sources */,
 				D2C20D08273626CB0061D929 /* SceneDelegate.swift in Sources */,
 				D2F9127C27396DB800FC5487 /* Extensions.swift in Sources */,
@@ -556,8 +586,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2FD1E26273DF995001386D3 /* LoginSceneInteractorTests.swift in Sources */,
 				D2C20D1D273626D80061D929 /* TransactionAppTests.swift in Sources */,
 				D22BFAD22737E61300764BBB /* LoginSceneViewControllerTests.swift in Sources */,
+				D2FD1E48273E336A001386D3 /* LoginScenePresenterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

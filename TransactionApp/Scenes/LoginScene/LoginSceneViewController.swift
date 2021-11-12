@@ -6,16 +6,20 @@
 //  Copyright (c) 2021 ___ORGANIZATIONNAME___. All rights reserved.
 
 import UIKit
-protocol LoginSceneDisplayLogic where Self: UIViewController {
+protocol LoginSceneViewControllerInput: AnyObject {
     func loginSuccess()
     func loginFailed(message: String)
 }
 
+protocol LoginSceneViewControllerOutput:AnyObject {
+    func startLogin(user userModel: UserModel)
+}
+
 final class LoginSceneViewController: BaseViewController {
     
-    var interactor: LoginSceneInteractable!
-    var router: TransactionSceneRouting!
-    private var userModel: UserModel?
+    var interactor: LoginSceneInteractorInput!
+    var router: LoginSceneRoutingLogic!
+    var userModel: UserModel?
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var baseScrollView: UIScrollView!
     @IBOutlet weak var txtPassword: BindingTextField!{
@@ -34,6 +38,7 @@ final class LoginSceneViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
+       
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -60,20 +65,14 @@ final class LoginSceneViewController: BaseViewController {
 
 
 // MARK: - LoginSceneDisplayLogic
-extension LoginSceneViewController: LoginSceneDisplayLogic {
+extension LoginSceneViewController: LoginSceneViewControllerInput {
     func loginSuccess() {
-        DispatchQueue.main.async {[weak self] in
-            guard let self = self else {return}
-            self.stopActivity()
-            self.router.navigateToDestination(for: "showDashboard")
-        }
+        self.stopActivity()
+        self.router.showLoginSuccess()
     }
     func loginFailed(message: String) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else {return}
-            self.stopActivity()
-            self.router.showFailure(message: message)
-        }
+        self.stopActivity()
+        self.router.showLogingFailure(message: message)
     }
 }
 
@@ -82,12 +81,8 @@ extension LoginSceneViewController: LoginSceneDisplayLogic {
 // MARK: - Private Zone
 private extension LoginSceneViewController {
     func setup() {
-        userModel = UserModel()
-        self.interactor = LoginSceneInteractor(viewController: self)
-        self.router = TransactionSceneRouter(viewController: self)
         self.txtUsername.delegate = self
         self.txtPassword.delegate = self
-        
         self.txtUsername.placeholder = Utils.getLocalisedValue(key:"Login_Text_Field_Placeholder")
         self.txtPassword.placeholder = Utils.getLocalisedValue(key:"Password_Text_Field_Placeholder")
         self.btnLogin.setTitle(Utils.getLocalisedValue(key:"Login_Button_Title"), for: .normal)

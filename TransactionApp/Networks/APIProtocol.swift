@@ -14,3 +14,11 @@ public protocol ServiceProtocol {
     func getAllTransactions(on completion: @escaping(TransactionResponse?,ApiError?)->())
     func fundTransfer(params:[String:Any], on completion:@escaping(TransferResponse?,ApiError?)->())
 }
+
+extension ServiceProtocol {
+    func startLogin(user userModel:UserModel, on completion:@escaping(LoginResponse?,ApiError?)->()){}
+    func checkBalances(on completion: @escaping(BalanceResponse?,ApiError?)->()){}
+    func getAllPayee(on completion: @escaping(PayeeResponse?,ApiError?)->()){}
+    func getAllTransactions(on completion: @escaping(TransactionResponse?,ApiError?)->()){}
+    func fundTransfer(params:[String:Any], on completion:@escaping(TransferResponse?,ApiError?)->()){}
+}

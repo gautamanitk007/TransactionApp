@@ -7,28 +7,22 @@
 
 import Foundation
 
-protocol LoginScenePresentationLogic {
-    func didFinishLoginReponse( error: String?)
-}
+typealias LoginScenePresenterInput = LoginSceneInteractorOutput
+typealias LoginScenePresenterOutput = LoginSceneViewControllerInput
 
 final class LoginScenePresenter {
-    
-    private weak var viewController: LoginSceneDisplayLogic?
-    
-    init(viewController: LoginSceneDisplayLogic?) {
-        self.viewController = viewController
-    }
+    weak var viewController: LoginScenePresenterOutput?
 }
 
 
 // MARK: - LoginScenePresentationLogic
-extension LoginScenePresenter: LoginScenePresentationLogic {
-    func didFinishLoginReponse( error: String?){
-        if let errorValue = error {
-            self.viewController?.loginFailed(message: errorValue)
-        } else {
-            self.viewController?.loginSuccess()
-        }
+extension LoginScenePresenter: LoginScenePresenterInput{
+    func logingSuccess() {
+        self.viewController?.loginSuccess()
+    }
+    
+    func logingFailed(message: String) {
+        self.viewController?.loginFailed(message: message)
     }
 }
 
