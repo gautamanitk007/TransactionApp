@@ -18,7 +18,7 @@ protocol LoginSceneViewControllerOutput:AnyObject {
 final class LoginSceneViewController: BaseViewController {
     
     var interactor: LoginSceneInteractorInput!
-    var router: LoginSceneRoutingLogic!
+    var router: LoginSceneRouting!
     var userModel: UserModel?
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var baseScrollView: UIScrollView!

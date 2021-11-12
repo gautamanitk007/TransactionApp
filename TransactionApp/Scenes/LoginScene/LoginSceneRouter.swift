@@ -12,7 +12,7 @@ protocol TError {
     func showFailure(message: String)
 }
 
-protocol LoginSceneRoutingLogic:TError {
+protocol LoginSceneRouting:TError {
     func showLoginSuccess()
 }
 
@@ -26,7 +26,7 @@ final class LoginSceneRouter {
     }
 }
 
-extension LoginSceneRouter: LoginSceneRoutingLogic {
+extension LoginSceneRouter: LoginSceneRouting {
     func showFailure(message: String) {
         let alertController = Utils.getAlert(title:Utils.getLocalisedValue(key:"Information_Error_Title"),message:message)
         source?.present(alertController, animated: true)

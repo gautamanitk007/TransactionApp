@@ -12,7 +12,7 @@ import XCTest
 final class LoginSceneViewControllerTests: XCTestCase {
     private var sut: LoginSceneViewController!
     private var interactor: LoginSceneInteractorMock!
-    private var router: LoginSceneRoutingLogicMock!
+    private var router: LoginSceneRoutingMock!
     override func setUp() {
         super.setUp()
         
@@ -21,7 +21,7 @@ final class LoginSceneViewControllerTests: XCTestCase {
         sut.loadView()
         interactor = LoginSceneInteractorMock()
         sut.interactor = interactor
-        router = LoginSceneRoutingLogicMock()
+        router = LoginSceneRoutingMock()
         sut.router = router
         TransactionManager.shared.enableMock = true
         
@@ -58,14 +58,14 @@ private final class LoginSceneInteractorMock: LoginSceneInteractorInput {
     }
 }
 
-private final class LoginSceneRoutingLogicMock: LoginSceneRoutingLogic {
+private final class LoginSceneRoutingMock: LoginSceneRouting{
     var loginSuccess = false
     var loginFailed = false
     func showLoginSuccess() {
         self.loginSuccess = true
     }
 
-    func showLogingFailure(message: String) {
+    func showFailure(message: String) {
         self.loginFailed = true
         XCTAssertEqual(message, "Failed to load")
     }
