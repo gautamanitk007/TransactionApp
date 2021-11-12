@@ -59,7 +59,7 @@ final class TransferSceneViewController: BaseViewController {
     @IBAction func submitTapped(){
         self.transferModel?.date = Date().convertToString()
         self.startActivity()
-        self.interactor.transferTo(payee: self.transferModel!,service: APIService(APIManager(),EndPoints.transfer))
+        self.interactor.transferTo(payee: self.transferModel!,service: APIService(APIManager()))
     }
     
     @IBAction func cancelTapped(){
@@ -157,7 +157,7 @@ private extension TransferSceneViewController {
     }
     @objc func fetchPayee(){
         self.startActivity()
-        let apiService = APIService(APIManager(), EndPoints.payees)
+        let apiService = APIService(APIManager())
         self.interactor.getAllPayee(service: apiService)
     }
 }

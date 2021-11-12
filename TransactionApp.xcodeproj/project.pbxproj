@@ -61,6 +61,12 @@
 		D2FD1E36273E07A4001386D3 /* LoginSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E35273E07A4001386D3 /* LoginSceneRouter.swift */; };
 		D2FD1E3B273E1A91001386D3 /* DashboardSceneConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E3A273E1A91001386D3 /* DashboardSceneConfigurator.swift */; };
 		D2FD1E48273E336A001386D3 /* LoginScenePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E47273E336A001386D3 /* LoginScenePresenterTests.swift */; };
+		D2FD1E51273E373A001386D3 /* DashboardSceneViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E4D273E373A001386D3 /* DashboardSceneViewControllerTests.swift */; };
+		D2FD1E52273E373A001386D3 /* DashboardSceneInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E4E273E373A001386D3 /* DashboardSceneInteractorTests.swift */; };
+		D2FD1E53273E373A001386D3 /* DashboardSceneRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E4F273E373A001386D3 /* DashboardSceneRouterTests.swift */; };
+		D2FD1E54273E373A001386D3 /* DashboardScenePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E50273E373A001386D3 /* DashboardScenePresenterTests.swift */; };
+		D2FD1E5C273E3F97001386D3 /* DashboardSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E5B273E3F97001386D3 /* DashboardSceneRouter.swift */; };
+		D2FD1E61273E48D2001386D3 /* TransferSceneConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E60273E48D2001386D3 /* TransferSceneConfigurator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +144,12 @@
 		D2FD1E35273E07A4001386D3 /* LoginSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSceneRouter.swift; sourceTree = "<group>"; };
 		D2FD1E3A273E1A91001386D3 /* DashboardSceneConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSceneConfigurator.swift; sourceTree = "<group>"; };
 		D2FD1E47273E336A001386D3 /* LoginScenePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScenePresenterTests.swift; sourceTree = "<group>"; };
+		D2FD1E4D273E373A001386D3 /* DashboardSceneViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSceneViewControllerTests.swift; sourceTree = "<group>"; };
+		D2FD1E4E273E373A001386D3 /* DashboardSceneInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSceneInteractorTests.swift; sourceTree = "<group>"; };
+		D2FD1E4F273E373A001386D3 /* DashboardSceneRouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSceneRouterTests.swift; sourceTree = "<group>"; };
+		D2FD1E50273E373A001386D3 /* DashboardScenePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardScenePresenterTests.swift; sourceTree = "<group>"; };
+		D2FD1E5B273E3F97001386D3 /* DashboardSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSceneRouter.swift; sourceTree = "<group>"; };
+		D2FD1E60273E48D2001386D3 /* TransferSceneConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferSceneConfigurator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +189,7 @@
 		D22BFA962737E4CD00764BBB /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				D2FD1E4C273E3712001386D3 /* Dashboard */,
 				D22BFACD2737E5FF00764BBB /* Login */,
 			);
 			path = Scenes;
@@ -302,6 +315,7 @@
 				D2C20D51273628FC0061D929 /* DashboardSceneInteractor.swift */,
 				D2C20D53273628FC0061D929 /* DashboardSceneModel.swift */,
 				D2FD1E3A273E1A91001386D3 /* DashboardSceneConfigurator.swift */,
+				D2FD1E5B273E3F97001386D3 /* DashboardSceneRouter.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -313,6 +327,7 @@
 				D2C20D62273629160061D929 /* TransferSceneViewController.swift */,
 				D2C20D63273629160061D929 /* TransferSceneInteractor.swift */,
 				D20B871D273C0D2700959452 /* TransferSceneModel.swift */,
+				D2FD1E60273E48D2001386D3 /* TransferSceneConfigurator.swift */,
 			);
 			path = Transfer;
 			sourceTree = "<group>";
@@ -400,6 +415,17 @@
 				D2FD1E30273E0594001386D3 /* SceneFactory.swift */,
 			);
 			path = Factories;
+			sourceTree = "<group>";
+		};
+		D2FD1E4C273E3712001386D3 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				D2FD1E4D273E373A001386D3 /* DashboardSceneViewControllerTests.swift */,
+				D2FD1E4E273E373A001386D3 /* DashboardSceneInteractorTests.swift */,
+				D2FD1E4F273E373A001386D3 /* DashboardSceneRouterTests.swift */,
+				D2FD1E50273E373A001386D3 /* DashboardScenePresenterTests.swift */,
+			);
+			path = Dashboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -556,6 +582,7 @@
 				D2C20D9C273652250061D929 /* BaseViewController.swift in Sources */,
 				D22BFAEF27382AC900764BBB /* RoundedView.swift in Sources */,
 				D2C20DCE273686FC0061D929 /* APIProtocol.swift in Sources */,
+				D2FD1E5C273E3F97001386D3 /* DashboardSceneRouter.swift in Sources */,
 				D2C3804B273BE41E00F71879 /* GeneralCell.swift in Sources */,
 				D2C20D69273629160061D929 /* TransferSceneInteractor.swift in Sources */,
 				D2C20D68273629160061D929 /* TransferSceneViewController.swift in Sources */,
@@ -577,6 +604,7 @@
 				D2F9127C27396DB800FC5487 /* Extensions.swift in Sources */,
 				D2C20D7527362EFE0061D929 /* BindingTextField.swift in Sources */,
 				D22BFA792737D0DA00764BBB /* Utils.swift in Sources */,
+				D2FD1E61273E48D2001386D3 /* TransferSceneConfigurator.swift in Sources */,
 				D2C20D43273627710061D929 /* LoginScenePresenter.swift in Sources */,
 				D2C20DE02736AECB0061D929 /* APIManager.swift in Sources */,
 			);
@@ -586,9 +614,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2FD1E51273E373A001386D3 /* DashboardSceneViewControllerTests.swift in Sources */,
 				D2FD1E26273DF995001386D3 /* LoginSceneInteractorTests.swift in Sources */,
 				D2C20D1D273626D80061D929 /* TransactionAppTests.swift in Sources */,
+				D2FD1E53273E373A001386D3 /* DashboardSceneRouterTests.swift in Sources */,
 				D22BFAD22737E61300764BBB /* LoginSceneViewControllerTests.swift in Sources */,
+				D2FD1E52273E373A001386D3 /* DashboardSceneInteractorTests.swift in Sources */,
+				D2FD1E54273E373A001386D3 /* DashboardScenePresenterTests.swift in Sources */,
 				D2FD1E48273E336A001386D3 /* LoginScenePresenterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

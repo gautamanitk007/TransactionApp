@@ -7,9 +7,13 @@
 
 import Foundation
 import UIKit
-protocol LoginSceneRoutingLogic {
+
+protocol TError {
+    func showFailure(message: String)
+}
+
+protocol LoginSceneRoutingLogic:TError {
     func showLoginSuccess()
-    func showLogingFailure(message: String)
 }
 
 final class LoginSceneRouter {
@@ -23,7 +27,7 @@ final class LoginSceneRouter {
 }
 
 extension LoginSceneRouter: LoginSceneRoutingLogic {
-    func showLogingFailure(message: String) {
+    func showFailure(message: String) {
         let alertController = Utils.getAlert(title:Utils.getLocalisedValue(key:"Information_Error_Title"),message:message)
         source?.present(alertController, animated: true)
     }

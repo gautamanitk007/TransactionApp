@@ -1,16 +1,16 @@
 //
-//  DashboardSceneConfigurator.swift
+//  TransferSceneConfigurator.swift
 //  TransactionApp
 //
 //  Created by Gautam Singh on 12/11/21.
 //
 
 import Foundation
-protocol DashboardSceneConfigurator {
-    func configured(_ vc: DashboardSceneViewController) -> DashboardSceneViewController
+protocol TransferSceneConfigurator {
+    func configured(_ vc: TransferSceneViewController) -> TransferSceneViewController
 }
 
-final class DefaultDashboardSceneConfigurator: DashboardSceneConfigurator {
+final class DefaultTransferSceneConfigurator: TransferSceneConfigurator {
 
     private var sceneFactory: SceneFactory
     
@@ -19,18 +19,18 @@ final class DefaultDashboardSceneConfigurator: DashboardSceneConfigurator {
     }
     
     @discardableResult
-    func configured(_ vc: DashboardSceneViewController) -> DashboardSceneViewController  {
-        sceneFactory.dashboardConfigurator = self
+    func configured(_ vc: TransferSceneViewController) -> TransferSceneViewController  {
+        /*sceneFactory.transferConfigurator = self
         let service = APIService(APIManager())
-        let interactor = DashboardSceneInteractor()
-        let presenter = DashboardScenePresenter()
+        let interactor = TransferSceneInteractor()
+        let presenter = TransferScenePresenter()
         let router = DashboardSceneRouter(sceneFactory: sceneFactory)
         router.source = vc
         presenter.viewController = vc
         interactor.presenter = presenter
         interactor.service = service
         vc.interactor = interactor
-        vc.router = router
+        vc.router = router*/
         return vc
     }
 }

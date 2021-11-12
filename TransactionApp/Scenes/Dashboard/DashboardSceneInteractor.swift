@@ -8,49 +8,40 @@
 
 import Foundation
 
-typealias DashboardSceneInteractable = DashboardSceneBusinessLogic
+typealias DashboardSceneInteractorInput = DashboardSceneViewControllerOutput
 
-protocol DashboardSceneBusinessLogic {
-    func checkBalance(service: ServiceProtocol)
-    func getAllTransactions(service: ServiceProtocol)
+protocol DashboardSceneInteractorOutput {
+    func showTransactions(response: TransactionResponse)
+    func showBalance(response:BalanceResponse)
+    func didFailedToLoad( error: String?)
 }
 
 final class DashboardSceneInteractor {
-    
-    private var presenter: DashboardScenePresentationLogic
-    
-    init(viewController: DashboardSceneDisplayLogic?) {
-     
-        self.presenter = DashboardScenePresenter(viewController: viewController)
-    }
+    var service: ServiceProtocol?
+    var presenter: DashboardScenePresenterInput?
 }
 
 
 // MARK: - DashboardSceneBusinessLogic
-extension DashboardSceneInteractor: DashboardSceneBusinessLogic {
-    
-    func checkBalance(service: ServiceProtocol) {
-        DispatchQueue.global(qos: .userInitiated).async {
-            service.checkBalances {[weak self] (response, error) in
-                guard let self = self else { return }
-                if let errorValue = error, errorValue.statusCode != ResponseCodes.success.rawValue {
-                    self.presenter.didFailedToLoad(error: errorValue.message)
-                } else if let balanceObj = response {
-                    self.presenter.showBalance(response: balanceObj)
-                }
+extension DashboardSceneInteractor: DashboardSceneViewControllerOutput {
+    func checkBalance() {
+        self.service?.checkBalances {[weak self] (response, error) in
+            guard let self = self else { return }
+            if let errorValue = error, errorValue.statusCode != ResponseCodes.success.rawValue {
+                self.presenter?.didFailedToLoad(error: errorValue.message)
+            } else if let balanceObj = response {
+                self.presenter?.showBalance(response: balanceObj)
             }
         }
     }
     
-    func getAllTransactions(service: ServiceProtocol) {
-        DispatchQueue.global(qos: .userInitiated).async {
-            service.getAllTransactions {[weak self] (response,error) in
-                guard let self = self else { return }
-                if let errorValue = error, errorValue.statusCode != ResponseCodes.success.rawValue{
-                    self.presenter.didFailedToLoad(error: errorValue.message)
-                } else if let transactions = response {
-                    self.presenter.showTransactions(response: transactions)
-                }
+    func getAllTransactions() {
+        self.service?.getAllTransactions {[weak self] (response,error) in
+            guard let self = self else { return }
+            if let errorValue = error, errorValue.statusCode != ResponseCodes.success.rawValue{
+                self.presenter?.didFailedToLoad(error: errorValue.message)
+            } else if let transactions = response {
+                self.presenter?.showTransactions(response: transactions)
             }
         }
     }

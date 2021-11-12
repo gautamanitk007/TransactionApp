@@ -21,7 +21,7 @@ final class DefaultLoginSceneConfigurator: LoginSceneConfigurator {
     @discardableResult
     func configured(_ vc: LoginSceneViewController) -> LoginSceneViewController {
         sceneFactory.configurator = self
-        let service = APIService(APIManager(), EndPoints.login)
+        let service = APIService(APIManager())
         let interactor = LoginSceneInteractor()
         let presenter = LoginScenePresenter()
         let router = LoginSceneRouter(sceneFactory: sceneFactory)

@@ -9,10 +9,8 @@ import Foundation
 
 public class APIService: ServiceProtocol {
     var apiManager: APIManagerProtocol
-    var endPoint: EndPoints
-    init(_ apiManager:APIManagerProtocol, _ endPoint: EndPoints) {
+    init(_ apiManager:APIManagerProtocol) {
         self.apiManager = apiManager
-        self.endPoint = endPoint
     }
     public func startLogin(user userModel:UserModel, on completion:@escaping(LoginResponse?,ApiError?)->()){
         
@@ -24,7 +22,7 @@ public class APIService: ServiceProtocol {
             completion(rsp,nil)
         } else {
             let body = userModel.jsonValue()
-            let request = APIRequest(endPoint: self.endPoint.rawValue, postBody: body!)
+            let request = APIRequest(endPoint: EndPoints.login.rawValue, postBody: body!)
             let loginResource = Resource<LoginResponse>(request: request) { data in
                 let loginResponse = try? JSONDecoder().decode(LoginResponse.self, from: data)
                 return loginResponse
@@ -42,7 +40,7 @@ public class APIService: ServiceProtocol {
             }
             completion(rsp,nil)
         } else {
-            var request = APIRequest(endPoint: self.endPoint.rawValue, postBody: [:])
+            var request = APIRequest(endPoint: EndPoints.balances.rawValue, postBody: [:])
             request.httpMethod = HttpMethod.get
             let balanceResource = Resource<BalanceResponse>(request: request) { data in
                 let bResponse = try? JSONDecoder().decode(BalanceResponse.self, from: data)
@@ -62,7 +60,7 @@ public class APIService: ServiceProtocol {
             }
             completion(rsp,nil)
         }else{
-            var request = APIRequest(endPoint: self.endPoint.rawValue, postBody: [:])
+            var request = APIRequest(endPoint: EndPoints.payees.rawValue, postBody: [:])
             request.httpMethod = HttpMethod.get
             let payeeResource = Resource<PayeeResponse>(request: request) { data in
                 let payeeResponse = try? JSONDecoder().decode(PayeeResponse.self, from: data)
@@ -82,7 +80,7 @@ public class APIService: ServiceProtocol {
             }
             completion(rsp,nil)
         } else {
-            var request = APIRequest(endPoint: self.endPoint.rawValue, postBody: [:])
+            var request = APIRequest(endPoint: EndPoints.transactions.rawValue, postBody: [:])
             request.httpMethod = HttpMethod.get
             let transationResource = Resource<TransactionResponse>(request: request) { data in
                 let tResponse = try? JSONDecoder().decode(TransactionResponse.self, from: data)
@@ -102,7 +100,7 @@ public class APIService: ServiceProtocol {
             }
             completion(rsp,nil)
         }else{
-            var request = APIRequest(endPoint: self.endPoint.rawValue, postBody: [:])
+            var request = APIRequest(endPoint: EndPoints.transfer.rawValue, postBody: [:])
             request.httpMethod = HttpMethod.post
             request.body = params
             let tResource = Resource<TransferResponse>(request: request) { data in

@@ -8,23 +8,17 @@
 
 import Foundation
 
-protocol DashboardScenePresentationLogic {
-    func showTransactions(response: TransactionResponse)
-    func showBalance(response:BalanceResponse)
-    func didFailedToLoad( error: String?)
-}
+
+typealias DashboardScenePresenterInput = DashboardSceneInteractorOutput
+typealias DashboardScenePresenterOutput = DashboardSceneViewControllerInput
 
 final class DashboardScenePresenter {
-  private weak var viewController: DashboardSceneDisplayLogic?
-  
-  init(viewController: DashboardSceneDisplayLogic?) {
-        self.viewController = viewController
-  }
+    weak var viewController: DashboardScenePresenterOutput?
 }
 
 
 // MARK: - DashboardScenePresentationLogic
-extension DashboardScenePresenter: DashboardScenePresentationLogic {
+extension DashboardScenePresenter: DashboardScenePresenterInput {
     func showTransactions(response: TransactionResponse){
         var accTrans = [TransactionViewModel]()
         if let accounts = response.data {
