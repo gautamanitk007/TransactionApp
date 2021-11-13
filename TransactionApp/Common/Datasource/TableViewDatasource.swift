@@ -40,5 +40,4 @@ class TableViewDatasource<CellType,Model>:NSObject,UITableViewDataSource where C
         self.configureCell(cell, vm)
         return cell
     }
-   
 }

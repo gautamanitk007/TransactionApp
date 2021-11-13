@@ -20,8 +20,9 @@ final class LoginSceneViewController: BaseViewController {
     var interactor: LoginSceneInteractorInput!
     var router: LoginSceneRouting!
     var userModel: UserModel?
-    @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var baseScrollView: UIScrollView!
+
+    @IBOutlet weak var containerView: RoundedView!
+    
     @IBOutlet weak var txtPassword: BindingTextField!{
         didSet{
             txtPassword.bind{self.userModel?.password = $0}
@@ -44,20 +45,10 @@ final class LoginSceneViewController: BaseViewController {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
     }
-    @objc override func keyboardWillShow(_ notification: Notification) {
-        let userInfo: NSDictionary = notification.userInfo! as NSDictionary
-        let keyboardInfo = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue
-        let keyboardSize = keyboardInfo.cgRectValue.size
-        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height + 40, right: 0)
-        self.baseScrollView.contentInset = contentInsets
-        self.baseScrollView.scrollIndicatorInsets = contentInsets
-    }
-    @objc override func keyboardWillHide(_ notification: Notification) {
-        self.baseScrollView.contentInset = .zero
-        self.baseScrollView.scrollIndicatorInsets = .zero
-    }
     @IBAction func didLoginTapped(_ sender: Any) {
         self.view.endEditing(true)
+        self.userModel?.username = "ocbc"
+        self.userModel?.password = "123456"
         self.startActivity()
         interactor.startLogin(user: self.userModel!)
     }

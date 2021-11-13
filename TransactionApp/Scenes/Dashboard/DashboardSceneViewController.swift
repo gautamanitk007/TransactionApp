@@ -40,6 +40,7 @@ final class DashboardSceneViewController: BaseViewController {
             cell.configure(viewModel)
         }
         self.activityTable.dataSource = self.datasource
+        self.activityTable.delegate = self
         self.startActivity()
         self.refreshPage()
     }
@@ -111,3 +112,10 @@ private extension DashboardSceneViewController {
     }
 }
 
+extension DashboardSceneViewController:UITableViewDelegate{
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+           let headerView = UIView()
+           headerView.backgroundColor = UIColor.clear
+           return headerView
+    }
+}

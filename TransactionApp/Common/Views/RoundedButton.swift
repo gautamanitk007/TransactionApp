@@ -10,8 +10,10 @@ import UIKit
 class RoundedButton: UIButton {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        layer.cornerRadius = 6.0
-        layer.borderWidth = 2
+        layer.cornerRadius = 10.0
+        layer.borderWidth = 1
         layer.borderColor = UIColor.white.cgColor
+        self.backgroundColor = .systemBlue
+        self.setTitleColor(.white, for: .normal)
     }
 }

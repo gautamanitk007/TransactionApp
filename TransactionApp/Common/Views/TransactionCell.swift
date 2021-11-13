@@ -11,11 +11,15 @@ class TransactionCell: UITableViewCell {
     @IBOutlet weak var lblDay: UILabel!
     @IBOutlet weak var lblToFromMsg: UILabel!
     @IBOutlet weak var lblAmount: UILabel!
+    @IBOutlet weak var placeHolderView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+    
+        self.placeHolderView.layer.cornerRadius = 10
+        self.placeHolderView.layer.borderWidth = 2
+        self.placeHolderView.layer.borderColor = UIColor.lightGray.cgColor
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
