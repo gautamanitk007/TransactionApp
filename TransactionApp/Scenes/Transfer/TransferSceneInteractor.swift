@@ -10,11 +10,6 @@ import Foundation
 
 typealias TransferSceneInteractorInput = TransferSceneViewControllerOutput
 
-protocol TransferSceneBusinessLogic {
-    func getAllPayee(service: ServiceProtocol)
-    func transferTo(payee:TransferSceneModel,service:ServiceProtocol)
-}
-
 protocol TransferSceneInteractorOutput {
     func showPayeeList(response: PayeeResponse)
     func showErrorMessage( error: String?)
@@ -27,17 +22,15 @@ final class TransferSceneInteractor {
 }
 
 
-// MARK: - TransferSceneBusinessLogic
+// MARK: - TransferSceneViewControllerOutput
 extension TransferSceneInteractor: TransferSceneViewControllerOutput {
     func getAllPayee() {
-        DispatchQueue.global(qos: .userInitiated).async {
-            self.service?.getAllPayee { [weak self] (response,error) in
-                guard let self = self else { return }
-                if let errorValue = error, errorValue.statusCode != ResponseCodes.success.rawValue{
-                    self.presenter?.showErrorMessage(error: errorValue.message)
-                } else if let payeeList = response {
-                    self.presenter?.showPayeeList(response: payeeList)
-                }
+        self.service?.getAllPayee { [weak self] (response,error) in
+            guard let self = self else { return }
+            if let errorValue = error, errorValue.statusCode != ResponseCodes.success.rawValue{
+                self.presenter?.showErrorMessage(error: errorValue.message)
+            } else if let payeeList = response {
+                self.presenter?.showPayeeList(response: payeeList)
             }
         }
     }

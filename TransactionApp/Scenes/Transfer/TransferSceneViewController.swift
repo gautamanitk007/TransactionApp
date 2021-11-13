@@ -62,7 +62,6 @@ final class TransferSceneViewController: BaseViewController {
     }
   
     @IBAction func submitTapped(){
-        self.transferModel?.date = Date().convertToString()
         self.startActivity()
         self.interactor.transferTo(payee: self.transferModel!)
     }
@@ -76,8 +75,9 @@ final class TransferSceneViewController: BaseViewController {
     }
     @objc func pickerDateValue(){
         self.view.endEditing(true)
-        self.dateOfTransferTextField.text = "\(self.datePicker!.date)"
-        self.transferModel?.date = self.datePicker?.date.convertToString()
+        let dateValue = self.datePicker!.date.convertToString()
+        self.dateOfTransferTextField.text = dateValue
+        self.transferModel?.date = dateValue
     }
     @objc func showDropdown(){
         guard let pList = self.payeeList else {

@@ -29,6 +29,7 @@ final class DashboardSceneViewControllerTests: XCTestCase {
         sut = nil
         interactor = nil
         router = nil
+        TransactionManager.shared.enableMock = false
         super.tearDown()
     }
     

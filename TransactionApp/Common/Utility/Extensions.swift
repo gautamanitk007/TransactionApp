@@ -18,6 +18,7 @@ extension Date{
     }
     func convertToString()->String{
         let formatter = Utils.getFormator()
+        formatter.dateFormat = "dd-MM-YYYY"
         return formatter.string(from: self)
     }
 }
