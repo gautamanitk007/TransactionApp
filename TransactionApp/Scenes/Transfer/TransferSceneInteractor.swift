@@ -46,7 +46,7 @@ extension TransferSceneInteractor: TransferSceneViewControllerOutput {
             return
         }
         
-        if payee.date == nil {
+        if payee.date == nil || payee.date?.count == 0 {
             self.presenter?.showErrorMessage(error:Utils.getLocalisedValue(key:"Date_Key"))
             return
         }
@@ -60,14 +60,12 @@ extension TransferSceneInteractor: TransferSceneViewControllerOutput {
             return
         }
         if let json = payee.jsonValue(){
-            DispatchQueue.global(qos: .userInitiated).async {
-                self.service?.fundTransfer(params: json) {[weak self] (response, error) in
-                    guard let self = self else { return }
-                    if let errorValue = error, errorValue.statusCode != ResponseCodes.success.rawValue {
-                        self.presenter?.showErrorMessage(error: errorValue.message)
-                    } else if let tResponse = response {
-                        self.presenter?.transferSuccess(response: tResponse)
-                    }
+            self.service?.fundTransfer(params: json) {[weak self] (response, error) in
+                guard let self = self else { return }
+                if let errorValue = error, errorValue.statusCode != ResponseCodes.success.rawValue {
+                    self.presenter?.showErrorMessage(error: errorValue.message)
+                } else if let tResponse = response {
+                    self.presenter?.transferSuccess(response: tResponse)
                 }
             }
         } else {
