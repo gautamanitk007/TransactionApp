@@ -75,9 +75,14 @@ final class TransferSceneViewController: BaseViewController {
     }
     @objc func pickerDateValue(){
         self.view.endEditing(true)
-        let dateValue = self.datePicker!.date.convertToString()
-        self.dateOfTransferTextField.text = dateValue
-        self.transferModel?.date = dateValue
+        if self.datePicker!.date >= Date() {
+            let dateValue = self.datePicker!.date.convertToString()
+            self.dateOfTransferTextField.text = dateValue
+            self.transferModel?.date = dateValue
+        }else{
+            self.router.showFailure(message: Utils.getLocalisedValue(key: "Past_Transfer_Date_Msg"))
+        }
+        
     }
     @objc func showDropdown(){
         guard let pList = self.payeeList, pList.count > 0 else {
@@ -131,15 +136,15 @@ private extension TransferSceneViewController {
     
     func createDatePicker(){
         self.datePicker = UIDatePicker()
+        self.datePicker?.preferredDatePickerStyle = .wheels
         self.datePicker?.datePickerMode = .dateAndTime
         self.datePicker?.translatesAutoresizingMaskIntoConstraints = false
         let toolbar = UIToolbar()
+        toolbar.translatesAutoresizingMaskIntoConstraints = false
         toolbar.barTintColor = .systemBlue
         toolbar.sizeToFit()
-        let barButtonDone = UIBarButtonItem(barButtonSystemItem: .save, target: self,
-                                            action: #selector(TransferSceneViewController.pickerDateValue))
-        barButtonDone.tintColor = .white
-        toolbar.setItems([barButtonDone], animated: true)
+        let barBtn = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(TransferSceneViewController.pickerDateValue))
+        toolbar.setItems([barBtn], animated: false)
         dateOfTransferTextField.inputAccessoryView = toolbar
         dateOfTransferTextField.inputView = datePicker
     }

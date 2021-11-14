@@ -86,21 +86,40 @@ final class TransferSceneViewControllerTests: XCTestCase {
         XCTAssertTrue(router.popToPreviousCallback)
     }
     
-    func test_picker_date_value(){
+    func test_picker_past_date_value(){
        //Given
+        //let futureDate = self.createFutureDate(isFuture: true)
         let (recipientTextField,dateOfTransferTextField,descTextField,amountTextField,tModel) = self.create()
         sut.recipientTextField = recipientTextField
         sut.dateOfTransferTextField = dateOfTransferTextField
         sut.descTextField = descTextField
         sut.amountTextField = amountTextField
         sut.transferModel = tModel
+        
         sut.viewDidLoad()
         //When
         sut.pickerDateValue()
         //Then
-        XCTAssertEqual(sut.transferModel.date, Date().convertToString())
-        XCTAssertEqual(sut.dateOfTransferTextField.text, Date().convertToString())
+        XCTAssertEqual(router.errMsg, Utils.getLocalisedValue(key: "Past_Transfer_Date_Msg"))
+    }
+    
+    func test_picker_future_date_value(){
+       //Given
+        let futureDate = self.createFutureDate()
+        let (recipientTextField,dateOfTransferTextField,descTextField,amountTextField,tModel) = self.create()
+        sut.recipientTextField = recipientTextField
+        sut.dateOfTransferTextField = dateOfTransferTextField
+        sut.descTextField = descTextField
+        sut.amountTextField = amountTextField
+        sut.transferModel = tModel
         
+        sut.viewDidLoad()
+        sut.datePicker?.date = futureDate
+        //When
+        sut.pickerDateValue()
+        //Then
+        XCTAssertEqual(sut.transferModel.date, futureDate.convertToString())
+        XCTAssertEqual(sut.dateOfTransferTextField.text, futureDate.convertToString())
     }
     
     func test_popover_without_payeelist(){
@@ -111,7 +130,7 @@ final class TransferSceneViewControllerTests: XCTestCase {
         sut.showDropdown()
         //Then
         XCTAssertEqual(sut.payeeList?.count, 0)
-        XCTAssertEqual(router.payeeMsg, Utils.getLocalisedValue(key: "NoPayee"))
+        XCTAssertEqual(router.errMsg, Utils.getLocalisedValue(key: "NoPayee"))
     }
     func test_popover_with_payee_list(){
         //Given
@@ -148,9 +167,9 @@ private final class TransferSceneRoutingMock: TransferSceneRouting{
     func popToPrevious() {
         popToPreviousCallback = true
     }
-    var payeeMsg:String = ""
+    var errMsg:String = ""
     func showFailure(message: String) {
-        payeeMsg = message
+        errMsg = message
     }
     
     func showSuccess(msg: String) {
@@ -173,6 +192,12 @@ private extension TransferSceneViewControllerTests{
         let amountTextField = BindingTextField()
         let tModel = TransferSceneModel()
         return (recipientTextField,dateOfTransferTextField,descTextField,amountTextField,tModel)
+    }
+    func createFutureDate() -> Date{
+        let date = Date()
+        var components = DateComponents()
+        components.setValue(1, for: .day)
+        return Calendar.current.date(byAdding: components, to: date)!
     }
 }
 
