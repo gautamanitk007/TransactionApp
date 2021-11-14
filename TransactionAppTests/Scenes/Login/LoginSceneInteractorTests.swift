@@ -25,34 +25,29 @@ final class LoginSceneInteractorTests: XCTestCase  {
         sut = nil
         service = nil
         presenter = nil
-        TransactionManager.shared.apiError = ""
         super.tearDown()
     }
     func test_interactor_with_empty_username() {
         //Given
-        let apiError = Utils.getLocalisedValue(key:"UserName_Empty")
-        TransactionManager.shared.apiError = apiError
         let userModel = UserModel(username: "", password: "344")
         
         //When
         sut.startLogin(user: userModel)
         //Then
-        XCTAssertTrue(presenter.interactorRespondedError)
+        XCTAssertEqual(presenter.errMsg, Utils.getLocalisedValue(key:"UserName_Empty"))
     }
     func test_interactor_with_empty_passsword() {
         //Given
-        let apiError = Utils.getLocalisedValue(key:"Password_Empty")
-        TransactionManager.shared.apiError = apiError
         let userModel = UserModel(username: "123", password: "")
         //When
         sut.startLogin(user: userModel)
-        XCTAssertTrue(presenter.interactorRespondedError)
+        //Then
+        XCTAssertEqual(presenter.errMsg, Utils.getLocalisedValue(key:"Password_Empty"))
     }
     
     func test_interactor_with_valid_credentials() {
         //Given
         let loginExp = self.expectation(description: "LoginApi Expectation")
-        TransactionManager.shared.apiError = ""
         let userModel = UserModel(username: "ocbc", password: "123456")
         //When
         sut.startLogin(user: userModel)
@@ -72,14 +67,13 @@ private final class APIServiceMock: ServiceProtocol {
 }
 
 private final class LoginScenePresenterInputMock: LoginScenePresenterInput {
-    var interactorRespondedError: Bool = false
+    var errMsg: String = ""
     var interactorRespondedSuccess: Bool = false
     func logingSuccess() {
         interactorRespondedSuccess = true
     }
     
     func logingFailed(message: String) {
-        interactorRespondedError = true
-        XCTAssertEqual(message, TransactionManager.shared.apiError)
+        self.errMsg = message
     }
 }

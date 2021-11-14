@@ -27,8 +27,8 @@ public class APIManager: APIManagerProtocol {
             }
             DispatchQueue.main.async {
                 if let data = data {
-                    let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: [])
-                    print(jsonResponse)
+                    //let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: [])
+                    //print(jsonResponse)
                     completion(resource.parse(data),sError)
                 }else{
                     if let err = sError {

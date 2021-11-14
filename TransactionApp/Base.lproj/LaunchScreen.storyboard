@@ -24,7 +24,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
                             <constraint firstItem="wbc-36-gJb" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Kf9-Et-TBR"/>
                             <constraint firstItem="wbc-36-gJb" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="kYe-XC-PWP"/>
@@ -37,8 +37,8 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

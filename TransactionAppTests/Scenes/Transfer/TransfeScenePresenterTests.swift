@@ -47,21 +47,21 @@ final class TransfeScenePresenterTests: XCTestCase {
         //When
         sut.showPayeeList(response: payeeReponse)
         //Then
-        XCTAssertEqual(vc.payeeError, Utils.getLocalisedValue(key:"Payee_Not_Exist"))
+        XCTAssertEqual(vc.payeeList.count, 4)
     }
 }
 
 private final class TransferScenePresenterOutputMock: TransferScenePresenterOutput {
-    
+    var payeeList:[Payee] = []
     func dispayPayee(payeeList: [Payee]) {
-        
+        self.payeeList = payeeList
     }
     var payeeError:String = ""
     func displayError(_ error: String) {
         payeeError = error
     }
-    
+
     func transferSuccess(msg: String) {
-        
+    
     }
 }
