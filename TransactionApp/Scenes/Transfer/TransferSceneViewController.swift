@@ -80,7 +80,7 @@ final class TransferSceneViewController: BaseViewController {
         self.transferModel?.date = dateValue
     }
     @objc func showDropdown(){
-        guard let pList = self.payeeList else {
+        guard let pList = self.payeeList, pList.count > 0 else {
             self.router.showFailure(message: Utils.getLocalisedValue(key: "NoPayee"))
             return
         }
@@ -136,7 +136,7 @@ private extension TransferSceneViewController {
         let toolbar = UIToolbar()
         toolbar.barTintColor = .systemBlue
         toolbar.sizeToFit()
-        let barButtonDone = UIBarButtonItem(barButtonSystemItem: .done, target: self,
+        let barButtonDone = UIBarButtonItem(barButtonSystemItem: .save, target: self,
                                             action: #selector(TransferSceneViewController.pickerDateValue))
         barButtonDone.tintColor = .white
         toolbar.setItems([barButtonDone], animated: true)

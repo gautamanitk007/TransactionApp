@@ -103,13 +103,33 @@ final class TransferSceneViewControllerTests: XCTestCase {
         
     }
     
-    func test_show_calendar(){
-       //When
-       // sut.showCalendar()
+    func test_popover_without_payeelist(){
+        //Given
+        let payeeList = [Payee]()
+        sut.payeeList = payeeList
+        //When
+        sut.showDropdown()
+        //Then
+        XCTAssertEqual(sut.payeeList?.count, 0)
+        XCTAssertEqual(router.payeeMsg, Utils.getLocalisedValue(key: "NoPayee"))
     }
-    
-    
-    
+    func test_popover_with_payee_list(){
+        //Given
+        let bundle = Bundle(for: TransactionAppTests.self)
+        guard let payeeObj:PayeeResponse = Utils.load(bundle: bundle, fileName: "Payee") else {
+            XCTFail()
+            return
+        }
+        let payeeCount = payeeObj.data?.count
+        sut.payeeList = payeeObj.data
+        //When
+        sut.showDropdown()
+        //Then
+        XCTAssertEqual(sut.payeeList?.count, payeeCount)
+        XCTAssertEqual(router.pList.count, payeeCount)
+        XCTAssertEqual(router.indentifier, "showPopover")
+        
+    }
 }
 private final class TransferSceneInteractorMock: TransferSceneInteractorInput {
     var isAllPayeeDownloaded:Bool = false
@@ -128,17 +148,19 @@ private final class TransferSceneRoutingMock: TransferSceneRouting{
     func popToPrevious() {
         popToPreviousCallback = true
     }
-    
+    var payeeMsg:String = ""
     func showFailure(message: String) {
-        
+        payeeMsg = message
     }
     
     func showSuccess(msg: String) {
-        print("XXXXXSS")
-    }
-    
-    func showPopOver(for indetifier: String, popoverList: [Payee], delegate: DropdownViewControllerDelegate) {
         
+    }
+    var indentifier:String = ""
+    var pList = [Payee]()
+    func showPopOver(for indetifier: String, popoverList: [Payee], delegate: DropdownViewControllerDelegate) {
+        self.indentifier = indetifier
+        self.pList = popoverList
     }
 }
 
