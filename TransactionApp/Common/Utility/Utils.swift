@@ -7,7 +7,7 @@
 
 import UIKit
 import Foundation
-
+import SystemConfiguration
 class Utils {
     class func getAlert(title:String,message:String) -> UIAlertController {
         let alert = UIAlertController(title:title, message:message, preferredStyle: UIAlertController.Style.alert)

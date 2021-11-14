@@ -30,10 +30,14 @@ final class APIServiceTests: XCTestCase {
         sut.startLogin(user: userModel, on: { (response, error) in
             loginExpectation.fulfill()
             //Then
-            XCTAssertEqual(response?.status, Utils.getLocalisedValue(key: "Failed"))
-            XCTAssertNil(response?.token)
-            XCTAssertNotNil(error)
-            XCTAssertEqual(error!.message, badRequest)
+            if error?.statusCode == ResponseCodes.server_notReachable.rawValue{
+                XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerNotReachable"))
+            }else{
+                XCTAssertEqual(response?.status, Utils.getLocalisedValue(key: "Failed"))
+                XCTAssertNil(response?.token)
+                XCTAssertNotNil(error)
+                XCTAssertEqual(error!.message, badRequest)
+            }
         })
         
         waitForExpectations(timeout: 1.0, handler: nil)
@@ -49,10 +53,14 @@ final class APIServiceTests: XCTestCase {
         sut.startLogin(user: userModel, on: { (response, error) in
             loginExpectation.fulfill()
             //Then
-            XCTAssertEqual(response?.status, Utils.getLocalisedValue(key: "Failed"))
-            XCTAssertNil(response?.token)
-            XCTAssertNotNil(error)
-            XCTAssertEqual(error!.message, badRequest)
+            if error?.statusCode == ResponseCodes.server_notReachable.rawValue{
+                XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerNotReachable"))
+            }else{
+                XCTAssertEqual(response?.status, Utils.getLocalisedValue(key: "Failed"))
+                XCTAssertNil(response?.token)
+                XCTAssertNotNil(error)
+                XCTAssertEqual(error!.message, badRequest)
+            }
         })
         
         waitForExpectations(timeout: 1.0, handler: nil)
@@ -67,8 +75,12 @@ final class APIServiceTests: XCTestCase {
         sut.startLogin(user: userModel, on: { (response, error) in
             loginExpectation.fulfill()
             //Then
-            XCTAssertNotNil(error)
-            XCTAssertEqual(error!.message,Utils.getLocalisedValue(key: "ForBidden"))
+            if error?.statusCode == ResponseCodes.server_notReachable.rawValue{
+                XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerNotReachable"))
+            }else{
+                XCTAssertNotNil(error)
+                XCTAssertEqual(error!.message,Utils.getLocalisedValue(key: "ForBidden"))
+            }
         })
         
         waitForExpectations(timeout: 1.0, handler: nil)
@@ -101,25 +113,29 @@ final class APIServiceTests: XCTestCase {
         //When
         sut.startLogin(user: userModel, on: {[weak self] (response, error) in
             loginExpectation.fulfill()
-            //Then
-            if response != nil {
-                guard let self = self  else {return}
-                if let token = response?.token{
-                    //Given
-                    TransactionManager.shared.token = token
-                
-                    //When
-                    self.sut.checkBalances { (balResponse, bError) in
-                        checkBalanceExp.fulfill()
-                        TransactionManager.shared.token = ""
-                        if balResponse != nil{
-                            XCTAssertEqual(balResponse?.status, "success")
+            if error?.statusCode == ResponseCodes.server_notReachable.rawValue{
+                checkBalanceExp.fulfill()
+                XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerNotReachable"))
+            }else{
+                if response != nil {
+                    guard let self = self  else {return}
+                    if let token = response?.token{
+                        //Given
+                        TransactionManager.shared.token = token
+                    
+                        //When
+                        self.sut.checkBalances { (balResponse, bError) in
+                            checkBalanceExp.fulfill()
+                            TransactionManager.shared.token = ""
+                            if balResponse != nil{
+                                XCTAssertEqual(balResponse?.status, "success")
+                            }
                         }
                     }
+                } else {
+                    XCTAssertNotNil(error)
+                    XCTAssertTrue(error!.message!.count > 0)
                 }
-            } else {
-                XCTAssertNotNil(error)
-                XCTAssertTrue(error!.message!.count > 0)
             }
         })
         
@@ -136,23 +152,28 @@ final class APIServiceTests: XCTestCase {
         sut.startLogin(user: userModel, on: {[weak self] (response, error) in
             loginExpectation.fulfill()
             //Then
-            if response != nil {
-                guard let self = self  else {return}
-                if let token = response?.token{
-                    //Given
-                    TransactionManager.shared.token = token
-                    //When
-                    self.sut.getAllTransactions { (tResponse, tError) in
-                        transactionExp.fulfill()
-                        TransactionManager.shared.token = ""
-                        if tResponse != nil{
-                            XCTAssertEqual(tResponse?.status, "success")
+            if error?.statusCode == ResponseCodes.server_notReachable.rawValue{
+                transactionExp.fulfill()
+                XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerNotReachable"))
+            }else{
+                if response != nil {
+                    guard let self = self  else {return}
+                    if let token = response?.token{
+                        //Given
+                        TransactionManager.shared.token = token
+                        //When
+                        self.sut.getAllTransactions { (tResponse, tError) in
+                            transactionExp.fulfill()
+                            TransactionManager.shared.token = ""
+                            if tResponse != nil{
+                                XCTAssertEqual(tResponse?.status, "success")
+                            }
                         }
                     }
+                } else {
+                    XCTAssertNotNil(error)
+                    XCTAssertTrue(error!.message!.count > 0)
                 }
-            } else {
-                XCTAssertNotNil(error)
-                XCTAssertTrue(error!.message!.count > 0)
             }
         })
         
@@ -169,23 +190,28 @@ final class APIServiceTests: XCTestCase {
         sut.startLogin(user: userModel, on: {[weak self] (response, error) in
             loginExpectation.fulfill()
             //Then
-            if response != nil {
-                guard let self = self  else {return}
-                if let token = response?.token{
-                    //Given
-                    TransactionManager.shared.token = token
-                    //When
-                    self.sut.getAllPayee { (pResponse, pError) in
-                        payeeExp.fulfill()
-                        TransactionManager.shared.token = ""
-                        if pResponse != nil{
-                            XCTAssertEqual(pResponse?.status, "success")
+            if error?.statusCode == ResponseCodes.server_notReachable.rawValue{
+                payeeExp.fulfill()
+                XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerNotReachable"))
+            }else{
+                if response != nil {
+                    guard let self = self  else {return}
+                    if let token = response?.token{
+                        //Given
+                        TransactionManager.shared.token = token
+                        //When
+                        self.sut.getAllPayee { (pResponse, pError) in
+                            payeeExp.fulfill()
+                            TransactionManager.shared.token = ""
+                            if pResponse != nil{
+                                XCTAssertEqual(pResponse?.status, "success")
+                            }
                         }
                     }
+                } else {
+                    XCTAssertNotNil(error)
+                    XCTAssertTrue(error!.message!.count > 0)
                 }
-            } else {
-                XCTAssertNotNil(error)
-                XCTAssertTrue(error!.message!.count > 0)
             }
         })
         
@@ -201,28 +227,33 @@ final class APIServiceTests: XCTestCase {
         sut.startLogin(user: userModel, on: {[weak self] (response, error) in
             loginExpectation.fulfill()
             //Then
-            if response != nil {
-                guard let self = self  else {return}
-                if let token = response?.token{
-                    //Given
-                    TransactionManager.shared.token = token
-                    //When
-                    let transferModel = TransferSceneModel(recipientAccountNo: "1234", amount: "100", date: Date().convertToString(), description: "Rental")
-                    
-                    self.sut.fundTransfer(params: transferModel.jsonValue()!) { (ftResponse, ftError) in
-                        transferExp.fulfill()
-                        TransactionManager.shared.token = ""
-                        if ftResponse != nil{
-                            XCTAssertEqual(ftResponse?.status, "success")
-                            XCTAssertEqual(ftResponse?.data?.amount, "100")
-                            XCTAssertEqual(ftResponse?.data?.description, "Rental")
-                            XCTAssertEqual(ftResponse?.data?.recipientAccountNo, "1234")
+            if error?.statusCode == ResponseCodes.server_notReachable.rawValue{
+                transferExp.fulfill()
+                XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerNotReachable"))
+            }else{
+                if response != nil {
+                    guard let self = self  else {return}
+                    if let token = response?.token{
+                        //Given
+                        TransactionManager.shared.token = token
+                        //When
+                        let transferModel = TransferSceneModel(recipientAccountNo: "1234", amount: "100", date: Date().convertToString(), description: "Rental")
+                        
+                        self.sut.fundTransfer(params: transferModel.jsonValue()!) { (ftResponse, ftError) in
+                            transferExp.fulfill()
+                            TransactionManager.shared.token = ""
+                            if ftResponse != nil{
+                                XCTAssertEqual(ftResponse?.status, "success")
+                                XCTAssertEqual(ftResponse?.data?.amount, "100")
+                                XCTAssertEqual(ftResponse?.data?.description, "Rental")
+                                XCTAssertEqual(ftResponse?.data?.recipientAccountNo, "1234")
+                            }
                         }
                     }
+                } else {
+                    XCTAssertNotNil(error)
+                    XCTAssertTrue(error!.message!.count > 0)
                 }
-            } else {
-                XCTAssertNotNil(error)
-                XCTAssertTrue(error!.message!.count > 0)
             }
         })
         

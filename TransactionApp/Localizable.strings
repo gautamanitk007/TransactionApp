@@ -41,3 +41,4 @@
 "Bad_Request" = "bad request";
 "ForBidden" = "forbidden";
 "Failed" = "failed";
+"ServerNotReachable" = "Server is not reachable";

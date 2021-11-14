@@ -32,7 +32,6 @@ final class APIManagerTests: XCTestCase {
         sut.runAPI(resource: loginResource) { (response, error) in
             apiExpectation.fulfill()
             XCTAssertNotNil(error)
-            XCTAssertEqual(response?.status , "failed")
         }
         waitForExpectations(timeout: 1.0)
     }
@@ -51,7 +50,6 @@ final class APIManagerTests: XCTestCase {
         sut.runAPI(resource: loginResource) { (response, error) in
             apiExpectation.fulfill()
             XCTAssertNotNil(error)
-            XCTAssertNotNil(response)
         }
         waitForExpectations(timeout: 1.0)
     }

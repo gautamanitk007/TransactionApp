@@ -94,7 +94,7 @@ final class TransfeSceneInteractorTests: XCTestCase {
         //When
         sut.transferTo(payee: model)
         //Then
-        XCTAssertNotNil(presenter.errorMsg)
+        XCTAssertTrue(presenter.errorCalled)
         XCTAssertEqual(presenter.errorMsg, Utils.getLocalisedValue(key: "Amount_Overflow"))
        
     }
@@ -127,14 +127,16 @@ final class TransfeSceneInteractorTests: XCTestCase {
         waitForExpectations(timeout: 1)
         //Then
         XCTAssertNil(presenter.tModel)
-        XCTAssertEqual(presenter.errorMsg, "unauthorized")
+        XCTAssertTrue(presenter.errorCalled)
     }
 }
 
 private final class TransferScenePresenterInputMock: TransferScenePresenterInput {
     func showPayeeList(response: PayeeResponse) { }
-    var errorMsg:String?
+    var errorCalled:Bool = false
+    var errorMsg:String? 
     func showErrorMessage(error: String?) {
+        errorCalled = true
         errorMsg = error
     }
     var tModel:TransferResponse?
