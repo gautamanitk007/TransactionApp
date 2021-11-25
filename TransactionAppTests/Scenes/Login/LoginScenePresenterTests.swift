@@ -44,12 +44,15 @@ final class LoginScenePresenterTests: XCTestCase {
 }
 
 private final class LoginScenePresenterOutputMock: LoginScenePresenterOutput {
+    
     var showLogingFailureCalled: (Bool, String)!
     var showLogingSuccessCalled: Bool = false
-    func dispayLoginSuccess(messgae: String) {
+    
+    func dispayLoginSuccess(viewModel: LoginSceneDataModel.ViewModel) {
         showLogingSuccessCalled = true
     }
-    func displayLoginFailed(message: String) {
-        showLogingFailureCalled = (true, message)
+    
+    func displayLoginFailed(viewModel: LoginSceneDataModel.ViewModel) {
+        showLogingFailureCalled = (true, viewModel.error!)
     }
 }

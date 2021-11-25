@@ -15,10 +15,12 @@ final class LoginScenePresenter {
 // MARK: - LoginScenePresenterInput
 extension LoginScenePresenter: LoginScenePresenterInput{
     func presentLogin(response: LoginSceneDataModel.Response) {
-        self.viewController?.dispayLoginSuccess(messgae: response.token!)
+        let viewModel = LoginSceneDataModel.ViewModel(message: "", token: response.token, error: nil)
+        self.viewController?.dispayLoginSuccess(viewModel: viewModel)
     }
     func presentLogin(error: LoginSceneDataModel.Error) {
-        self.viewController?.displayLoginFailed(message: error.error)
+        let viewModel = LoginSceneDataModel.ViewModel(message: "", token: nil, error: error.error)
+        self.viewController?.displayLoginFailed(viewModel: viewModel)
     }
 }
 

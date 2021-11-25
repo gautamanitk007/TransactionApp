@@ -27,14 +27,16 @@ extension LoginSceneInteractor: LoginSceneInteractorInput {
             self.presenter?.presentLogin(error: loginError)
             return
         }
-        self.service?.startLogin(request: request, on: { (response,error) in
-            if let errorValue = error, errorValue.statusCode != ResponseCodes.success.rawValue {
-                let loginError = LoginSceneDataModel.Error(error: errorValue.message!)
-                self.presenter?.presentLogin(error: loginError)
-            } else if let resp = response, let token = resp.token {
-                TransactionManager.shared.token = token
-                self.presenter?.presentLogin(response: resp)
-            }
-        })
+        DispatchQueue.global().async {
+            self.service?.startLogin(request: request, on: { (response,error) in
+                if let errorValue = error, errorValue.statusCode != ResponseCodes.success.rawValue {
+                    let loginError = LoginSceneDataModel.Error(error: errorValue.message!)
+                    self.presenter?.presentLogin(error: loginError)
+                } else if let resp = response, let token = resp.token {
+                    TransactionManager.shared.token = token
+                    self.presenter?.presentLogin(response: resp)
+                }
+            })
+        }
     }
 }

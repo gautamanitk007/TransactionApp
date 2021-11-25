@@ -8,8 +8,8 @@
 import Foundation
 
 protocol LoginSceneViewControllerInput: AnyObject {
-    func dispayLoginSuccess(messgae:String)
-    func displayLoginFailed(message: String)
+    func dispayLoginSuccess(viewModel:LoginSceneDataModel.ViewModel)
+    func displayLoginFailed(viewModel:LoginSceneDataModel.ViewModel)
 }
 
 protocol LoginSceneViewControllerOutput: AnyObject {

@@ -45,15 +45,16 @@ final class LoginSceneViewControllerTests: XCTestCase {
     
     func test_router_call_success() {
         //When
-        let success = "Success"
-        sut.dispayLoginSuccess(messgae: success)
+        let viewModel = LoginSceneDataModel.ViewModel(message: "", token: "xxxxddd", error: nil)
+        sut.dispayLoginSuccess(viewModel: viewModel)
         //Then
         XCTAssertTrue(router.loginSuccess)
     }
     
     func test_router_call_failed() {
         //When
-        sut.displayLoginFailed(message: "Failed to load")
+        let viewModel = LoginSceneDataModel.ViewModel(message: "", token: "", error: "Failed")
+        sut.displayLoginFailed(viewModel: viewModel)
         //Then
         XCTAssertTrue(router.loginFailed)
     }
@@ -93,6 +94,6 @@ private final class LoginSceneRoutingMock: LoginSceneRouting{
 
     func showFailure(message: String) {
         self.loginFailed = true
-        XCTAssertEqual(message, "Failed to load")
+        XCTAssertEqual(message, "Failed")
     }
 }

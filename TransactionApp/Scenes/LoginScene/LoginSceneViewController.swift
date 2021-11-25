@@ -48,13 +48,13 @@ final class LoginSceneViewController: BaseViewController {
 
 // MARK: - LoginSceneViewControllerInput
 extension LoginSceneViewController: LoginSceneViewControllerInput {
-    func dispayLoginSuccess(messgae:String){
+    func dispayLoginSuccess(viewModel: LoginSceneDataModel.ViewModel){
         self.stopActivity()
         self.router.showLoginSuccess()
     }
-    func displayLoginFailed(message: String){
+    func displayLoginFailed(viewModel: LoginSceneDataModel.ViewModel){
         self.stopActivity()
-        self.router.showFailure(message: message)
+        self.router.showFailure(message: viewModel.error!)
     }
 }
 // MARK: - Private 
