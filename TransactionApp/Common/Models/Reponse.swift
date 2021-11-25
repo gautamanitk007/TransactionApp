@@ -8,21 +8,7 @@
 import Foundation
 
 
-public struct LoginResponse: Decodable {
-    let status: String?
-    let token: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case status
-        case token
-    }
-    
-    public init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        status =  try values.decodeIfPresent(String.self, forKey: .status)
-        token = try values.decodeIfPresent(String.self, forKey: .token)
-    }
-}
+
 
 public struct BalanceResponse: Decodable {
     let status: String?

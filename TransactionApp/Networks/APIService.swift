@@ -12,19 +12,19 @@ public class APIService: ServiceProtocol {
     init(_ apiManager:APIManagerProtocol) {
         self.apiManager = apiManager
     }
-    public func startLogin(user userModel:UserModel, on completion:@escaping(LoginResponse?,ApiError?)->()){
+    public func startLogin(request:LoginSceneDataModel.Request, on completion:@escaping(LoginSceneDataModel.Response?,ApiError?)->()){
         
         if TransactionManager.shared.enableMock {
-            guard let rsp: LoginResponse = Utils.load(bundle: Bundle(for: APIService.self), fileName: "LoginResponse") else {
+            guard let rsp: LoginSceneDataModel.Response = Utils.load(bundle: Bundle(for: APIService.self), fileName: "LoginResponse") else {
                 completion(nil,ApiError(statusCode: -2, message: "Login mock parsing error"))
                 return
             }
             completion(rsp,nil)
         } else {
-            let body = userModel.jsonValue()
+            let body = request.jsonValue()
             let request = APIRequest(endPoint: EndPoints.login.rawValue, postBody: body!)
-            let loginResource = Resource<LoginResponse>(request: request) { data in
-                let loginResponse = try? JSONDecoder().decode(LoginResponse.self, from: data)
+            let loginResource = Resource<LoginSceneDataModel.Response>(request: request) { data in
+                let loginResponse = try? JSONDecoder().decode(LoginSceneDataModel.Response.self, from: data)
                 return loginResponse
             }
             self.apiManager.runAPI(resource: loginResource) { (response, error) in

@@ -42,4 +42,5 @@
 "ForBidden" = "forbidden";
 "Failed" = "failed";
 "ServerNotReachable" = "Server is not reachable";
+"ServerDown" = "Could not connect to the server.";
 "Past_Transfer_Date_Msg" = "Transfer date cannot be less than equal to current date and time";

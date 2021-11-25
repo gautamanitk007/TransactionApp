@@ -31,7 +31,7 @@ final class DefaultLoginSceneConfigurator: LoginSceneConfigurator {
         interactor.service = service
         vc.interactor = interactor
         vc.router = router
-        vc.userModel = UserModel()
+        vc.userModel = LoginSceneDataModel.Request()
         return vc
     }
 }

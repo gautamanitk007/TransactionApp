@@ -29,18 +29,18 @@ final class LoginSceneInteractorTests: XCTestCase  {
     }
     func test_interactor_with_empty_username() {
         //Given
-        let userModel = UserModel(username: "", password: "344")
+        let userModel = LoginSceneDataModel.Request(username: "", password: "344")
         
         //When
-        sut.startLogin(user: userModel)
+        sut.startLogin(request: userModel)
         //Then
         XCTAssertEqual(presenter.errMsg, Utils.getLocalisedValue(key:"UserName_Empty"))
     }
     func test_interactor_with_empty_passsword() {
         //Given
-        let userModel = UserModel(username: "123", password: "")
+        let userModel = LoginSceneDataModel.Request(username: "123", password: "")
         //When
-        sut.startLogin(user: userModel)
+        sut.startLogin(request: userModel)
         //Then
         XCTAssertEqual(presenter.errMsg, Utils.getLocalisedValue(key:"Password_Empty"))
     }
@@ -48,9 +48,9 @@ final class LoginSceneInteractorTests: XCTestCase  {
     func test_interactor_with_valid_credentials() {
         //Given
         let loginExp = self.expectation(description: "LoginApi Expectation")
-        let userModel = UserModel(username: "ocbc", password: "123456")
+        let userModel = LoginSceneDataModel.Request(username: "ocbc", password: "123456")
         //When
-        sut.startLogin(user: userModel)
+        sut.startLogin(request: userModel)
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
             loginExp.fulfill()
         }
@@ -61,7 +61,7 @@ final class LoginSceneInteractorTests: XCTestCase  {
 
 private final class APIServiceMock: ServiceProtocol {
     var loginAPICall:Bool = false
-    func startLogin(user userModel: UserModel, on completion: @escaping (LoginResponse?, ApiError?) -> ()) {
+    func startLogin(request: LoginSceneDataModel.Request, on completion: @escaping (LoginSceneDataModel.Response?, ApiError?) -> ()) {
         self.loginAPICall = true
     }
 }
@@ -69,11 +69,11 @@ private final class APIServiceMock: ServiceProtocol {
 private final class LoginScenePresenterInputMock: LoginScenePresenterInput {
     var errMsg: String = ""
     var interactorRespondedSuccess: Bool = false
-    func logingSuccess() {
+    func presentLogin(response: LoginSceneDataModel.Response) {
         interactorRespondedSuccess = true
     }
     
-    func logingFailed(message: String) {
-        self.errMsg = message
+    func presentLogin(error: LoginSceneDataModel.Error) {
+        self.errMsg = error.error
     }
 }

@@ -6,20 +6,13 @@
 //  Copyright (c) 2021 ___ORGANIZATIONNAME___. All rights reserved.
 
 import UIKit
-protocol LoginSceneViewControllerInput: AnyObject {
-    func loginSuccess()
-    func loginFailed(message: String)
-}
 
-protocol LoginSceneViewControllerOutput:AnyObject {
-    func startLogin(user userModel: UserModel)
-}
 
 final class LoginSceneViewController: BaseViewController {
     
     var interactor: LoginSceneInteractorInput!
     var router: LoginSceneRouting!
-    var userModel: UserModel?
+    var userModel: LoginSceneDataModel.Request?
 
     @IBOutlet weak var containerView: RoundedView!
     
@@ -48,18 +41,18 @@ final class LoginSceneViewController: BaseViewController {
     @IBAction func didLoginTapped(_ sender: Any) {
         self.view.endEditing(true)
         self.startActivity()
-        interactor.startLogin(user: self.userModel!)
+        interactor.startLogin(request: self.userModel!)
     }
 }
 
 
 // MARK: - LoginSceneViewControllerInput
 extension LoginSceneViewController: LoginSceneViewControllerInput {
-    func loginSuccess() {
+    func dispayLoginSuccess(messgae:String){
         self.stopActivity()
         self.router.showLoginSuccess()
     }
-    func loginFailed(message: String) {
+    func displayLoginFailed(message: String){
         self.stopActivity()
         self.router.showFailure(message: message)
     }

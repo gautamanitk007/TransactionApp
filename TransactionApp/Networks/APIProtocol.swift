@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol ServiceProtocol {
-    func startLogin(user userModel:UserModel, on completion:@escaping(LoginResponse?,ApiError?)->())
+    func startLogin(request:LoginSceneDataModel.Request, on completion:@escaping(LoginSceneDataModel.Response?,ApiError?)->())
     func checkBalances(on completion: @escaping(BalanceResponse?,ApiError?)->())
     func getAllPayee(on completion: @escaping(PayeeResponse?,ApiError?)->())
     func getAllTransactions(on completion: @escaping(TransactionResponse?,ApiError?)->())
@@ -16,7 +16,7 @@ public protocol ServiceProtocol {
 }
 
 extension ServiceProtocol {
-    func startLogin(user userModel:UserModel, on completion:@escaping(LoginResponse?,ApiError?)->()){}
+    func startLogin(request:LoginSceneDataModel.Request, on completion:@escaping(LoginSceneDataModel.Response?,ApiError?)->()){}
     func checkBalances(on completion: @escaping(BalanceResponse?,ApiError?)->()){}
     func getAllPayee(on completion: @escaping(PayeeResponse?,ApiError?)->()){}
     func getAllTransactions(on completion: @escaping(TransactionResponse?,ApiError?)->()){}

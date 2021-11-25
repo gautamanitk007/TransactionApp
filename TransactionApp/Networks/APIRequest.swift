@@ -20,6 +20,7 @@ public enum ResponseCodes: Int {
     case login_auth_failed = 403
     case network_timeout = -1001
     case server_notReachable = -1003
+    case server_Not_Available = -1009
     case server_down = 503
 }
 public enum ContentType: String {

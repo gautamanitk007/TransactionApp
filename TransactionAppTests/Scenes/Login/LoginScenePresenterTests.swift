@@ -28,12 +28,17 @@ final class LoginScenePresenterTests: XCTestCase {
     }
     
     func test_presenter_success() {
-        sut.logingSuccess()
+        
+        guard let reposne: LoginSceneDataModel.Response = Utils.load(bundle: Bundle(for: APIService.self), fileName: "LoginResponse") else {
+            XCTFail("Failed to load")
+            return
+        }
+        sut.presentLogin(response: reposne)
         XCTAssertTrue(vc.showLogingSuccessCalled)
     }
     
     func test_presenter_failed() {
-        sut.logingFailed(message: "Failed")
+        sut.presentLogin(error: LoginSceneDataModel.Error(error: "Failed"))
         XCTAssertTrue(vc.showLogingFailureCalled.0)
     }
 }
@@ -41,11 +46,10 @@ final class LoginScenePresenterTests: XCTestCase {
 private final class LoginScenePresenterOutputMock: LoginScenePresenterOutput {
     var showLogingFailureCalled: (Bool, String)!
     var showLogingSuccessCalled: Bool = false
-    func loginSuccess() {
+    func dispayLoginSuccess(messgae: String) {
         showLogingSuccessCalled = true
     }
-    
-    func loginFailed(message: String) {
+    func displayLoginFailed(message: String) {
         showLogingFailureCalled = (true, message)
     }
 }

@@ -24,19 +24,20 @@ final class APIServiceTests: XCTestCase {
         //Given
         let loginExpectation = self.expectation(description: "Call Login API")
         let badRequest = Utils.getLocalisedValue(key:"Bad_Request")
-        let userModel = UserModel(username: "", password: "344")
+        let userModel = LoginSceneDataModel.Request(username: "", password: "344")
 
         //When
-        sut.startLogin(user: userModel, on: { (response, error) in
+        sut.startLogin(request: userModel, on: { (response, error) in
             loginExpectation.fulfill()
             //Then
             if error?.statusCode == ResponseCodes.server_notReachable.rawValue{
                 XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerNotReachable"))
-            }else{
+            } else if error?.statusCode == ResponseCodes.server_Not_Available.rawValue{
+                XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerDown"))
+            } else{
                 XCTAssertEqual(response?.status, Utils.getLocalisedValue(key: "Failed"))
                 XCTAssertNil(response?.token)
                 XCTAssertNotNil(error)
-                XCTAssertEqual(error!.message, badRequest)
             }
         })
         
@@ -46,20 +47,20 @@ final class APIServiceTests: XCTestCase {
     func test_interactor_with_empty_passsword() {
         //Given
         let loginExpectation = self.expectation(description: "Call Login API")
-        let badRequest = Utils.getLocalisedValue(key:"Bad_Request")
-        let userModel = UserModel(username: "22", password: "")
+        let userModel = LoginSceneDataModel.Request(username: "22", password: "")
 
         //When
-        sut.startLogin(user: userModel, on: { (response, error) in
+        sut.startLogin(request: userModel, on: { (response, error) in
             loginExpectation.fulfill()
             //Then
             if error?.statusCode == ResponseCodes.server_notReachable.rawValue{
                 XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerNotReachable"))
-            }else{
+            } else if error?.statusCode == ResponseCodes.server_Not_Available.rawValue{
+                XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerDown"))
+            } else{
                 XCTAssertEqual(response?.status, Utils.getLocalisedValue(key: "Failed"))
                 XCTAssertNil(response?.token)
                 XCTAssertNotNil(error)
-                XCTAssertEqual(error!.message, badRequest)
             }
         })
         
@@ -69,14 +70,16 @@ final class APIServiceTests: XCTestCase {
     func test_valid_credentials_value() {
         //Given
         let loginExpectation = self.expectation(description: "Call Login API")
-        let userModel = UserModel(username: "xxxxx", password: "yyyyy")
+        let userModel = LoginSceneDataModel.Request(username: "xxxxx", password: "yyyyy")
 
         //When
-        sut.startLogin(user: userModel, on: { (response, error) in
+        sut.startLogin(request: userModel, on: { (response, error) in
             loginExpectation.fulfill()
             //Then
             if error?.statusCode == ResponseCodes.server_notReachable.rawValue{
                 XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerNotReachable"))
+            } else if error?.statusCode == ResponseCodes.server_Not_Available.rawValue{
+                XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerDown"))
             }else{
                 XCTAssertNotNil(error)
                 XCTAssertEqual(error!.message,Utils.getLocalisedValue(key: "ForBidden"))
@@ -88,10 +91,10 @@ final class APIServiceTests: XCTestCase {
     func test_validate_credentails_on_server(){
         //Given
         let loginExpectation = self.expectation(description: "Call Login API")
-        let userModel = UserModel(username: "ocbc", password: "123456")
+        let userModel = LoginSceneDataModel.Request(username: "ocbc", password: "123456")
 
         //When
-        sut.startLogin(user: userModel, on: { (response, error) in
+        sut.startLogin(request: userModel, on: { (response, error) in
             loginExpectation.fulfill()
             //Then
             if response != nil {
@@ -108,14 +111,17 @@ final class APIServiceTests: XCTestCase {
         //Given
         let loginExpectation = self.expectation(description: "Call Login API")
         let checkBalanceExp = self.expectation(description: "Check balance")
-        let userModel = UserModel(username: "ocbc", password: "123456")
+        let userModel = LoginSceneDataModel.Request(username: "ocbc", password: "123456")
 
         //When
-        sut.startLogin(user: userModel, on: {[weak self] (response, error) in
+        sut.startLogin(request: userModel, on: {[weak self] (response, error) in
             loginExpectation.fulfill()
             if error?.statusCode == ResponseCodes.server_notReachable.rawValue{
                 checkBalanceExp.fulfill()
                 XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerNotReachable"))
+            }else if error?.statusCode == ResponseCodes.server_Not_Available.rawValue{
+                checkBalanceExp.fulfill()
+                XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerDown"))
             }else{
                 if response != nil {
                     guard let self = self  else {return}
@@ -146,15 +152,18 @@ final class APIServiceTests: XCTestCase {
         //Given
         let loginExpectation = self.expectation(description: "Call Login API")
         let transactionExp = self.expectation(description: "All transaction api call")
-        let userModel = UserModel(username: "ocbc", password: "123456")
+        let userModel = LoginSceneDataModel.Request(username: "ocbc", password: "123456")
 
         //When
-        sut.startLogin(user: userModel, on: {[weak self] (response, error) in
+        sut.startLogin(request: userModel, on: {[weak self] (response, error) in
             loginExpectation.fulfill()
             //Then
             if error?.statusCode == ResponseCodes.server_notReachable.rawValue{
                 transactionExp.fulfill()
                 XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerNotReachable"))
+            }else if error?.statusCode == ResponseCodes.server_Not_Available.rawValue{
+                transactionExp.fulfill()
+                XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerDown"))
             }else{
                 if response != nil {
                     guard let self = self  else {return}
@@ -184,15 +193,18 @@ final class APIServiceTests: XCTestCase {
         //Given
         let loginExpectation = self.expectation(description: "Call Login API")
         let payeeExp = self.expectation(description: "All payee api call")
-        let userModel = UserModel(username: "ocbc", password: "123456")
+        let userModel = LoginSceneDataModel.Request(username: "ocbc", password: "123456")
 
         //When
-        sut.startLogin(user: userModel, on: {[weak self] (response, error) in
+        sut.startLogin(request: userModel, on: {[weak self] (response, error) in
             loginExpectation.fulfill()
             //Then
             if error?.statusCode == ResponseCodes.server_notReachable.rawValue{
                 payeeExp.fulfill()
                 XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerNotReachable"))
+            }else if error?.statusCode == ResponseCodes.server_Not_Available.rawValue{
+                payeeExp.fulfill()
+                XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerDown"))
             }else{
                 if response != nil {
                     guard let self = self  else {return}
@@ -221,15 +233,18 @@ final class APIServiceTests: XCTestCase {
         //Given
         let loginExpectation = self.expectation(description: "Call Login API")
         let transferExp = self.expectation(description: "transfer api call")
-        let userModel = UserModel(username: "ocbc", password: "123456")
+        let userModel = LoginSceneDataModel.Request(username: "ocbc", password: "123456")
 
         //When
-        sut.startLogin(user: userModel, on: {[weak self] (response, error) in
+        sut.startLogin(request: userModel, on: {[weak self] (response, error) in
             loginExpectation.fulfill()
             //Then
             if error?.statusCode == ResponseCodes.server_notReachable.rawValue{
                 transferExp.fulfill()
                 XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerNotReachable"))
+            }else if error?.statusCode == ResponseCodes.server_Not_Available.rawValue{
+                transferExp.fulfill()
+                XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerDown"))
             }else{
                 if response != nil {
                     guard let self = self  else {return}

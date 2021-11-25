@@ -17,10 +17,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7xW-uT-Zhq" customClass="RoundedView" customModule="TransactionApp" customModuleProvider="target">
-                                <rect key="frame" x="20" y="336" width="374" height="224"/>
+                                <rect key="frame" x="20" y="318" width="374" height="260"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="#user Id" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kgz-v5-6yo" customClass="BindingTextField" customModule="TransactionApp" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="64" width="358" height="40"/>
+                                        <rect key="frame" x="8" y="100" width="358" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Vec-P3-bGF"/>
                                         </constraints>
@@ -28,7 +28,7 @@
                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="#password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pGf-1D-GZm" customClass="BindingTextField" customModule="TransactionApp" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="120" width="358" height="40"/>
+                                        <rect key="frame" x="8" y="156" width="358" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="vhi-KV-2lD"/>
                                         </constraints>
@@ -36,7 +36,7 @@
                                         <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abd-y2-v5y" customClass="RoundedButton" customModule="TransactionApp" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="176" width="358" height="40"/>
+                                        <rect key="frame" x="8" y="212" width="358" height="40"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="f7T-V5-nxQ"/>
@@ -46,21 +46,18 @@
                                             <action selector="didLoginTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qfs-ID-R2E"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please login to continue..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXd-Le-1SW">
-                                        <rect key="frame" x="8" y="8" width="358" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="U6s-93-n0Z"/>
-                                        </constraints>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome, Please enter your Username and Password to login" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXd-Le-1SW">
+                                        <rect key="frame" x="8" y="8" width="358" height="76"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="dXd-Le-1SW" firstAttribute="leading" secondItem="7xW-uT-Zhq" secondAttribute="leading" constant="8" id="9cM-LL-zkn"/>
                                     <constraint firstAttribute="bottom" secondItem="abd-y2-v5y" secondAttribute="bottom" constant="8" id="EZ4-gW-UCB"/>
-                                    <constraint firstAttribute="height" constant="224" id="EZW-ym-Myb"/>
+                                    <constraint firstAttribute="height" constant="260" id="EZW-ym-Myb"/>
                                     <constraint firstAttribute="trailing" secondItem="abd-y2-v5y" secondAttribute="trailing" constant="8" id="EhH-CS-kVk"/>
                                     <constraint firstItem="abd-y2-v5y" firstAttribute="top" secondItem="pGf-1D-GZm" secondAttribute="bottom" constant="16" id="Fny-lt-Icz"/>
                                     <constraint firstAttribute="trailing" secondItem="dXd-Le-1SW" secondAttribute="trailing" constant="8" id="H1Y-IZ-s3c"/>
@@ -76,7 +73,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <color key="backgroundColor" red="0.14901960784313725" green="0.32941176470588235" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7xW-uT-Zhq" secondAttribute="trailing" constant="20" id="2ib-w6-2x4"/>
                             <constraint firstItem="7xW-uT-Zhq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Bu5-TD-cDJ"/>

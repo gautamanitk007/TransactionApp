@@ -16,6 +16,8 @@
 		D24AEFBD2740C5C60060F788 /* PayeeEmpty.json in Resources */ = {isa = PBXBuildFile; fileRef = D24AEFBC2740C5C60060F788 /* PayeeEmpty.json */; };
 		D24AEFC52740ED850060F788 /* APIManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24AEFC42740ED850060F788 /* APIManagerTests.swift */; };
 		D24AEFD7274100720060F788 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24AEFD6274100720060F788 /* Reachability.swift */; };
+		D29E4DB5274F364C00DD586D /* LoginSceneProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29E4DB4274F364C00DD586D /* LoginSceneProtocols.swift */; };
+		D29E4DBA274F37F600DD586D /* LoginSceneDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29E4DB9274F37F600DD586D /* LoginSceneDataModel.swift */; };
 		D2C20D06273626CB0061D929 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20D05273626CB0061D929 /* AppDelegate.swift */; };
 		D2C20D08273626CB0061D929 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20D07273626CB0061D929 /* SceneDelegate.swift */; };
 		D2C20D0D273626CB0061D929 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2C20D0B273626CB0061D929 /* Main.storyboard */; };
@@ -34,7 +36,6 @@
 		D2C20D68273629160061D929 /* TransferSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20D62273629160061D929 /* TransferSceneViewController.swift */; };
 		D2C20D69273629160061D929 /* TransferSceneInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20D63273629160061D929 /* TransferSceneInteractor.swift */; };
 		D2C20D7527362EFE0061D929 /* BindingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20D7427362EFE0061D929 /* BindingTextField.swift */; };
-		D2C20D7E27362FB30061D929 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20D7D27362FB30061D929 /* UserModel.swift */; };
 		D2C20D8E273638E70061D929 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20D8D273638E70061D929 /* RoundedButton.swift */; };
 		D2C20D9C273652250061D929 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20D9B273652250061D929 /* BaseViewController.swift */; };
 		D2C20DA9273678030061D929 /* LoginResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D2C20DA8273678030061D929 /* LoginResponse.json */; };
@@ -103,6 +104,8 @@
 		D24AEFBC2740C5C60060F788 /* PayeeEmpty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PayeeEmpty.json; sourceTree = "<group>"; };
 		D24AEFC42740ED850060F788 /* APIManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerTests.swift; sourceTree = "<group>"; };
 		D24AEFD6274100720060F788 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		D29E4DB4274F364C00DD586D /* LoginSceneProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSceneProtocols.swift; sourceTree = "<group>"; };
+		D29E4DB9274F37F600DD586D /* LoginSceneDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSceneDataModel.swift; sourceTree = "<group>"; };
 		D2C20D02273626CB0061D929 /* TransactionApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransactionApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2C20D05273626CB0061D929 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2C20D07273626CB0061D929 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -127,7 +130,6 @@
 		D2C20D62273629160061D929 /* TransferSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferSceneViewController.swift; sourceTree = "<group>"; };
 		D2C20D63273629160061D929 /* TransferSceneInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferSceneInteractor.swift; sourceTree = "<group>"; };
 		D2C20D7427362EFE0061D929 /* BindingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingTextField.swift; sourceTree = "<group>"; };
-		D2C20D7D27362FB30061D929 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		D2C20D8D273638E70061D929 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		D2C20D9B273652250061D929 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D2C20DA8273678030061D929 /* LoginResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LoginResponse.json; sourceTree = "<group>"; };
@@ -317,6 +319,8 @@
 				D2C20D40273627710061D929 /* LoginSceneInteractor.swift */,
 				D2FD1E2A273E034A001386D3 /* LoginSceneConfigurator.swift */,
 				D2FD1E35273E07A4001386D3 /* LoginSceneRouter.swift */,
+				D29E4DB4274F364C00DD586D /* LoginSceneProtocols.swift */,
+				D29E4DB9274F37F600DD586D /* LoginSceneDataModel.swift */,
 			);
 			path = LoginScene;
 			sourceTree = "<group>";
@@ -374,7 +378,6 @@
 		D2C20D7C27362FA30061D929 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D2C20D7D27362FB30061D929 /* UserModel.swift */,
 				D2C20DD2273694620061D929 /* Reponse.swift */,
 			);
 			path = Models;
@@ -597,8 +600,10 @@
 				D2C20D57273628FC0061D929 /* DashboardSceneInteractor.swift in Sources */,
 				D2C20D9C273652250061D929 /* BaseViewController.swift in Sources */,
 				D22BFAEF27382AC900764BBB /* RoundedView.swift in Sources */,
+				D29E4DB5274F364C00DD586D /* LoginSceneProtocols.swift in Sources */,
 				D2C20DCE273686FC0061D929 /* APIProtocol.swift in Sources */,
 				D2FD1E5C273E3F97001386D3 /* DashboardSceneRouter.swift in Sources */,
+				D29E4DBA274F37F600DD586D /* LoginSceneDataModel.swift in Sources */,
 				D2C3804B273BE41E00F71879 /* GeneralCell.swift in Sources */,
 				D2C20D69273629160061D929 /* TransferSceneInteractor.swift in Sources */,
 				D2C20D68273629160061D929 /* TransferSceneViewController.swift in Sources */,
@@ -607,7 +612,6 @@
 				D2C20D06273626CB0061D929 /* AppDelegate.swift in Sources */,
 				D2C38040273BE07700F71879 /* DropdownViewController.swift in Sources */,
 				D2FD1E2B273E034A001386D3 /* LoginSceneConfigurator.swift in Sources */,
-				D2C20D7E27362FB30061D929 /* UserModel.swift in Sources */,
 				D2FD1E7B273E742F001386D3 /* TransferSceneRouter.swift in Sources */,
 				D2C20DDB2736A26D0061D929 /* APIService.swift in Sources */,
 				D2C20D56273628FC0061D929 /* DashboardSceneViewController.swift in Sources */,

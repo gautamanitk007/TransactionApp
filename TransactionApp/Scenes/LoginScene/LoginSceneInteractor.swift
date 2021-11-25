@@ -8,37 +8,32 @@
 
 import Foundation
 
-typealias LoginSceneInteractorInput = LoginSceneViewControllerOutput
-
-protocol LoginSceneInteractorOutput:AnyObject {
-    func logingSuccess()
-    func logingFailed(message: String)
-}
-
 final class LoginSceneInteractor {
     var presenter: LoginScenePresenterInput?
     var service: ServiceProtocol?
 }
 
-
 // MARK: - LoginSceneBusinessLogic
 extension LoginSceneInteractor: LoginSceneInteractorInput {
 
-    func startLogin(user userModel: UserModel) {
-        if userModel.username == nil || userModel.username?.count == 0 {
-            self.presenter?.logingFailed(message: Utils.getLocalisedValue(key:"UserName_Empty"))
+    func startLogin(request: LoginSceneDataModel.Request) {
+        if request.username == nil || request.username?.count == 0 {
+            let loginError = LoginSceneDataModel.Error(error: Utils.getLocalisedValue(key:"UserName_Empty"))
+            self.presenter?.presentLogin(error: loginError)
             return
         }
-        if userModel.password == nil || userModel.password?.count == 0 {
-            self.presenter?.logingFailed(message:Utils.getLocalisedValue(key:"Password_Empty"))
+        if request.password == nil || request.password?.count == 0 {
+            let loginError = LoginSceneDataModel.Error(error: Utils.getLocalisedValue(key:"Password_Empty"))
+            self.presenter?.presentLogin(error: loginError)
             return
         }
-        self.service?.startLogin(user: userModel, on: { (response,error) in
+        self.service?.startLogin(request: request, on: { (response,error) in
             if let errorValue = error, errorValue.statusCode != ResponseCodes.success.rawValue {
-                self.presenter?.logingFailed(message: errorValue.message!)
-            } else if let tokenObj = response, let token = tokenObj.token {
+                let loginError = LoginSceneDataModel.Error(error: errorValue.message!)
+                self.presenter?.presentLogin(error: loginError)
+            } else if let resp = response, let token = resp.token {
                 TransactionManager.shared.token = token
-                self.presenter?.logingSuccess()
+                self.presenter?.presentLogin(response: resp)
             }
         })
     }

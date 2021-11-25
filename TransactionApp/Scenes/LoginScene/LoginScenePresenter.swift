@@ -7,22 +7,18 @@
 
 import Foundation
 
-typealias LoginScenePresenterInput = LoginSceneInteractorOutput
-typealias LoginScenePresenterOutput = LoginSceneViewControllerInput
-
 final class LoginScenePresenter {
     weak var viewController: LoginScenePresenterOutput?
 }
 
 
-// MARK: - LoginScenePresentationLogic
+// MARK: - LoginScenePresenterInput
 extension LoginScenePresenter: LoginScenePresenterInput{
-    func logingSuccess() {
-        self.viewController?.loginSuccess()
+    func presentLogin(response: LoginSceneDataModel.Response) {
+        self.viewController?.dispayLoginSuccess(messgae: response.token!)
     }
-    
-    func logingFailed(message: String) {
-        self.viewController?.loginFailed(message: message)
+    func presentLogin(error: LoginSceneDataModel.Error) {
+        self.viewController?.displayLoginFailed(message: error.error)
     }
 }
 

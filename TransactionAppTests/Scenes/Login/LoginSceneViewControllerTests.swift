@@ -17,7 +17,7 @@ final class LoginSceneViewControllerTests: XCTestCase {
         super.setUp()
         
         sut = LoginSceneViewController()
-        sut.userModel = UserModel()
+        sut.userModel = LoginSceneDataModel.Request()
         sut.loadView()
         interactor = LoginSceneInteractorMock()
         sut.interactor = interactor
@@ -45,14 +45,15 @@ final class LoginSceneViewControllerTests: XCTestCase {
     
     func test_router_call_success() {
         //When
-        sut.loginSuccess()
+        let success = "Success"
+        sut.dispayLoginSuccess(messgae: success)
         //Then
         XCTAssertTrue(router.loginSuccess)
     }
     
     func test_router_call_failed() {
         //When
-        sut.loginFailed(message: "Failed to load")
+        sut.displayLoginFailed(message: "Failed to load")
         //Then
         XCTAssertTrue(router.loginFailed)
     }
@@ -76,10 +77,10 @@ final class LoginSceneViewControllerTests: XCTestCase {
     }
 }
 private final class LoginSceneInteractorMock: LoginSceneInteractorInput {
-    func startLogin(user userModel: UserModel) {
-        XCTAssertNotNil(userModel)
-        XCTAssertEqual(userModel.username, "ocbc")
-        XCTAssertEqual(userModel.password, "123456")
+    func startLogin(request: LoginSceneDataModel.Request) {
+        XCTAssertNotNil(request)
+        XCTAssertEqual(request.username, "ocbc")
+        XCTAssertEqual(request.password, "123456")
     }
 }
 
