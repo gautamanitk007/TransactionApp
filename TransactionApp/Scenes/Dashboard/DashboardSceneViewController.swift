@@ -50,6 +50,12 @@ final class DashboardSceneViewController: BaseViewController {
         self.lblAmount.text = "S$\(TransactionManager.shared.totalBalance)"
     }
     
+    deinit {
+        self.router = nil
+        self.datasource = nil
+        self.interactor = nil        
+    }
+    
     @objc func logoutTapped(_ sender: Any) {
         TransactionManager.shared.token = ""
         self.router.popToPrevious()

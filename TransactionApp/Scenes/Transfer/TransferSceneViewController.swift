@@ -61,6 +61,15 @@ final class TransferSceneViewController: BaseViewController {
         self.createDatePicker()
     }
   
+    deinit {
+        self.payeeList?.removeAll()
+        self.payeeList = nil
+        self.datePicker = nil
+        self.selectedPayee = nil
+        self.interactor = nil
+        self.transferModel = nil
+        self.router = nil
+    }
     @IBAction func submitTapped(){
         self.startActivity()
         self.interactor.transferTo(payee: self.transferModel!)
