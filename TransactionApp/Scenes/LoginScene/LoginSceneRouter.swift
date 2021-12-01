@@ -8,34 +8,28 @@
 import Foundation
 import UIKit
 
-protocol TError {
+protocol Failure {
     func showFailure(message: String)
 }
 
-protocol LoginSceneRouting:TError {
-    func showLoginSuccess()
+protocol LoginSceneRoutingLogic: Failure {
+    func showDashboard()
 }
 
 final class LoginSceneRouter {
-    weak var source: UIViewController?
-
-    private let sceneFactory: SceneFactory
-    
-    init(sceneFactory: SceneFactory) {
-        self.sceneFactory = sceneFactory
-    }
+    weak var viewController: UIViewController?
 }
 
-extension LoginSceneRouter: LoginSceneRouting {
+extension LoginSceneRouter: LoginSceneRoutingLogic {
     func showFailure(message: String) {
         let alertController = Utils.getAlert(title:Utils.getLocalisedValue(key:"Information_Error_Title"),message:message)
-        source?.present(alertController, animated: true)
+        viewController?.present(alertController, animated: true)
     }
     
-    func showLoginSuccess() {
+    func showDashboard() {
         let sceneFactory = DefaultSceneFactory()
         sceneFactory.dashboardConfigurator = DefaultDashboardSceneConfigurator(sceneFactory: sceneFactory)
         let scene = sceneFactory.makeDashboardScene()
-        source?.navigationController?.pushViewController(scene, animated: true)
+        viewController?.navigationController?.pushViewController(scene, animated: true)
     }
 }

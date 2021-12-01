@@ -10,8 +10,8 @@ import UIKit
 
 final class LoginSceneViewController: BaseViewController {
     
-    var interactor: LoginSceneInteractorInput!
-    var router: LoginSceneRouting!
+    var interactor: LoginSceneBusinessLogic?
+    var router: LoginSceneRoutingLogic?
     var userModel: LoginSceneDataModel.Request?
 
     @IBOutlet weak var containerView: RoundedView!
@@ -31,8 +31,8 @@ final class LoginSceneViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setup()
-       
+        self.logicSetup()
+        self.setupUI()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -41,30 +41,43 @@ final class LoginSceneViewController: BaseViewController {
     @IBAction func didLoginTapped(_ sender: Any) {
         self.view.endEditing(true)
         self.startActivity()
-        interactor.startLogin(request: self.userModel!)
+        self.interactor?.startLogin(request: self.userModel!)
     }
 }
 
 
 // MARK: - LoginSceneViewControllerInput
-extension LoginSceneViewController: LoginSceneViewControllerInput {
+extension LoginSceneViewController: LoginSceneDisplayLogic{
     func dispayLoginSuccess(viewModel: LoginSceneDataModel.ViewModel){
         self.stopActivity()
-        self.router.showLoginSuccess()
+        self.router?.showDashboard()
     }
     func displayLoginFailed(viewModel: LoginSceneDataModel.ViewModel){
         self.stopActivity()
-        self.router.showFailure(message: viewModel.error!)
+        self.router?.showFailure(message: viewModel.error!)
     }
 }
 // MARK: - Private 
 private extension LoginSceneViewController {
-    func setup() {
+    func setupUI() {
         self.txtUsername.delegate = self
         self.txtPassword.delegate = self
         self.txtUsername.placeholder = Utils.getLocalisedValue(key:"Login_Text_Field_Placeholder")
         self.txtPassword.placeholder = Utils.getLocalisedValue(key:"Password_Text_Field_Placeholder")
         self.btnLogin.setTitle(Utils.getLocalisedValue(key:"Login_Button_Title"), for: .normal)
+    }
+    func logicSetup() {
+        let viewController = self
+        let interactor = LoginSceneInteractor()
+        let presenter = LoginScenePresenter()
+        let router = LoginSceneRouter()
+        let model = LoginSceneDataModel.Request()
+        viewController.interactor = interactor
+        viewController.router = router
+        viewController.userModel = model
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        router.viewController = viewController
     }
 }
 

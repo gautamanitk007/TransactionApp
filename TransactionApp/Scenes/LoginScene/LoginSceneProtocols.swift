@@ -7,20 +7,16 @@
 
 import Foundation
 
-protocol LoginSceneViewControllerInput: AnyObject {
+protocol LoginSceneDisplayLogic: AnyObject {
     func dispayLoginSuccess(viewModel:LoginSceneDataModel.ViewModel)
     func displayLoginFailed(viewModel:LoginSceneDataModel.ViewModel)
 }
 
-protocol LoginSceneViewControllerOutput: AnyObject {
+protocol LoginSceneBusinessLogic: AnyObject {
     func startLogin(request: LoginSceneDataModel.Request)
 }
 
-protocol LoginSceneInteractorOutput: AnyObject {
+protocol LoginScenePresentationLogic: AnyObject {
     func presentLogin(response: LoginSceneDataModel.Response)
     func presentLogin(error: LoginSceneDataModel.Error)
 }
-
-typealias LoginSceneInteractorInput = LoginSceneViewControllerOutput
-typealias LoginScenePresenterInput = LoginSceneInteractorOutput
-typealias LoginScenePresenterOutput = LoginSceneViewControllerInput

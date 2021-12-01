@@ -23,7 +23,6 @@ final class APIServiceTests: XCTestCase {
     func test_interactor_with_empty_username() {
         //Given
         let loginExpectation = self.expectation(description: "Call Login API")
-        let badRequest = Utils.getLocalisedValue(key:"Bad_Request")
         let userModel = LoginSceneDataModel.Request(username: "", password: "344")
 
         //When

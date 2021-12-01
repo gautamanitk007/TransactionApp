@@ -56,4 +56,8 @@ class Utils {
     class func getLocalisedValue(key:String) -> String{
         return NSLocalizedString(key,comment: "")
     }
+    class func getViewController(identifier:String) -> UIViewController{
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        return storyboard.instantiateViewController(withIdentifier: identifier)
+    }
 }

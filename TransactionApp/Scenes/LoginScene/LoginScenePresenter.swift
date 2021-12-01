@@ -8,12 +8,12 @@
 import Foundation
 
 final class LoginScenePresenter {
-    weak var viewController: LoginScenePresenterOutput?
+    weak var viewController: LoginSceneDisplayLogic?
 }
 
 
 // MARK: - LoginScenePresenterInput
-extension LoginScenePresenter: LoginScenePresenterInput{
+extension LoginScenePresenter: LoginScenePresentationLogic{
     func presentLogin(response: LoginSceneDataModel.Response) {
         let viewModel = LoginSceneDataModel.ViewModel(message: "", token: response.token, error: nil)
         self.viewController?.dispayLoginSuccess(viewModel: viewModel)

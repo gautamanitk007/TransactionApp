@@ -121,13 +121,14 @@ final class TransfeSceneInteractorTests: XCTestCase {
         //When
         sut.transferTo(payee: transferModel)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) { [weak self] in
+            guard let self = self else { return }
             fundExp.fulfill()
+            //Then
+            XCTAssertNotNil(self.presenter.tModel)
+            XCTAssertFalse(self.presenter.errorCalled)
         }
-        waitForExpectations(timeout: 1)
-        //Then
-        XCTAssertNil(presenter.tModel)
-        XCTAssertTrue(presenter.errorCalled)
+        waitForExpectations(timeout: 2)
     }
 }
 

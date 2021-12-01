@@ -9,12 +9,12 @@
 import Foundation
 
 final class LoginSceneInteractor {
-    var presenter: LoginScenePresenterInput?
-    var service: ServiceProtocol?
+    var presenter: LoginScenePresentationLogic?
+    let service: ServiceProtocol = APIService(APIManager())
 }
 
 // MARK: - LoginSceneBusinessLogic
-extension LoginSceneInteractor: LoginSceneInteractorInput {
+extension LoginSceneInteractor: LoginSceneBusinessLogic {
 
     func startLogin(request: LoginSceneDataModel.Request) {
         if request.username == nil || request.username?.count == 0 {
@@ -27,7 +27,7 @@ extension LoginSceneInteractor: LoginSceneInteractorInput {
             self.presenter?.presentLogin(error: loginError)
             return
         }
-        self.service?.startLogin(request: request, on: { [weak self](response,error) in
+        self.service.startLogin(request: request, on: { [weak self](response,error) in
             guard let self = self else { return }
             if let errorValue = error, errorValue.statusCode != ResponseCodes.success.rawValue {
                 let loginError = LoginSceneDataModel.Error(error: errorValue.message!)

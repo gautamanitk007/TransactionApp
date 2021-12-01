@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol DashboardSceneRouting:TError {
+protocol DashboardSceneRouting:Failure {
     func popToPrevious()
     func showNextController()
 }

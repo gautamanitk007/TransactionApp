@@ -10,13 +10,12 @@ import XCTest
 
 final class LoginScenePresenterTests: XCTestCase {
     private var sut: LoginScenePresenter!
-    private var vc: LoginScenePresenterOutputMock!
+    private var vc: LoginSceneDisplayLogicMock!
     
     override func setUp() {
         super.setUp()
-        
-        vc = LoginScenePresenterOutputMock()
         sut = LoginScenePresenter()
+        vc = LoginSceneDisplayLogicMock()
         sut.viewController = vc
     }
     
@@ -43,7 +42,7 @@ final class LoginScenePresenterTests: XCTestCase {
     }
 }
 
-private final class LoginScenePresenterOutputMock: LoginScenePresenterOutput {
+private final class LoginSceneDisplayLogicMock: LoginSceneDisplayLogic {
     
     var showLogingFailureCalled: (Bool, String)!
     var showLogingSuccessCalled: Bool = false

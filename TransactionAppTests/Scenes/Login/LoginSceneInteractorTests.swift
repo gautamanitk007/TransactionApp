@@ -10,20 +10,16 @@ import XCTest
 
 final class LoginSceneInteractorTests: XCTestCase  {
     private var sut: LoginSceneInteractor!
-    private var service: APIServiceMock!
-    private var presenter: LoginScenePresenterInputMock!
+    private var presenter: LoginScenePresentationLogicMock!
     override func setUp() {
         super.setUp()
         sut = LoginSceneInteractor()
-        service = APIServiceMock()
-        presenter = LoginScenePresenterInputMock()
+        presenter = LoginScenePresentationLogicMock()
         sut.presenter = presenter
-        sut.service = service
     }
     
     override func tearDown() {
         sut = nil
-        service = nil
         presenter = nil
         super.tearDown()
     }
@@ -51,28 +47,22 @@ final class LoginSceneInteractorTests: XCTestCase  {
         let userModel = LoginSceneDataModel.Request(username: "ocbc", password: "123456")
         //When
         sut.startLogin(request: userModel)
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
+            guard let self = self else {return}
             loginExp.fulfill()
+            XCTAssertTrue(self.presenter.interactorRespondedSuccess)
         }
-        waitForExpectations(timeout: 0.1)
-        XCTAssertTrue(self.service.loginAPICall)
+        waitForExpectations(timeout: 2)
+        
     }
 }
 
-private final class APIServiceMock: ServiceProtocol {
-    var loginAPICall:Bool = false
-    func startLogin(request: LoginSceneDataModel.Request, on completion: @escaping (LoginSceneDataModel.Response?, ApiError?) -> ()) {
-        self.loginAPICall = true
-    }
-}
-
-private final class LoginScenePresenterInputMock: LoginScenePresenterInput {
+private final class LoginScenePresentationLogicMock: LoginScenePresentationLogic {
     var errMsg: String = ""
     var interactorRespondedSuccess: Bool = false
     func presentLogin(response: LoginSceneDataModel.Response) {
         interactorRespondedSuccess = true
     }
-    
     func presentLogin(error: LoginSceneDataModel.Error) {
         self.errMsg = error.error
     }

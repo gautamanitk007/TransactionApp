@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol TransferSceneRouting:TError {
+protocol TransferSceneRouting:Failure {
     func popToPrevious()
     func showSuccess(msg:String)
     func showPopOver(for indetifier:String, popoverList:[Payee], delegate:DropdownViewControllerDelegate)

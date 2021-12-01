@@ -16,6 +16,7 @@
 		D24AEFBD2740C5C60060F788 /* PayeeEmpty.json in Resources */ = {isa = PBXBuildFile; fileRef = D24AEFBC2740C5C60060F788 /* PayeeEmpty.json */; };
 		D24AEFC52740ED850060F788 /* APIManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24AEFC42740ED850060F788 /* APIManagerTests.swift */; };
 		D24AEFD7274100720060F788 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24AEFD6274100720060F788 /* Reachability.swift */; };
+		D2503169275738630086EDC8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22BFA782737D0DA00764BBB /* Utils.swift */; };
 		D29E4DB5274F364C00DD586D /* LoginSceneProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29E4DB4274F364C00DD586D /* LoginSceneProtocols.swift */; };
 		D29E4DBA274F37F600DD586D /* LoginSceneDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29E4DB9274F37F600DD586D /* LoginSceneDataModel.swift */; };
 		D2C20D06273626CB0061D929 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20D05273626CB0061D929 /* AppDelegate.swift */; };
@@ -60,7 +61,6 @@
 		D2FD1E15273DF438001386D3 /* Payee.json in Resources */ = {isa = PBXBuildFile; fileRef = D2FD1DD9273DEF42001386D3 /* Payee.json */; };
 		D2FD1E19273DF4BA001386D3 /* Transfer.json in Resources */ = {isa = PBXBuildFile; fileRef = D2FD1DE4273DEF7E001386D3 /* Transfer.json */; };
 		D2FD1E26273DF995001386D3 /* LoginSceneInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E25273DF995001386D3 /* LoginSceneInteractorTests.swift */; };
-		D2FD1E2B273E034A001386D3 /* LoginSceneConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E2A273E034A001386D3 /* LoginSceneConfigurator.swift */; };
 		D2FD1E31273E0594001386D3 /* SceneFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E30273E0594001386D3 /* SceneFactory.swift */; };
 		D2FD1E36273E07A4001386D3 /* LoginSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E35273E07A4001386D3 /* LoginSceneRouter.swift */; };
 		D2FD1E3B273E1A91001386D3 /* DashboardSceneConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E3A273E1A91001386D3 /* DashboardSceneConfigurator.swift */; };
@@ -149,7 +149,6 @@
 		D2FD1DD9273DEF42001386D3 /* Payee.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Payee.json; sourceTree = "<group>"; };
 		D2FD1DE4273DEF7E001386D3 /* Transfer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Transfer.json; sourceTree = "<group>"; };
 		D2FD1E25273DF995001386D3 /* LoginSceneInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSceneInteractorTests.swift; sourceTree = "<group>"; };
-		D2FD1E2A273E034A001386D3 /* LoginSceneConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSceneConfigurator.swift; sourceTree = "<group>"; };
 		D2FD1E30273E0594001386D3 /* SceneFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneFactory.swift; sourceTree = "<group>"; };
 		D2FD1E35273E07A4001386D3 /* LoginSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSceneRouter.swift; sourceTree = "<group>"; };
 		D2FD1E3A273E1A91001386D3 /* DashboardSceneConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSceneConfigurator.swift; sourceTree = "<group>"; };
@@ -317,7 +316,6 @@
 				D2C20D3D273627710061D929 /* LoginScenePresenter.swift */,
 				D2C20D3F273627710061D929 /* LoginSceneViewController.swift */,
 				D2C20D40273627710061D929 /* LoginSceneInteractor.swift */,
-				D2FD1E2A273E034A001386D3 /* LoginSceneConfigurator.swift */,
 				D2FD1E35273E07A4001386D3 /* LoginSceneRouter.swift */,
 				D29E4DB4274F364C00DD586D /* LoginSceneProtocols.swift */,
 				D29E4DB9274F37F600DD586D /* LoginSceneDataModel.swift */,
@@ -611,7 +609,6 @@
 				D2C289C5273AC5FC00E79627 /* TransactionManager.swift in Sources */,
 				D2C20D06273626CB0061D929 /* AppDelegate.swift in Sources */,
 				D2C38040273BE07700F71879 /* DropdownViewController.swift in Sources */,
-				D2FD1E2B273E034A001386D3 /* LoginSceneConfigurator.swift in Sources */,
 				D2FD1E7B273E742F001386D3 /* TransferSceneRouter.swift in Sources */,
 				D2C20DDB2736A26D0061D929 /* APIService.swift in Sources */,
 				D2C20D56273628FC0061D929 /* DashboardSceneViewController.swift in Sources */,
@@ -639,6 +636,7 @@
 				D2FD1E26273DF995001386D3 /* LoginSceneInteractorTests.swift in Sources */,
 				D2C20D1D273626D80061D929 /* TransactionAppTests.swift in Sources */,
 				D24AEFC52740ED850060F788 /* APIManagerTests.swift in Sources */,
+				D2503169275738630086EDC8 /* Utils.swift in Sources */,
 				D2214E2C273EE842002FD69F /* APIServiceTests.swift in Sources */,
 				D2FD1E6D273E4B67001386D3 /* TransfeSceneViewControllerTests.swift in Sources */,
 				D22BFAD22737E61300764BBB /* LoginSceneViewControllerTests.swift in Sources */,

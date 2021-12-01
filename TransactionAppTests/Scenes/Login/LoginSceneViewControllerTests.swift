@@ -11,17 +11,17 @@ import XCTest
 
 final class LoginSceneViewControllerTests: XCTestCase {
     private var sut: LoginSceneViewController!
-    private var interactor: LoginSceneInteractorMock!
-    private var router: LoginSceneRoutingMock!
+    private var interactor: LoginSceneBusinessLogicMock!
+    private var router: LoginSceneRoutingLogicMock!
     override func setUp() {
         super.setUp()
         
         sut = LoginSceneViewController()
         sut.userModel = LoginSceneDataModel.Request()
         sut.loadView()
-        interactor = LoginSceneInteractorMock()
+        interactor = LoginSceneBusinessLogicMock()
         sut.interactor = interactor
-        router = LoginSceneRoutingMock()
+        router = LoginSceneRoutingLogicMock()
         sut.router = router
         TransactionManager.shared.enableMock = true
         
@@ -48,15 +48,16 @@ final class LoginSceneViewControllerTests: XCTestCase {
         let viewModel = LoginSceneDataModel.ViewModel(message: "", token: "xxxxddd", error: nil)
         sut.dispayLoginSuccess(viewModel: viewModel)
         //Then
-        XCTAssertTrue(router.loginSuccess)
+        XCTAssertTrue(router.readyToLoadDashboard)
     }
     
     func test_router_call_failed() {
         //When
-        let viewModel = LoginSceneDataModel.ViewModel(message: "", token: "", error: "Failed")
+        let errorMessage = "Login Failed"
+        let viewModel = LoginSceneDataModel.ViewModel(message: "", token: "", error: errorMessage)
         sut.displayLoginFailed(viewModel: viewModel)
         //Then
-        XCTAssertTrue(router.loginFailed)
+        XCTAssertEqual(router.loginFailedMsg, errorMessage)
     }
     
     func test_viewDidLoad(){
@@ -77,7 +78,7 @@ final class LoginSceneViewControllerTests: XCTestCase {
         
     }
 }
-private final class LoginSceneInteractorMock: LoginSceneInteractorInput {
+private final class LoginSceneBusinessLogicMock: LoginSceneBusinessLogic {
     func startLogin(request: LoginSceneDataModel.Request) {
         XCTAssertNotNil(request)
         XCTAssertEqual(request.username, "ocbc")
@@ -85,15 +86,13 @@ private final class LoginSceneInteractorMock: LoginSceneInteractorInput {
     }
 }
 
-private final class LoginSceneRoutingMock: LoginSceneRouting{
-    var loginSuccess = false
-    var loginFailed = false
-    func showLoginSuccess() {
-        self.loginSuccess = true
+private final class LoginSceneRoutingLogicMock: LoginSceneRoutingLogic{
+    var readyToLoadDashboard = false
+    var loginFailedMsg: String = ""
+    func showDashboard() {
+        self.readyToLoadDashboard = true
     }
-
     func showFailure(message: String) {
-        self.loginFailed = true
-        XCTAssertEqual(message, "Failed")
+        self.loginFailedMsg = message
     }
 }
