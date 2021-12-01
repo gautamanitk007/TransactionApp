@@ -11,11 +11,11 @@ import XCTest
 
 final class TransfeScenePresenterTests: XCTestCase {
     private var sut: TransferScenePresenter!
-    private var vc: TransferScenePresenterOutputMock!
+    private var vc: TransferScenePresentationLogicMock!
     
     override func setUp() {
         super.setUp()
-        vc = TransferScenePresenterOutputMock()
+        vc = TransferScenePresentationLogicMock()
         sut = TransferScenePresenter()
         sut.viewController = vc
     }
@@ -28,7 +28,7 @@ final class TransfeScenePresenterTests: XCTestCase {
     func test_empty_payee_list(){
         //Given
         let bundle = Bundle(for: TransfeScenePresenterTests.self)
-        guard let payeeReponse:PayeeResponse = Utils.load(bundle: bundle, fileName: "PayeeEmpty") else{
+        guard let payeeReponse:TransferSceneDataModel.PayeeResponse = Utils.load(bundle: bundle, fileName: "PayeeEmpty") else{
             XCTFail("Fail to load")
             return
         }
@@ -40,7 +40,7 @@ final class TransfeScenePresenterTests: XCTestCase {
     func test_payee_list(){
         //Given
         let bundle = Bundle(for: TransfeScenePresenterTests.self)
-        guard let payeeReponse:PayeeResponse = Utils.load(bundle: bundle, fileName: "Payee") else{
+        guard let payeeReponse:TransferSceneDataModel.PayeeResponse = Utils.load(bundle: bundle, fileName: "Payee") else{
             XCTFail("Fail to load")
             return
         }
@@ -51,9 +51,9 @@ final class TransfeScenePresenterTests: XCTestCase {
     }
 }
 
-private final class TransferScenePresenterOutputMock: TransferScenePresenterOutput {
-    var payeeList:[Payee] = []
-    func dispayPayee(payeeList: [Payee]) {
+private final class TransferScenePresentationLogicMock: TransferSceneDisplayLogic {
+    var payeeList:[TransferSceneDataModel.Payee] = []
+    func dispayPayee(payeeList: [TransferSceneDataModel.Payee]) {
         self.payeeList = payeeList
     }
     var payeeError:String = ""

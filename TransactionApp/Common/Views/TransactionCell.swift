@@ -26,9 +26,9 @@ class TransactionCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(_ ts: TransactionViewModel){
-        self.lblDay.text = ts.dayMonth
-        self.lblToFromMsg.text = ts.payToFrom
-        self.lblAmount.attributedText = ts.amount
+    func configure(viewModel: DashboardSceneDataModel.TransactionViewModel){
+        self.lblDay.text = viewModel.dayMonth
+        self.lblToFromMsg.text = viewModel.payToFrom
+        self.lblAmount.attributedText = viewModel.amount
     }
 }

@@ -13,34 +13,20 @@ enum Identifier:String {
     case GeneralCellIdentifier = "GeneralCelli"
 }
 
-protocol DashboardSceneViewControllerInput: AnyObject {
-    func displayBalanceViewModel(_ viewModel:BalanceViewModel)
-    func displayTransactionListViewModel(_ viewModels:[TransactionViewModel])
-    func displayError(_ error:String)
-}
 
-protocol DashboardSceneViewControllerOutput:AnyObject {
-    func checkBalance()
-    func getAllTransactions()
-}
 final class DashboardSceneViewController: BaseViewController {
   
     @IBOutlet weak var btnTransfer: RoundedButton!
     @IBOutlet weak var activityTable: UITableView!
     @IBOutlet weak var lblAmount: UILabel!
     
-    var interactor: DashboardSceneInteractorInput!
-    var router: DashboardSceneRouting!
-    var datasource : TableViewDatasource<TransactionCell,TransactionViewModel>!
+    var interactor: DashboardSceneBussinessLogic?
+    var router: DashboardSceneRoutingLogic?
+    var datasource : TableViewDatasource<TransactionCell,DashboardSceneDataModel.TransactionViewModel>!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setup()
-        self.datasource = TableViewDatasource(cellIdentifier: Identifier.TransactionCellIdentifier.rawValue,
-                                              items: []){(cell,viewModel) in
-            cell.configure(viewModel)
-        }
-        self.activityTable.dataSource = self.datasource
-        self.activityTable.delegate = self
+        self.setupUI()
+        self.setupDashboardViewLogic()
         self.startActivity()
         self.refreshPage()
     }
@@ -58,11 +44,11 @@ final class DashboardSceneViewController: BaseViewController {
     
     @objc func logoutTapped(_ sender: Any) {
         TransactionManager.shared.token = ""
-        self.router.popToPrevious()
+        self.router?.popToPrevious()
     }
  
     @IBAction func didTransferTapped(_ sender: Any) {
-        self.router.showNextController()
+        self.router?.showNextController()
     }
     @objc func refreshPage(){
         self.startActivity()
@@ -71,14 +57,14 @@ final class DashboardSceneViewController: BaseViewController {
     }
 }
 
-// MARK: - DashboardSceneViewControllerInput
-extension DashboardSceneViewController: DashboardSceneViewControllerInput{
+// MARK: - DashboardSceneDisplayLogic
+extension DashboardSceneViewController: DashboardSceneDisplayLogic{
 
-    func displayBalanceViewModel(_ viewModel: BalanceViewModel){
+    func displayBalanceViewModel(viewModel: DashboardSceneDataModel.BalanceViewModel){
         self.stopActivity()
         self.lblAmount.text = viewModel.balance
     }
-    func displayTransactionListViewModel(_ viewModels:[TransactionViewModel]){
+    func displayTransactionListViewModel(viewModels:[DashboardSceneDataModel.TransactionViewModel]){
         self.datasource.removeAll()
         self.datasource.updateItems(viewModels)
         self.stopActivity()
@@ -86,13 +72,32 @@ extension DashboardSceneViewController: DashboardSceneViewControllerInput{
     }
     func displayError(_ error:String){
         self.stopActivity()
-        self.router.showFailure(message: error)
+        self.router?.showFailure(message: error)
     }
 }
 
 // MARK: - Private 
 private extension DashboardSceneViewController {
-    func setup(){
+    func setupDashboardViewLogic() {
+        let viewController = self
+        let interactor = DashboardSceneInteractor()
+        let presenter = DashboardScenePresenter()
+        let router = DashboardSceneRouter()
+        
+        viewController.interactor = interactor
+        viewController.router = router
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        router.viewController = viewController
+        
+        viewController.datasource = TableViewDatasource(cellIdentifier: Identifier.TransactionCellIdentifier.rawValue,
+                                              items: []){(cell,viewModel) in
+            cell.configure(viewModel: viewModel)
+        }
+        self.activityTable.dataSource = viewController.datasource
+        self.activityTable.delegate = viewController
+    }
+    func setupUI(){
         self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.hidesBackButton = true
         self.navigationItem.title = Utils.getLocalisedValue(key:"Page_Dashboard_Title")
@@ -111,14 +116,15 @@ private extension DashboardSceneViewController {
     }
     
     func fetchBalance() {
-        self.interactor.checkBalance()
+        self.interactor?.checkBalance()
     }
     func fetchAllTransactions(){
-        self.interactor.getAllTransactions()
+        self.interactor?.getAllTransactions()
     }
 }
 
-extension DashboardSceneViewController:UITableViewDelegate{
+// MARK: - UITableViewDelegate
+extension DashboardSceneViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
            let headerView = UIView()
            headerView.backgroundColor = UIColor.clear

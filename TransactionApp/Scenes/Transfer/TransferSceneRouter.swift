@@ -8,44 +8,38 @@
 import Foundation
 import UIKit
 
-protocol TransferSceneRouting:Failure {
+protocol TransferSceneRoutingLogic:Failure {
     func popToPrevious()
     func showSuccess(msg:String)
-    func showPopOver(for indetifier:String, popoverList:[Payee], delegate:DropdownViewControllerDelegate)
+    func showPopOver(for indetifier:String, popoverList:[TransferSceneDataModel.Payee], delegate:DropdownViewControllerDelegate)
 }
 
 final class TransferSceneRouter {
-    weak var source: UIViewController?
+    weak var viewController: UIViewController?
 
-    private let sceneFactory: SceneFactory
-    
-    init(sceneFactory: SceneFactory) {
-        self.sceneFactory = sceneFactory
-    }
 }
 
-extension TransferSceneRouter: TransferSceneRouting {
+extension TransferSceneRouter: TransferSceneRoutingLogic {
 
     func showSuccess(msg:String){
         let alertController = Utils.getAlert(title:Utils.getLocalisedValue(key:"Success_Title"),message:msg)
-        self.source?.present(alertController, animated: true)
+        self.viewController?.present(alertController, animated: true)
     }
     
     func showFailure(message: String) {
         let alertController = Utils.getAlert(title:Utils.getLocalisedValue(key:"Information_Error_Title"),message:message)
-        source?.present(alertController, animated: true)
+        self.viewController?.present(alertController, animated: true)
     }
     func popToPrevious(){
-        self.source?.navigationController?.popViewController(animated: true)
+        self.viewController?.navigationController?.popViewController(animated: true)
     }
     
-    func showPopOver(for indetifier:String, popoverList:[Payee], delegate:DropdownViewControllerDelegate){
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let destinationVC = storyboard.instantiateViewController(withIdentifier: "showPopover") as! DropdownViewController
+    func showPopOver(for indetifier:String, popoverList:[TransferSceneDataModel.Payee], delegate:DropdownViewControllerDelegate){
+        let destinationVC = Utils.getViewController(identifier: "showPopover") as! DropdownViewController
         destinationVC.payeeList = popoverList
         destinationVC.delegate = delegate
         destinationVC.modalPresentationStyle = .popover
-        self.source!.present(destinationVC, animated: true, completion: nil)
+        self.viewController!.present(destinationVC, animated: true, completion: nil)
     }
 
 }

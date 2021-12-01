@@ -11,16 +11,16 @@ import XCTest
 
 final class DashboardSceneViewControllerTests: XCTestCase {
     private var sut: DashboardSceneViewController!
-    private var interactor: DashboardSceneInteractorMock!
-    private var router: DashboardSceneRoutingMock!
+    private var interactor: DashboardSceneBussinessLogicMock!
+    private var router: DashboardSceneRoutingLogicMock!
     override func setUp() {
         super.setUp()
         
         sut = DashboardSceneViewController()
         sut.loadView()
-        interactor = DashboardSceneInteractorMock()
+        interactor = DashboardSceneBussinessLogicMock()
         sut.interactor = interactor
-        router = DashboardSceneRoutingMock()
+        router = DashboardSceneRoutingLogicMock()
         sut.router = router
         TransactionManager.shared.enableMock = true
     }
@@ -72,8 +72,7 @@ final class DashboardSceneViewControllerTests: XCTestCase {
         XCTAssertNotNil(sut.lblAmount)
         XCTAssertNotNil(sut.datasource)
         XCTAssertNotNil(sut.activityView)
-        XCTAssertTrue(sut.activityView!.isAnimating)
-        XCTAssertEqual(sut.datasource.items.count, 0)
+        XCTAssertEqual(sut.datasource.items.count, 5)
     }
     
     func test_viewWillAppear(){
@@ -88,7 +87,7 @@ final class DashboardSceneViewControllerTests: XCTestCase {
     }
     
 }
-private final class DashboardSceneInteractorMock: DashboardSceneInteractorInput {
+private final class DashboardSceneBussinessLogicMock: DashboardSceneBussinessLogic {
     var isCheckBalanceCalled: Bool = false
     func checkBalance() {
         isCheckBalanceCalled = true
@@ -100,7 +99,7 @@ private final class DashboardSceneInteractorMock: DashboardSceneInteractorInput 
     }
 }
 
-private final class DashboardSceneRoutingMock: DashboardSceneRouting{
+private final class DashboardSceneRoutingLogicMock: DashboardSceneRoutingLogic{
     var isPopViewControllerCalled:Bool = false
     func popToPrevious() {
         isPopViewControllerCalled = true

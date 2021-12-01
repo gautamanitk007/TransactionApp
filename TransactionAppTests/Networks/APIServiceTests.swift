@@ -251,7 +251,7 @@ final class APIServiceTests: XCTestCase {
                         //Given
                         TransactionManager.shared.token = token
                         //When
-                        let transferModel = TransferSceneModel(recipientAccountNo: "1234", amount: "100", date: Date().convertToString(), description: "Rental")
+                        let transferModel = TransferSceneDataModel.TransferSceneViewModel(recipientAccountNo: "1234", amount: "100", date: Date().convertToString(), description: "Rental")
                         
                         self.sut.fundTransfer(params: transferModel.jsonValue()!) { (ftResponse, ftError) in
                             transferExp.fulfill()

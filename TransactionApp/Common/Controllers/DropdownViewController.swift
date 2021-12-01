@@ -9,18 +9,18 @@ import UIKit
 
 
 protocol DropdownViewControllerDelegate:AnyObject {
-    func didSelected(payee:Payee)
+    func didSelected(payee:TransferSceneDataModel.Payee)
 }
 
 class DropdownViewController: UIViewController {
     @IBOutlet weak var customTable: UITableView!
-    var payeeList:[Payee]!
+    var payeeList:[TransferSceneDataModel.Payee]!
     weak var delegate:DropdownViewControllerDelegate?
-    private var datasource : TableViewDatasource<GeneralCell,Payee>!
+    private var datasource : TableViewDatasource<GeneralCell,TransferSceneDataModel.Payee>!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.datasource = TableViewDatasource(cellIdentifier: Identifier.GeneralCellIdentifier.rawValue,items:self.payeeList){(cell,model) in
-            cell.configure(model)
+            cell.configure(payee: model)
         }
         self.customTable.dataSource = self.datasource
         self.customTable.delegate = self

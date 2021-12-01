@@ -19,7 +19,7 @@ class GeneralCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    func configure(_ payee: Payee){
+    func configure(payee: TransferSceneDataModel.Payee){
         self.lblName.text = payee.accountHolderName
     }
 }

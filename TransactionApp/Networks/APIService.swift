@@ -32,9 +32,9 @@ public class APIService: ServiceProtocol {
             }
         }
     }
-    public func checkBalances(on completion: @escaping(BalanceResponse?,ApiError?)->()){
+    public func checkBalances(on completion: @escaping(DashboardSceneDataModel.BalanceResponse?,ApiError?)->()){
         if TransactionManager.shared.enableMock {
-            guard let rsp: BalanceResponse = Utils.load(bundle: Bundle(for: APIService.self), fileName: "Balance") else {
+            guard let rsp: DashboardSceneDataModel.BalanceResponse = Utils.load(bundle: Bundle(for: APIService.self), fileName: "Balance") else {
                 completion(nil,ApiError(statusCode: -2, message: "Balance check parsing error"))
                 return
             }
@@ -42,8 +42,8 @@ public class APIService: ServiceProtocol {
         } else {
             var request = APIRequest(endPoint: EndPoints.balances.rawValue, postBody: [:])
             request.httpMethod = HttpMethod.get
-            let balanceResource = Resource<BalanceResponse>(request: request) { data in
-                let bResponse = try? JSONDecoder().decode(BalanceResponse.self, from: data)
+            let balanceResource = Resource<DashboardSceneDataModel.BalanceResponse>(request: request) { data in
+                let bResponse = try? JSONDecoder().decode(DashboardSceneDataModel.BalanceResponse.self, from: data)
                 return bResponse
             }
             self.apiManager.runAPI(resource: balanceResource) { (response, error) in
@@ -52,9 +52,9 @@ public class APIService: ServiceProtocol {
         }
         
     }
-    public func getAllPayee(on completion: @escaping(PayeeResponse?,ApiError?)->()){
+    public func getAllPayee(on completion: @escaping(TransferSceneDataModel.PayeeResponse?,ApiError?)->()){
         if TransactionManager.shared.enableMock {
-            guard let rsp: PayeeResponse = Utils.load(bundle: Bundle(for: APIService.self), fileName: "Payee") else {
+            guard let rsp: TransferSceneDataModel.PayeeResponse = Utils.load(bundle: Bundle(for: APIService.self), fileName: "Payee") else {
                 completion(nil,ApiError(statusCode: -2, message: "Payee parsing error"))
                 return
             }
@@ -62,8 +62,8 @@ public class APIService: ServiceProtocol {
         }else{
             var request = APIRequest(endPoint: EndPoints.payees.rawValue, postBody: [:])
             request.httpMethod = HttpMethod.get
-            let payeeResource = Resource<PayeeResponse>(request: request) { data in
-                let payeeResponse = try? JSONDecoder().decode(PayeeResponse.self, from: data)
+            let payeeResource = Resource<TransferSceneDataModel.PayeeResponse>(request: request) { data in
+                let payeeResponse = try? JSONDecoder().decode(TransferSceneDataModel.PayeeResponse.self, from: data)
                 return payeeResponse
             }
             self.apiManager.runAPI(resource: payeeResource) { (response, error) in
@@ -71,10 +71,10 @@ public class APIService: ServiceProtocol {
             }
         }
     }
-    public func getAllTransactions(on completion: @escaping(TransactionResponse?,ApiError?)->()){
+    public func getAllTransactions(on completion: @escaping(DashboardSceneDataModel.TransactionResponse?,ApiError?)->()){
         
         if TransactionManager.shared.enableMock {
-            guard let rsp: TransactionResponse = Utils.load(bundle: Bundle(for: APIService.self), fileName: "Transactions") else {
+            guard let rsp: DashboardSceneDataModel.TransactionResponse = Utils.load(bundle: Bundle(for: APIService.self), fileName: "Transactions") else {
                 completion(nil,ApiError(statusCode: -2, message: "Transaction parsing error"))
                 return
             }
@@ -82,8 +82,8 @@ public class APIService: ServiceProtocol {
         } else {
             var request = APIRequest(endPoint: EndPoints.transactions.rawValue, postBody: [:])
             request.httpMethod = HttpMethod.get
-            let transationResource = Resource<TransactionResponse>(request: request) { data in
-                let tResponse = try? JSONDecoder().decode(TransactionResponse.self, from: data)
+            let transationResource = Resource<DashboardSceneDataModel.TransactionResponse>(request: request) { data in
+                let tResponse = try? JSONDecoder().decode(DashboardSceneDataModel.TransactionResponse.self, from: data)
                 return tResponse
             }
             self.apiManager.runAPI(resource: transationResource) { (response, error) in
@@ -92,9 +92,9 @@ public class APIService: ServiceProtocol {
         }
        
     }
-    public func fundTransfer(params:[String:Any], on completion:@escaping(TransferResponse?,ApiError?)->()){
+    public func fundTransfer(params:[String:Any], on completion:@escaping(TransferSceneDataModel.TransferResponse?,ApiError?)->()){
         if TransactionManager.shared.enableMock {
-            guard let rsp: TransferResponse = Utils.load(bundle: Bundle(for: APIService.self), fileName: "Transfer") else {
+            guard let rsp: TransferSceneDataModel.TransferResponse = Utils.load(bundle: Bundle(for: APIService.self), fileName: "Transfer") else {
                 completion(nil,ApiError(statusCode: -2, message: "Transfer parsing error"))
                 return
             }
@@ -103,8 +103,8 @@ public class APIService: ServiceProtocol {
             var request = APIRequest(endPoint: EndPoints.transfer.rawValue, postBody: [:])
             request.httpMethod = HttpMethod.post
             request.body = params
-            let tResource = Resource<TransferResponse>(request: request) { data in
-                let tResponse = try? JSONDecoder().decode(TransferResponse.self, from: data)
+            let tResource = Resource<TransferSceneDataModel.TransferResponse>(request: request) { data in
+                let tResponse = try? JSONDecoder().decode(TransferSceneDataModel.TransferResponse.self, from: data)
                 return tResponse
             }
             self.apiManager.runAPI(resource: tResource) { (response, error) in

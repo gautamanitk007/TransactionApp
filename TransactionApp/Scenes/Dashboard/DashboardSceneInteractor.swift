@@ -8,24 +8,16 @@
 
 import Foundation
 
-typealias DashboardSceneInteractorInput = DashboardSceneViewControllerOutput
-
-protocol DashboardSceneInteractorOutput {
-    func showTransactions(response: TransactionResponse)
-    func showBalance(response:BalanceResponse)
-    func didFailedToLoad( error: String?)
-}
-
 final class DashboardSceneInteractor {
-    var service: ServiceProtocol?
-    var presenter: DashboardScenePresenterInput?
+    let service: ServiceProtocol = APIService(APIManager())
+    var presenter: DashboardScenePresentationLogic?
 }
 
 
 // MARK: - DashboardSceneBusinessLogic
-extension DashboardSceneInteractor: DashboardSceneViewControllerOutput {
+extension DashboardSceneInteractor: DashboardSceneBussinessLogic {
     func checkBalance() {
-        self.service?.checkBalances {[weak self] (response, error) in
+        self.service.checkBalances {[weak self] (response, error) in
             guard let self = self else { return }
             if let errorValue = error, errorValue.statusCode != ResponseCodes.success.rawValue {
                 self.presenter?.didFailedToLoad(error: errorValue.message)
@@ -36,7 +28,7 @@ extension DashboardSceneInteractor: DashboardSceneViewControllerOutput {
     }
     
     func getAllTransactions() {
-        self.service?.getAllTransactions {[weak self] (response,error) in
+        self.service.getAllTransactions {[weak self] (response,error) in
             guard let self = self else { return }
             if let errorValue = error, errorValue.statusCode != ResponseCodes.success.rawValue{
                 self.presenter?.didFailedToLoad(error: errorValue.message)

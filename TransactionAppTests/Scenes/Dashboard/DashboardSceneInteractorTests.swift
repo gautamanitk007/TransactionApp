@@ -12,13 +12,12 @@ import XCTest
 
 final class DashboardSceneInteractorTests: XCTestCase {
     private var sut: DashboardSceneInteractor!
-    private var presenter: DashboardScenePresenterInputMock!
+    private var presenter: DashboardScenePresentationLogicMock!
     override func setUp() {
         super.setUp()
         sut = DashboardSceneInteractor()
-        presenter = DashboardScenePresenterInputMock()
+        presenter = DashboardScenePresentationLogicMock()
         sut.presenter = presenter
-        sut.service = APIService(APIManager())
     }
     
     override func tearDown() {
@@ -33,7 +32,7 @@ final class DashboardSceneInteractorTests: XCTestCase {
         TransactionManager.shared.enableMock = true
         let expection = self.expectation(description: "Balance fetching expection")
         //When
-        sut.service?.checkBalances(on: { (response, error) in
+        sut.service.checkBalances(on: { (response, error) in
             expection.fulfill()
             TransactionManager.shared.enableMock = false
             //Then
@@ -49,7 +48,7 @@ final class DashboardSceneInteractorTests: XCTestCase {
         let expection = self.expectation(description: "Balance fetching expection")
         //When
         //This API call always failed due to empty token
-        sut.service?.checkBalances(on: { (_, error) in
+        sut.service.checkBalances(on: { (_, error) in
             expection.fulfill()
             //Then
             XCTAssertNotNil(error)
@@ -63,7 +62,7 @@ final class DashboardSceneInteractorTests: XCTestCase {
         TransactionManager.shared.enableMock = true
         let expection = self.expectation(description: "Download all transaction expection")
         //When
-        sut.service?.getAllTransactions(on: { (response, error) in
+        sut.service.getAllTransactions(on: { (response, error) in
             expection.fulfill()
             TransactionManager.shared.enableMock = false
             //Then
@@ -78,7 +77,7 @@ final class DashboardSceneInteractorTests: XCTestCase {
         let expection = self.expectation(description: "Download all transaction expection")
         //When
         //This API call always failed due to empty token
-        sut.service?.getAllTransactions(on: { (_, error) in
+        sut.service.getAllTransactions(on: { (_, error) in
             expection.fulfill()
             //Then
             XCTAssertNotNil(error)
@@ -89,7 +88,7 @@ final class DashboardSceneInteractorTests: XCTestCase {
     func test_balance_presenter_call(){
         //Given
         let bundle = Bundle(for: DashboardSceneInteractorTests.self)
-        guard let balance:BalanceResponse = Utils.load(bundle: bundle, fileName: "Balance") else {
+        guard let balance:DashboardSceneDataModel.BalanceResponse = Utils.load(bundle: bundle, fileName: "Balance") else {
             XCTFail("Failed to load Balance.json")
             return
         }
@@ -102,7 +101,7 @@ final class DashboardSceneInteractorTests: XCTestCase {
     func test_show_transaction_presenter_call(){
         //Given
         let bundle = Bundle(for: DashboardSceneInteractorTests.self)
-        guard let tns:TransactionResponse = Utils.load(bundle: bundle, fileName: "Transactions") else {
+        guard let tns:DashboardSceneDataModel.TransactionResponse = Utils.load(bundle: bundle, fileName: "Transactions") else {
             XCTFail("Failed to load Balance.json")
             return
         }
@@ -114,15 +113,15 @@ final class DashboardSceneInteractorTests: XCTestCase {
     
 }
 
-private final class DashboardScenePresenterInputMock: DashboardScenePresenterInput {
+private final class DashboardScenePresentationLogicMock: DashboardScenePresentationLogic {
     
     var transCount: Int = 0
-    func showTransactions(response: TransactionResponse){
+    func showTransactions(response: DashboardSceneDataModel.TransactionResponse){
         transCount = response.data!.count
     }
     
     var amount: Float = 0.0
-    func showBalance(response: BalanceResponse) {
+    func showBalance(response: DashboardSceneDataModel.BalanceResponse) {
         amount = Float(response.balance!)
     }
     

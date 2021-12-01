@@ -8,21 +8,12 @@
 
 import UIKit
 
-protocol TransferSceneViewControllerInput:AnyObject {
-    func dispayPayee(payeeList:[Payee])
-    func displayError(_ error:String)
-    func transferSuccess(msg:String)
-}
-protocol TransferSceneViewControllerOutput:AnyObject {
-    func getAllPayee()
-    func transferTo(payee:TransferSceneModel)
-}
 
 final class TransferSceneViewController: BaseViewController {
 
-    var interactor: TransferSceneInteractorInput!
-    var router: TransferSceneRouting!
-    var transferModel:TransferSceneModel!
+    var interactor: TransferSceneBusinessLogic?
+    var router: TransferSceneRoutingLogic?
+    var transferModel:TransferSceneDataModel.TransferSceneViewModel!
     
     @IBOutlet weak var recipientTextField: BindingTextField!{
         didSet{
@@ -47,16 +38,17 @@ final class TransferSceneViewController: BaseViewController {
     @IBOutlet weak var btnCancel: RoundedButton!
     @IBOutlet weak var btnSubmit: RoundedButton!
     var datePicker: UIDatePicker?
-    var selectedPayee:Payee?{
+    var selectedPayee:TransferSceneDataModel.Payee?{
         didSet{
             self.recipientTextField.text = selectedPayee?.accountHolderName
             self.transferModel.recipientAccountNo = selectedPayee?.accountNo
         }
     }
-    var payeeList: [Payee]?
+    var payeeList: [TransferSceneDataModel.Payee]?
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setup()
+        self.setupUI()
+        self.setupTransferViewLogic()
         self.fetchPayee()
         self.createDatePicker()
     }
@@ -72,11 +64,11 @@ final class TransferSceneViewController: BaseViewController {
     }
     @IBAction func submitTapped(){
         self.startActivity()
-        self.interactor.transferTo(payee: self.transferModel!)
+        self.interactor?.transferTo(payee: self.transferModel!)
     }
     
     @IBAction func cancelTapped(){
-        self.router.popToPrevious()
+        self.router?.popToPrevious()
     }
     
     @objc func showCalendar(){
@@ -89,16 +81,16 @@ final class TransferSceneViewController: BaseViewController {
             self.dateOfTransferTextField.text = dateValue
             self.transferModel?.date = dateValue
         }else{
-            self.router.showFailure(message: Utils.getLocalisedValue(key: "Past_Transfer_Date_Msg"))
+            self.router?.showFailure(message: Utils.getLocalisedValue(key: "Past_Transfer_Date_Msg"))
         }
         
     }
     @objc func showDropdown(){
         guard let pList = self.payeeList, pList.count > 0 else {
-            self.router.showFailure(message: Utils.getLocalisedValue(key: "NoPayee"))
+            self.router?.showFailure(message: Utils.getLocalisedValue(key: "NoPayee"))
             return
         }
-       self.router.showPopOver(for: "showPopover", popoverList: pList ,delegate: self)
+       self.router?.showPopOver(for: "showPopover", popoverList: pList ,delegate: self)
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch: UITouch? = touches.first
@@ -116,7 +108,7 @@ final class TransferSceneViewController: BaseViewController {
     }
 }
 private extension TransferSceneViewController {
-    func setup(){
+    func setupUI(){
         self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.hidesBackButton = false
         self.navigationItem.title =  Utils.getLocalisedValue(key:"Page_Transfer_Title")
@@ -141,6 +133,21 @@ private extension TransferSceneViewController {
         }
         let tapRecipientGesture = UITapGestureRecognizer(target: self, action: #selector(showDropdown))
         self.recipientTextField.addGestureRecognizer(tapRecipientGesture)
+    }
+    
+    func setupTransferViewLogic(){
+        let viewController = self
+        let interactor = TransferSceneInteractor()
+        let presenter = TransferScenePresenter()
+        let router = TransferSceneRouter()
+        let transferModel = TransferSceneDataModel.TransferSceneViewModel()
+        
+        viewController.transferModel = transferModel
+        viewController.interactor = interactor
+        viewController.router = router
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        router.viewController = viewController
     }
     
     func createDatePicker(){
@@ -171,17 +178,17 @@ private extension TransferSceneViewController {
     }
     @objc func fetchPayee(){
         self.startActivity()
-        self.interactor.getAllPayee()
+        self.interactor?.getAllPayee()
     }
 }
-// MARK: - TransferSceneViewControllerInput
-extension TransferSceneViewController: TransferSceneViewControllerInput {
+// MARK: - TransferSceneDisplayLogic
+extension TransferSceneViewController: TransferSceneDisplayLogic {
     func displayError(_ error: String) {
         self.stopActivity()
-        self.router.showFailure(message: error)
+        self.router?.showFailure(message: error)
     }
     
-    func dispayPayee(payeeList: [Payee]) {
+    func dispayPayee(payeeList: [TransferSceneDataModel.Payee]) {
         self.stopActivity()
         self.payeeList?.removeAll()
         self.payeeList = payeeList
@@ -189,13 +196,13 @@ extension TransferSceneViewController: TransferSceneViewControllerInput {
     func transferSuccess(msg:String){
         self.stopActivity()
         self.clearInput()
-        self.router.showSuccess(msg: msg)
+        self.router?.showSuccess(msg: msg)
     }
 }
 
 //MARK:- DropdownViewControllerDelegate
 extension TransferSceneViewController : DropdownViewControllerDelegate{
-    func didSelected(payee: Payee) {
+    func didSelected(payee: TransferSceneDataModel.Payee) {
         self.selectedPayee = payee
     }
 }

@@ -12,15 +12,15 @@ import XCTest
 
 final class TransferSceneViewControllerTests: XCTestCase {
     private var sut: TransferSceneViewController!
-    private var interactor: TransferSceneInteractorMock!
-    private var router: TransferSceneRoutingMock!
+    private var interactor: TransferSceneBusinessLogicMock!
+    private var router: TransferSceneRoutingLogicMock!
     override func setUp() {
         super.setUp()
         sut = TransferSceneViewController()
         sut.loadView()
-        interactor = TransferSceneInteractorMock()
+        interactor = TransferSceneBusinessLogicMock()
         sut.interactor = interactor
-        router = TransferSceneRoutingMock()
+        router = TransferSceneRoutingLogicMock()
         sut.router = router
     }
     
@@ -31,37 +31,9 @@ final class TransferSceneViewControllerTests: XCTestCase {
         super.tearDown()
     }
     
-    func test_viewDidLoad(){
-        // Given
-        let (recipientTextField,dateOfTransferTextField,descTextField,amountTextField,tModel) = self.create()
-        sut.recipientTextField = recipientTextField
-        sut.dateOfTransferTextField = dateOfTransferTextField
-        sut.descTextField = descTextField
-        sut.amountTextField = amountTextField
-        sut.transferModel = tModel
-        sut.recipientTextField.text = "12345678"
-        sut.descTextField.text = "Room Rental"
-        sut.dateOfTransferTextField.text = "15-11-2021"
-        sut.amountTextField.text = "500"
-        //When
-        sut.amountTextField.textFieldChange(amountTextField)
-        sut.dateOfTransferTextField.textFieldChange(dateOfTransferTextField)
-        sut.descTextField.textFieldChange(descTextField)
-        sut.recipientTextField.textFieldChange(recipientTextField)
-        sut.viewDidLoad()
-        //Then
-        XCTAssertTrue(sut.activityView!.isAnimating)
-        XCTAssertEqual(sut.transferModel.amount, "500")
-        XCTAssertEqual(sut.transferModel.date, "15-11-2021")
-        XCTAssertEqual(sut.transferModel.recipientAccountNo, "12345678")
-        XCTAssertEqual(sut.transferModel.description, "Room Rental")
-        XCTAssertNotNil(sut.datePicker)
-        XCTAssertTrue(interactor.isAllPayeeDownloaded)
-    }
-    
     func test_submitTapped(){
         //Given
-        var model = TransferSceneModel()
+        var model = TransferSceneDataModel.TransferSceneViewModel()
         model.amount = "100"
         model.date = Date().convertToString()
         model.description = "Rental"
@@ -86,23 +58,6 @@ final class TransferSceneViewControllerTests: XCTestCase {
         XCTAssertTrue(router.popToPreviousCallback)
     }
     
-    func test_picker_past_date_value(){
-       //Given
-        //let futureDate = self.createFutureDate(isFuture: true)
-        let (recipientTextField,dateOfTransferTextField,descTextField,amountTextField,tModel) = self.create()
-        sut.recipientTextField = recipientTextField
-        sut.dateOfTransferTextField = dateOfTransferTextField
-        sut.descTextField = descTextField
-        sut.amountTextField = amountTextField
-        sut.transferModel = tModel
-        
-        sut.viewDidLoad()
-        //When
-        sut.pickerDateValue()
-        //Then
-        XCTAssertEqual(router.errMsg, Utils.getLocalisedValue(key: "Past_Transfer_Date_Msg"))
-    }
-    
     func test_picker_future_date_value(){
        //Given
         let futureDate = self.createFutureDate()
@@ -124,7 +79,7 @@ final class TransferSceneViewControllerTests: XCTestCase {
     
     func test_popover_without_payeelist(){
         //Given
-        let payeeList = [Payee]()
+        let payeeList = [TransferSceneDataModel.Payee]()
         sut.payeeList = payeeList
         //When
         sut.showDropdown()
@@ -135,7 +90,7 @@ final class TransferSceneViewControllerTests: XCTestCase {
     func test_popover_with_payee_list(){
         //Given
         let bundle = Bundle(for: TransactionAppTests.self)
-        guard let payeeObj:PayeeResponse = Utils.load(bundle: bundle, fileName: "Payee") else {
+        guard let payeeObj:TransferSceneDataModel.PayeeResponse = Utils.load(bundle: bundle, fileName: "Payee") else {
             XCTFail()
             return
         }
@@ -150,19 +105,19 @@ final class TransferSceneViewControllerTests: XCTestCase {
         
     }
 }
-private final class TransferSceneInteractorMock: TransferSceneInteractorInput {
+private final class TransferSceneBusinessLogicMock: TransferSceneBusinessLogic {
     var isAllPayeeDownloaded:Bool = false
     func getAllPayee() {
        isAllPayeeDownloaded = true
     }
     
-    var transferModel: TransferSceneModel?
-    func transferTo(payee: TransferSceneModel) {
+    var transferModel: TransferSceneDataModel.TransferSceneViewModel?
+    func transferTo(payee: TransferSceneDataModel.TransferSceneViewModel) {
         self.transferModel = payee
     }
 }
 
-private final class TransferSceneRoutingMock: TransferSceneRouting{
+private final class TransferSceneRoutingLogicMock: TransferSceneRoutingLogic{
     var popToPreviousCallback:Bool = false
     func popToPrevious() {
         popToPreviousCallback = true
@@ -176,8 +131,8 @@ private final class TransferSceneRoutingMock: TransferSceneRouting{
         
     }
     var indentifier:String = ""
-    var pList = [Payee]()
-    func showPopOver(for indetifier: String, popoverList: [Payee], delegate: DropdownViewControllerDelegate) {
+    var pList = [TransferSceneDataModel.Payee]()
+    func showPopOver(for indetifier: String, popoverList: [TransferSceneDataModel.Payee], delegate: DropdownViewControllerDelegate) {
         self.indentifier = indetifier
         self.pList = popoverList
     }
@@ -185,12 +140,12 @@ private final class TransferSceneRoutingMock: TransferSceneRouting{
 
 
 private extension TransferSceneViewControllerTests{
-    func create() -> (BindingTextField,BindingTextField,BindingTextField,BindingTextField,TransferSceneModel){
+    func create() -> (BindingTextField,BindingTextField,BindingTextField,BindingTextField,TransferSceneDataModel.TransferSceneViewModel){
         let recipientTextField = BindingTextField()
         let dateOfTransferTextField = BindingTextField()
         let descTextField = BindingTextField()
         let amountTextField = BindingTextField()
-        let tModel = TransferSceneModel()
+        let tModel = TransferSceneDataModel.TransferSceneViewModel()
         return (recipientTextField,dateOfTransferTextField,descTextField,amountTextField,tModel)
     }
     func createFutureDate() -> Date{

@@ -17,6 +17,8 @@
 		D24AEFC52740ED850060F788 /* APIManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24AEFC42740ED850060F788 /* APIManagerTests.swift */; };
 		D24AEFD7274100720060F788 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24AEFD6274100720060F788 /* Reachability.swift */; };
 		D2503169275738630086EDC8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22BFA782737D0DA00764BBB /* Utils.swift */; };
+		D250317A275744D00086EDC8 /* DashboardSceneProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2503179275744D00086EDC8 /* DashboardSceneProtocols.swift */; };
+		D2503185275771020086EDC8 /* TransferSceneProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2503184275771020086EDC8 /* TransferSceneProtocols.swift */; };
 		D29E4DB5274F364C00DD586D /* LoginSceneProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29E4DB4274F364C00DD586D /* LoginSceneProtocols.swift */; };
 		D29E4DBA274F37F600DD586D /* LoginSceneDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29E4DB9274F37F600DD586D /* LoginSceneDataModel.swift */; };
 		D2C20D06273626CB0061D929 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20D05273626CB0061D929 /* AppDelegate.swift */; };
@@ -42,7 +44,6 @@
 		D2C20DA9273678030061D929 /* LoginResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D2C20DA8273678030061D929 /* LoginResponse.json */; };
 		D2C20DC1273684A70061D929 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20DC0273684A70061D929 /* APIRequest.swift */; };
 		D2C20DCE273686FC0061D929 /* APIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20DCD273686FC0061D929 /* APIProtocol.swift */; };
-		D2C20DD3273694620061D929 /* Reponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20DD2273694620061D929 /* Reponse.swift */; };
 		D2C20DDB2736A26D0061D929 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20DDA2736A26D0061D929 /* APIService.swift */; };
 		D2C20DE02736AECB0061D929 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20DDF2736AECB0061D929 /* APIManager.swift */; };
 		D2C289C5273AC5FC00E79627 /* TransactionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C289C4273AC5FC00E79627 /* TransactionManager.swift */; };
@@ -61,14 +62,11 @@
 		D2FD1E15273DF438001386D3 /* Payee.json in Resources */ = {isa = PBXBuildFile; fileRef = D2FD1DD9273DEF42001386D3 /* Payee.json */; };
 		D2FD1E19273DF4BA001386D3 /* Transfer.json in Resources */ = {isa = PBXBuildFile; fileRef = D2FD1DE4273DEF7E001386D3 /* Transfer.json */; };
 		D2FD1E26273DF995001386D3 /* LoginSceneInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E25273DF995001386D3 /* LoginSceneInteractorTests.swift */; };
-		D2FD1E31273E0594001386D3 /* SceneFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E30273E0594001386D3 /* SceneFactory.swift */; };
 		D2FD1E36273E07A4001386D3 /* LoginSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E35273E07A4001386D3 /* LoginSceneRouter.swift */; };
-		D2FD1E3B273E1A91001386D3 /* DashboardSceneConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E3A273E1A91001386D3 /* DashboardSceneConfigurator.swift */; };
 		D2FD1E48273E336A001386D3 /* LoginScenePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E47273E336A001386D3 /* LoginScenePresenterTests.swift */; };
 		D2FD1E51273E373A001386D3 /* DashboardSceneViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E4D273E373A001386D3 /* DashboardSceneViewControllerTests.swift */; };
 		D2FD1E52273E373A001386D3 /* DashboardSceneInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E4E273E373A001386D3 /* DashboardSceneInteractorTests.swift */; };
 		D2FD1E5C273E3F97001386D3 /* DashboardSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E5B273E3F97001386D3 /* DashboardSceneRouter.swift */; };
-		D2FD1E61273E48D2001386D3 /* TransferSceneConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E60273E48D2001386D3 /* TransferSceneConfigurator.swift */; };
 		D2FD1E6D273E4B67001386D3 /* TransfeSceneViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E69273E4B67001386D3 /* TransfeSceneViewControllerTests.swift */; };
 		D2FD1E6E273E4B67001386D3 /* TransfeSceneInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E6A273E4B67001386D3 /* TransfeSceneInteractorTests.swift */; };
 		D2FD1E70273E4B67001386D3 /* TransfeScenePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD1E6C273E4B67001386D3 /* TransfeScenePresenterTests.swift */; };
@@ -104,6 +102,8 @@
 		D24AEFBC2740C5C60060F788 /* PayeeEmpty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PayeeEmpty.json; sourceTree = "<group>"; };
 		D24AEFC42740ED850060F788 /* APIManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerTests.swift; sourceTree = "<group>"; };
 		D24AEFD6274100720060F788 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		D2503179275744D00086EDC8 /* DashboardSceneProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSceneProtocols.swift; sourceTree = "<group>"; };
+		D2503184275771020086EDC8 /* TransferSceneProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferSceneProtocols.swift; sourceTree = "<group>"; };
 		D29E4DB4274F364C00DD586D /* LoginSceneProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSceneProtocols.swift; sourceTree = "<group>"; };
 		D29E4DB9274F37F600DD586D /* LoginSceneDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSceneDataModel.swift; sourceTree = "<group>"; };
 		D2C20D02273626CB0061D929 /* TransactionApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransactionApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,7 +135,6 @@
 		D2C20DA8273678030061D929 /* LoginResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LoginResponse.json; sourceTree = "<group>"; };
 		D2C20DC0273684A70061D929 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		D2C20DCD273686FC0061D929 /* APIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProtocol.swift; sourceTree = "<group>"; };
-		D2C20DD2273694620061D929 /* Reponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reponse.swift; sourceTree = "<group>"; };
 		D2C20DDA2736A26D0061D929 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		D2C20DDF2736AECB0061D929 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		D2C289C4273AC5FC00E79627 /* TransactionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionManager.swift; sourceTree = "<group>"; };
@@ -149,14 +148,11 @@
 		D2FD1DD9273DEF42001386D3 /* Payee.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Payee.json; sourceTree = "<group>"; };
 		D2FD1DE4273DEF7E001386D3 /* Transfer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Transfer.json; sourceTree = "<group>"; };
 		D2FD1E25273DF995001386D3 /* LoginSceneInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSceneInteractorTests.swift; sourceTree = "<group>"; };
-		D2FD1E30273E0594001386D3 /* SceneFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneFactory.swift; sourceTree = "<group>"; };
 		D2FD1E35273E07A4001386D3 /* LoginSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSceneRouter.swift; sourceTree = "<group>"; };
-		D2FD1E3A273E1A91001386D3 /* DashboardSceneConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSceneConfigurator.swift; sourceTree = "<group>"; };
 		D2FD1E47273E336A001386D3 /* LoginScenePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScenePresenterTests.swift; sourceTree = "<group>"; };
 		D2FD1E4D273E373A001386D3 /* DashboardSceneViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSceneViewControllerTests.swift; sourceTree = "<group>"; };
 		D2FD1E4E273E373A001386D3 /* DashboardSceneInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSceneInteractorTests.swift; sourceTree = "<group>"; };
 		D2FD1E5B273E3F97001386D3 /* DashboardSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSceneRouter.swift; sourceTree = "<group>"; };
-		D2FD1E60273E48D2001386D3 /* TransferSceneConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferSceneConfigurator.swift; sourceTree = "<group>"; };
 		D2FD1E69273E4B67001386D3 /* TransfeSceneViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransfeSceneViewControllerTests.swift; sourceTree = "<group>"; };
 		D2FD1E6A273E4B67001386D3 /* TransfeSceneInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransfeSceneInteractorTests.swift; sourceTree = "<group>"; };
 		D2FD1E6C273E4B67001386D3 /* TransfeScenePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransfeScenePresenterTests.swift; sourceTree = "<group>"; };
@@ -263,7 +259,6 @@
 		D2C20D04273626CB0061D929 /* TransactionApp */ = {
 			isa = PBXGroup;
 			children = (
-				D2FD1E2F273E0544001386D3 /* Factories */,
 				D2C289C3273AC5E200E79627 /* Manager */,
 				D2C20DBF273684820061D929 /* Networks */,
 				D2C20D7227362EC70061D929 /* Common */,
@@ -330,8 +325,8 @@
 				D2C20D50273628FC0061D929 /* DashboardSceneViewController.swift */,
 				D2C20D51273628FC0061D929 /* DashboardSceneInteractor.swift */,
 				D2C20D53273628FC0061D929 /* DashboardSceneModel.swift */,
-				D2FD1E3A273E1A91001386D3 /* DashboardSceneConfigurator.swift */,
 				D2FD1E5B273E3F97001386D3 /* DashboardSceneRouter.swift */,
+				D2503179275744D00086EDC8 /* DashboardSceneProtocols.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -343,8 +338,8 @@
 				D2C20D62273629160061D929 /* TransferSceneViewController.swift */,
 				D2C20D63273629160061D929 /* TransferSceneInteractor.swift */,
 				D20B871D273C0D2700959452 /* TransferSceneModel.swift */,
-				D2FD1E60273E48D2001386D3 /* TransferSceneConfigurator.swift */,
 				D2FD1E7A273E742F001386D3 /* TransferSceneRouter.swift */,
+				D2503184275771020086EDC8 /* TransferSceneProtocols.swift */,
 			);
 			path = Transfer;
 			sourceTree = "<group>";
@@ -355,7 +350,6 @@
 				D2C3803E273BE04600F71879 /* Datasource */,
 				D2C3803D273BE03C00F71879 /* Controllers */,
 				D22BFA6F2737CDB100764BBB /* Utility */,
-				D2C20D7C27362FA30061D929 /* Models */,
 				D2C20D7327362ECE0061D929 /* Views */,
 			);
 			path = Common;
@@ -371,14 +365,6 @@
 				D2C3804A273BE41E00F71879 /* GeneralCell.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		D2C20D7C27362FA30061D929 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				D2C20DD2273694620061D929 /* Reponse.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		D2C20DBF273684820061D929 /* Networks */ = {
@@ -415,14 +401,6 @@
 				D2F9126D27395EA500FC5487 /* TableViewDatasource.swift */,
 			);
 			path = Datasource;
-			sourceTree = "<group>";
-		};
-		D2FD1E2F273E0544001386D3 /* Factories */ = {
-			isa = PBXGroup;
-			children = (
-				D2FD1E30273E0594001386D3 /* SceneFactory.swift */,
-			);
-			path = Factories;
 			sourceTree = "<group>";
 		};
 		D2FD1E4C273E3712001386D3 /* Dashboard */ = {
@@ -587,12 +565,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2C20DD3273694620061D929 /* Reponse.swift in Sources */,
-				D2FD1E31273E0594001386D3 /* SceneFactory.swift in Sources */,
 				D24AEFD7274100720060F788 /* Reachability.swift in Sources */,
 				D2C20D8E273638E70061D929 /* RoundedButton.swift in Sources */,
 				D2C20DC1273684A70061D929 /* APIRequest.swift in Sources */,
 				D2C20D66273629160061D929 /* TransferScenePresenter.swift in Sources */,
+				D2503185275771020086EDC8 /* TransferSceneProtocols.swift in Sources */,
 				D2FD1E36273E07A4001386D3 /* LoginSceneRouter.swift in Sources */,
 				D2F9126E27395EA500FC5487 /* TableViewDatasource.swift in Sources */,
 				D2C20D57273628FC0061D929 /* DashboardSceneInteractor.swift in Sources */,
@@ -604,6 +581,7 @@
 				D29E4DBA274F37F600DD586D /* LoginSceneDataModel.swift in Sources */,
 				D2C3804B273BE41E00F71879 /* GeneralCell.swift in Sources */,
 				D2C20D69273629160061D929 /* TransferSceneInteractor.swift in Sources */,
+				D250317A275744D00086EDC8 /* DashboardSceneProtocols.swift in Sources */,
 				D2C20D68273629160061D929 /* TransferSceneViewController.swift in Sources */,
 				D2C20D59273628FC0061D929 /* DashboardSceneModel.swift in Sources */,
 				D2C289C5273AC5FC00E79627 /* TransactionManager.swift in Sources */,
@@ -616,13 +594,11 @@
 				D2C20D54273628FC0061D929 /* DashboardScenePresenter.swift in Sources */,
 				D2F9127627395FBB00FC5487 /* TransactionCell.swift in Sources */,
 				D20B871E273C0D2700959452 /* TransferSceneModel.swift in Sources */,
-				D2FD1E3B273E1A91001386D3 /* DashboardSceneConfigurator.swift in Sources */,
 				D2C20D45273627710061D929 /* LoginSceneViewController.swift in Sources */,
 				D2C20D08273626CB0061D929 /* SceneDelegate.swift in Sources */,
 				D2F9127C27396DB800FC5487 /* Extensions.swift in Sources */,
 				D2C20D7527362EFE0061D929 /* BindingTextField.swift in Sources */,
 				D22BFA792737D0DA00764BBB /* Utils.swift in Sources */,
-				D2FD1E61273E48D2001386D3 /* TransferSceneConfigurator.swift in Sources */,
 				D2C20D43273627710061D929 /* LoginScenePresenter.swift in Sources */,
 				D2C20DE02736AECB0061D929 /* APIManager.swift in Sources */,
 			);

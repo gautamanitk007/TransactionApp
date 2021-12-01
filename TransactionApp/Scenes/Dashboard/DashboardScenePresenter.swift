@@ -8,28 +8,23 @@
 
 import Foundation
 
-
-typealias DashboardScenePresenterInput = DashboardSceneInteractorOutput
-typealias DashboardScenePresenterOutput = DashboardSceneViewControllerInput
-
 final class DashboardScenePresenter {
-    weak var viewController: DashboardScenePresenterOutput?
+    weak var viewController: DashboardSceneDisplayLogic?
 }
 
-
 // MARK: - DashboardScenePresentationLogic
-extension DashboardScenePresenter: DashboardScenePresenterInput {
-    func showTransactions(response: TransactionResponse){
-        var accTrans = [TransactionViewModel]()
+extension DashboardScenePresenter: DashboardScenePresentationLogic {
+    func showTransactions(response: DashboardSceneDataModel.TransactionResponse){
+        var accTrans = [DashboardSceneDataModel.TransactionViewModel]()
         if let accounts = response.data {
             accTrans = self.createViewModel(for: accounts)
         }
         
-        self.viewController?.displayTransactionListViewModel(accTrans)
+        self.viewController?.displayTransactionListViewModel(viewModels: accTrans)
     }
-    func showBalance(response: BalanceResponse) {
+    func showBalance(response: DashboardSceneDataModel.BalanceResponse) {
         TransactionManager.shared.totalBalance = Float(response.balance!)
-        self.viewController?.displayBalanceViewModel(BalanceViewModel(balance: "S$ \(response.balance!)"))
+        self.viewController?.displayBalanceViewModel(viewModel: DashboardSceneDataModel.BalanceViewModel(balance: "S$ \(response.balance!)"))
     }
     func didFailedToLoad( error: String?){
         self.viewController?.displayError(error ?? Utils.getLocalisedValue(key:"Unkown"))
@@ -38,15 +33,14 @@ extension DashboardScenePresenter: DashboardScenePresenterInput {
 
 
 private extension DashboardScenePresenter {
-    func createViewModel(for accs:[Account]) -> [TransactionViewModel] {
-        var transations = [TransactionViewModel]()
+    func createViewModel(for accs:[DashboardSceneDataModel.Account]) -> [DashboardSceneDataModel.TransactionViewModel] {
+        var transations = [DashboardSceneDataModel.TransactionViewModel]()
         for account in accs {
             guard let isoDate = account.date, let date = isoDate.dateFromISO8601 else {
                 continue
             }
-            let accTrans = TransactionViewModel(acc: account,date: date)
+            let accTrans = DashboardSceneDataModel.TransactionViewModel(acc: account,date: date)
             transations.append(accTrans)
-            
         }
         return transations.sorted { (acc1, acc2) -> Bool in
             return acc1.date > acc2.date

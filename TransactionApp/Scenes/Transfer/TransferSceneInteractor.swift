@@ -8,24 +8,16 @@
 
 import Foundation
 
-typealias TransferSceneInteractorInput = TransferSceneViewControllerOutput
-
-protocol TransferSceneInteractorOutput {
-    func showPayeeList(response: PayeeResponse)
-    func showErrorMessage( error: String?)
-    func transferSuccess(response:TransferResponse)
-}
-
 final class TransferSceneInteractor {
-    var presenter: TransferScenePresenterInput?
-    var service: ServiceProtocol?
+    var presenter: TransferScenePresentationLogic?
+    var service: ServiceProtocol = APIService(APIManager())
 }
 
 
-// MARK: - TransferSceneViewControllerOutput
-extension TransferSceneInteractor: TransferSceneViewControllerOutput {
+// MARK: - TransferSceneBusinessLogic
+extension TransferSceneInteractor: TransferSceneBusinessLogic {
     func getAllPayee() {
-        self.service?.getAllPayee { [weak self] (response,error) in
+        self.service.getAllPayee { [weak self] (response,error) in
             guard let self = self else { return }
             if let errorValue = error, errorValue.statusCode != ResponseCodes.success.rawValue{
                 self.presenter?.showErrorMessage(error: errorValue.message)
@@ -34,7 +26,7 @@ extension TransferSceneInteractor: TransferSceneViewControllerOutput {
             }
         }
     }
-    func transferTo(payee:TransferSceneModel){
+    func transferTo(payee:TransferSceneDataModel.TransferSceneViewModel){
         
         if payee.recipientAccountNo == nil || payee.recipientAccountNo?.count == 0  {
             self.presenter?.showErrorMessage(error: Utils.getLocalisedValue(key:"Recipient_Key"))
@@ -60,7 +52,7 @@ extension TransferSceneInteractor: TransferSceneViewControllerOutput {
             return
         }
         if let json = payee.jsonValue(){
-            self.service?.fundTransfer(params: json) {[weak self] (response, error) in
+            self.service.fundTransfer(params: json) {[weak self] (response, error) in
                 guard let self = self else { return }
                 if let errorValue = error, errorValue.statusCode != ResponseCodes.success.rawValue {
                     self.presenter?.showErrorMessage(error: errorValue.message)

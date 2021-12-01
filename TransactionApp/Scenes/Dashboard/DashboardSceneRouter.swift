@@ -8,35 +8,27 @@
 import Foundation
 import UIKit
 
-protocol DashboardSceneRouting:Failure {
+protocol DashboardSceneRoutingLogic:Failure {
     func popToPrevious()
     func showNextController()
 }
 
 final class DashboardSceneRouter {
-    weak var source: UIViewController?
-
-    private let sceneFactory: SceneFactory
-    
-    init(sceneFactory: SceneFactory) {
-        self.sceneFactory = sceneFactory
-    }
+    weak var viewController: UIViewController?
 }
 
-extension DashboardSceneRouter: DashboardSceneRouting {
+extension DashboardSceneRouter: DashboardSceneRoutingLogic {
     func showNextController() {
-        let sceneFactory = DefaultSceneFactory()
-        sceneFactory.transferConfigurator = DefaultTransferSceneConfigurator(sceneFactory: sceneFactory)
-        let scene = sceneFactory.makeTransferScene()
-        source?.navigationController?.pushViewController(scene, animated: true)
+        let transferVC = Utils.getViewController(identifier: "ShowTransfer") as! TransferSceneViewController
+        self.viewController?.navigationController?.pushViewController(transferVC, animated: true)
     }
     
     func showFailure(message: String) {
         let alertController = Utils.getAlert(title:Utils.getLocalisedValue(key:"Information_Error_Title"),message:message)
-        source?.present(alertController, animated: true)
+        self.viewController?.present(alertController, animated: true)
     }
     func popToPrevious(){
-        self.source?.navigationController?.popViewController(animated: true)
+        self.viewController?.navigationController?.popViewController(animated: true)
     }
 
 }

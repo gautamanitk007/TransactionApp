@@ -27,9 +27,7 @@ extension LoginSceneRouter: LoginSceneRoutingLogic {
     }
     
     func showDashboard() {
-        let sceneFactory = DefaultSceneFactory()
-        sceneFactory.dashboardConfigurator = DefaultDashboardSceneConfigurator(sceneFactory: sceneFactory)
-        let scene = sceneFactory.makeDashboardScene()
-        viewController?.navigationController?.pushViewController(scene, animated: true)
+        let dashboardVC = Utils.getViewController(identifier: "showDashboard") as! DashboardSceneViewController
+        viewController?.navigationController?.pushViewController(dashboardVC, animated: true)
     }
 }
