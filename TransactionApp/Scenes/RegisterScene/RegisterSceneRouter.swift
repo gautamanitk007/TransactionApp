@@ -1,22 +1,21 @@
 //
-//  LoginSceneRouter.swift
+//  RegisterSceneRouter.swift
 //  TransactionApp
 //
-//  Created by Gautam Singh on 12/11/21.
-//
+//  Created by Gautam Singh on 14/12/21.
 
-import Foundation
+
 import UIKit
 
-protocol Failure {
-    func showFailure(message: String)
+
+
+final class RegisterSceneRouter {
+    
+  weak var viewController: RegisterSceneViewController?
+  
 }
 
-final class LoginSceneRouter {
-    weak var viewController: UIViewController?
-}
-
-extension LoginSceneRouter: LoginSceneRoutingLogic {
+extension RegisterSceneRouter:RegisterSceneRoutingLogic{
     func showFailure(message: String) {
         let alertController = Utils.getAlert(title:Utils.getLocalisedValue(key:"Information_Error_Title"),message:message)
         viewController?.present(alertController, animated: true)
@@ -25,9 +24,5 @@ extension LoginSceneRouter: LoginSceneRoutingLogic {
     func showDashboard() {
         let dashboardVC = Utils.getViewController(identifier: "showDashboard") as! DashboardSceneViewController
         viewController?.navigationController?.pushViewController(dashboardVC, animated: true)
-    }
-    func showRegister() {
-        let registerVC = Utils.getViewController(identifier: "RegisterScene") as! RegisterSceneViewController
-        viewController?.navigationController?.pushViewController(registerVC, animated: true)
     }
 }

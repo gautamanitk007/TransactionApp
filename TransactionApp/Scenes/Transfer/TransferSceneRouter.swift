@@ -8,15 +8,8 @@
 import Foundation
 import UIKit
 
-protocol TransferSceneRoutingLogic:Failure {
-    func popToPrevious()
-    func showSuccess(msg:String)
-    func showPopOver(for indetifier:String, popoverList:[TransferSceneDataModel.Payee], delegate:DropdownViewControllerDelegate)
-}
-
 final class TransferSceneRouter {
     weak var viewController: UIViewController?
-
 }
 
 extension TransferSceneRouter: TransferSceneRoutingLogic {

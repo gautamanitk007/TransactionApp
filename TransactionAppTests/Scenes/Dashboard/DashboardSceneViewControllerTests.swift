@@ -101,7 +101,7 @@ private final class DashboardSceneBussinessLogicMock: DashboardSceneBussinessLog
 
 private final class DashboardSceneRoutingLogicMock: DashboardSceneRoutingLogic{
     var isPopViewControllerCalled:Bool = false
-    func popToPrevious() {
+    func popToRootController() {
         isPopViewControllerCalled = true
     }
     

@@ -25,3 +25,7 @@ protocol DashboardScenePresentationLogic:AnyObject {
     func didFailedToLoad( error: String?)
 }
 
+protocol DashboardSceneRoutingLogic:Failure {
+    func popToRootController()
+    func showNextController()
+}

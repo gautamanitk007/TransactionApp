@@ -20,3 +20,8 @@ protocol LoginScenePresentationLogic: AnyObject {
     func presentLogin(response: LoginSceneDataModel.Response)
     func presentLogin(error: LoginSceneDataModel.Error)
 }
+
+protocol LoginSceneRoutingLogic: Failure {
+    func showDashboard()
+    func showRegister()
+}

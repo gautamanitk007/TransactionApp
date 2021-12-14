@@ -28,6 +28,7 @@ final class LoginSceneViewController: BaseViewController {
     }
     
     @IBOutlet weak var btnLogin: UIButton!
+    @IBOutlet weak var btnRegister: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,9 @@ final class LoginSceneViewController: BaseViewController {
         self.view.endEditing(true)
         self.startActivity()
         self.interactor?.startLogin(request: self.userModel!)
+    }
+    @IBAction func didRegisterTapped(_ sender: Any) {
+        self.router?.showRegister()
     }
 }
 

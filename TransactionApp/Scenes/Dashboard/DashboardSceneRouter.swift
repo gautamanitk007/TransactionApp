@@ -8,11 +8,6 @@
 import Foundation
 import UIKit
 
-protocol DashboardSceneRoutingLogic:Failure {
-    func popToPrevious()
-    func showNextController()
-}
-
 final class DashboardSceneRouter {
     weak var viewController: UIViewController?
 }
@@ -27,8 +22,8 @@ extension DashboardSceneRouter: DashboardSceneRoutingLogic {
         let alertController = Utils.getAlert(title:Utils.getLocalisedValue(key:"Information_Error_Title"),message:message)
         self.viewController?.present(alertController, animated: true)
     }
-    func popToPrevious(){
-        self.viewController?.navigationController?.popViewController(animated: true)
+    func popToRootController(){
+        self.viewController?.navigationController?.popToRootViewController(animated: true)
     }
 
 }

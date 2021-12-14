@@ -12,6 +12,17 @@ public class APIService: ServiceProtocol {
     init(_ apiManager:APIManagerProtocol) {
         self.apiManager = apiManager
     }
+    public func registerUser(request:RegisterScene.Request, on completion:@escaping(RegisterScene.Response?,ApiError?)->()){
+        let body = request.jsonValue()
+        let request = APIRequest(endPoint: EndPoints.register.rawValue, postBody: body!)
+        let regResource = Resource<RegisterScene.Response>(request: request) { data in
+            let registerResponse = try? JSONDecoder().decode(RegisterScene.Response.self, from: data)
+            return registerResponse
+        }
+        self.apiManager.runAPI(resource: regResource) { (response, error) in
+            completion(response,error)
+        }
+    }
     public func startLogin(request:LoginSceneDataModel.Request, on completion:@escaping(LoginSceneDataModel.Response?,ApiError?)->()){
         
         if TransactionManager.shared.enableMock {

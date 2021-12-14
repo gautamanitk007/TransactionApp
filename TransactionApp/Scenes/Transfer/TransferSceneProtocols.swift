@@ -20,3 +20,9 @@ protocol TransferScenePresentationLogic:AnyObject {
     func showErrorMessage( error: String?)
     func transferSuccess(response:TransferSceneDataModel.TransferResponse)
 }
+
+protocol TransferSceneRoutingLogic:Failure {
+    func popToPrevious()
+    func showSuccess(msg:String)
+    func showPopOver(for indetifier:String, popoverList:[TransferSceneDataModel.Payee], delegate:DropdownViewControllerDelegate)
+}

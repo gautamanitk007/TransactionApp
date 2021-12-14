@@ -49,6 +49,12 @@
 		D2C289C5273AC5FC00E79627 /* TransactionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C289C4273AC5FC00E79627 /* TransactionManager.swift */; };
 		D2C38040273BE07700F71879 /* DropdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3803F273BE07700F71879 /* DropdownViewController.swift */; };
 		D2C3804B273BE41E00F71879 /* GeneralCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3804A273BE41E00F71879 /* GeneralCell.swift */; };
+		D2E354A1276895BB003DE4C5 /* RegisterScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E3549B276895BB003DE4C5 /* RegisterScenePresenter.swift */; };
+		D2E354A3276895BB003DE4C5 /* RegisterSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E3549D276895BB003DE4C5 /* RegisterSceneRouter.swift */; };
+		D2E354A4276895BB003DE4C5 /* RegisterSceneModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E3549E276895BB003DE4C5 /* RegisterSceneModels.swift */; };
+		D2E354A5276895BB003DE4C5 /* RegisterSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E3549F276895BB003DE4C5 /* RegisterSceneViewController.swift */; };
+		D2E354A6276895BB003DE4C5 /* RegisterSceneInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E354A0276895BB003DE4C5 /* RegisterSceneInteractor.swift */; };
+		D2E354AB27689F5F003DE4C5 /* RegisterSceneProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E354AA27689F5F003DE4C5 /* RegisterSceneProtocols.swift */; };
 		D2F9126E27395EA500FC5487 /* TableViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F9126D27395EA500FC5487 /* TableViewDatasource.swift */; };
 		D2F9127627395FBB00FC5487 /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F9127527395FBB00FC5487 /* TransactionCell.swift */; };
 		D2F9127C27396DB800FC5487 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F9127B27396DB800FC5487 /* Extensions.swift */; };
@@ -140,6 +146,12 @@
 		D2C289C4273AC5FC00E79627 /* TransactionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionManager.swift; sourceTree = "<group>"; };
 		D2C3803F273BE07700F71879 /* DropdownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownViewController.swift; sourceTree = "<group>"; };
 		D2C3804A273BE41E00F71879 /* GeneralCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralCell.swift; sourceTree = "<group>"; };
+		D2E3549B276895BB003DE4C5 /* RegisterScenePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScenePresenter.swift; sourceTree = "<group>"; };
+		D2E3549D276895BB003DE4C5 /* RegisterSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterSceneRouter.swift; sourceTree = "<group>"; };
+		D2E3549E276895BB003DE4C5 /* RegisterSceneModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterSceneModels.swift; sourceTree = "<group>"; };
+		D2E3549F276895BB003DE4C5 /* RegisterSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterSceneViewController.swift; sourceTree = "<group>"; };
+		D2E354A0276895BB003DE4C5 /* RegisterSceneInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterSceneInteractor.swift; sourceTree = "<group>"; };
+		D2E354AA27689F5F003DE4C5 /* RegisterSceneProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterSceneProtocols.swift; sourceTree = "<group>"; };
 		D2F9126D27395EA500FC5487 /* TableViewDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDatasource.swift; sourceTree = "<group>"; };
 		D2F9127527395FBB00FC5487 /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
 		D2F9127B27396DB800FC5487 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -298,6 +310,7 @@
 		D2C20D38273626EF0061D929 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				D2E3549A27689597003DE4C5 /* RegisterScene */,
 				D2C20D4D273628DC0061D929 /* Transfer */,
 				D2C20D4C273627EE0061D929 /* Dashboard */,
 				D2C20D39273626FB0061D929 /* LoginScene */,
@@ -401,6 +414,19 @@
 				D2F9126D27395EA500FC5487 /* TableViewDatasource.swift */,
 			);
 			path = Datasource;
+			sourceTree = "<group>";
+		};
+		D2E3549A27689597003DE4C5 /* RegisterScene */ = {
+			isa = PBXGroup;
+			children = (
+				D2E3549B276895BB003DE4C5 /* RegisterScenePresenter.swift */,
+				D2E3549D276895BB003DE4C5 /* RegisterSceneRouter.swift */,
+				D2E3549E276895BB003DE4C5 /* RegisterSceneModels.swift */,
+				D2E3549F276895BB003DE4C5 /* RegisterSceneViewController.swift */,
+				D2E354A0276895BB003DE4C5 /* RegisterSceneInteractor.swift */,
+				D2E354AA27689F5F003DE4C5 /* RegisterSceneProtocols.swift */,
+			);
+			path = RegisterScene;
 			sourceTree = "<group>";
 		};
 		D2FD1E4C273E3712001386D3 /* Dashboard */ = {
@@ -571,11 +597,14 @@
 				D2C20D66273629160061D929 /* TransferScenePresenter.swift in Sources */,
 				D2503185275771020086EDC8 /* TransferSceneProtocols.swift in Sources */,
 				D2FD1E36273E07A4001386D3 /* LoginSceneRouter.swift in Sources */,
+				D2E354AB27689F5F003DE4C5 /* RegisterSceneProtocols.swift in Sources */,
+				D2E354A6276895BB003DE4C5 /* RegisterSceneInteractor.swift in Sources */,
 				D2F9126E27395EA500FC5487 /* TableViewDatasource.swift in Sources */,
 				D2C20D57273628FC0061D929 /* DashboardSceneInteractor.swift in Sources */,
 				D2C20D9C273652250061D929 /* BaseViewController.swift in Sources */,
 				D22BFAEF27382AC900764BBB /* RoundedView.swift in Sources */,
 				D29E4DB5274F364C00DD586D /* LoginSceneProtocols.swift in Sources */,
+				D2E354A5276895BB003DE4C5 /* RegisterSceneViewController.swift in Sources */,
 				D2C20DCE273686FC0061D929 /* APIProtocol.swift in Sources */,
 				D2FD1E5C273E3F97001386D3 /* DashboardSceneRouter.swift in Sources */,
 				D29E4DBA274F37F600DD586D /* LoginSceneDataModel.swift in Sources */,
@@ -583,6 +612,7 @@
 				D2C20D69273629160061D929 /* TransferSceneInteractor.swift in Sources */,
 				D250317A275744D00086EDC8 /* DashboardSceneProtocols.swift in Sources */,
 				D2C20D68273629160061D929 /* TransferSceneViewController.swift in Sources */,
+				D2E354A4276895BB003DE4C5 /* RegisterSceneModels.swift in Sources */,
 				D2C20D59273628FC0061D929 /* DashboardSceneModel.swift in Sources */,
 				D2C289C5273AC5FC00E79627 /* TransactionManager.swift in Sources */,
 				D2C20D06273626CB0061D929 /* AppDelegate.swift in Sources */,
@@ -591,6 +621,7 @@
 				D2C20DDB2736A26D0061D929 /* APIService.swift in Sources */,
 				D2C20D56273628FC0061D929 /* DashboardSceneViewController.swift in Sources */,
 				D2C20D46273627710061D929 /* LoginSceneInteractor.swift in Sources */,
+				D2E354A1276895BB003DE4C5 /* RegisterScenePresenter.swift in Sources */,
 				D2C20D54273628FC0061D929 /* DashboardScenePresenter.swift in Sources */,
 				D2F9127627395FBB00FC5487 /* TransactionCell.swift in Sources */,
 				D20B871E273C0D2700959452 /* TransferSceneModel.swift in Sources */,
@@ -600,6 +631,7 @@
 				D2C20D7527362EFE0061D929 /* BindingTextField.swift in Sources */,
 				D22BFA792737D0DA00764BBB /* Utils.swift in Sources */,
 				D2C20D43273627710061D929 /* LoginScenePresenter.swift in Sources */,
+				D2E354A3276895BB003DE4C5 /* RegisterSceneRouter.swift in Sources */,
 				D2C20DE02736AECB0061D929 /* APIManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

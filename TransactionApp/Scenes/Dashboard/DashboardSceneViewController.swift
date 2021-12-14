@@ -14,6 +14,7 @@ enum Identifier:String {
 }
 
 
+
 final class DashboardSceneViewController: BaseViewController {
   
     @IBOutlet weak var btnTransfer: RoundedButton!
@@ -44,7 +45,7 @@ final class DashboardSceneViewController: BaseViewController {
     
     @objc func logoutTapped(_ sender: Any) {
         TransactionManager.shared.token = ""
-        self.router?.popToPrevious()
+        self.router?.popToRootController()
     }
  
     @IBAction func didTransferTapped(_ sender: Any) {
