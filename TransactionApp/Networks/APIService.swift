@@ -13,24 +13,37 @@ public class APIService: ServiceProtocol {
         self.apiManager = apiManager
     }
     public func registerUser(request:RegisterScene.Request, on completion:@escaping(RegisterScene.Response?,ApiError?)->()){
-        let body = request.jsonValue()
-        let request = APIRequest(endPoint: EndPoints.register.rawValue, postBody: body!)
-        let regResource = Resource<RegisterScene.Response>(request: request) { data in
-            let registerResponse = try? JSONDecoder().decode(RegisterScene.Response.self, from: data)
-            return registerResponse
-        }
-        self.apiManager.runAPI(resource: regResource) { (response, error) in
-            completion(response,error)
+        if TransactionManager.shared.enableMock {
+            DispatchQueue.main.async {
+                guard let rsp: RegisterScene.Response = Utils.load(bundle: Bundle(for: APIService.self), fileName: "RegisterResponse") else {
+                    completion(nil,ApiError(statusCode: -2, message: "Register mock parsing error"))
+                    return
+                }
+                completion(rsp,nil)
+            }
+        } else {
+            if let body = request.jsonValue(){
+                let request = APIRequest(endPoint: EndPoints.register.rawValue, postBody: body)
+                let regResource = Resource<RegisterScene.Response>(request: request) { data in
+                    let registerResponse = try? JSONDecoder().decode(RegisterScene.Response.self, from: data)
+                    return registerResponse
+                }
+                self.apiManager.runAPI(resource: regResource) { (response, error) in
+                    completion(response,error)
+                }
+            }
         }
     }
     public func startLogin(request:LoginSceneDataModel.Request, on completion:@escaping(LoginSceneDataModel.Response?,ApiError?)->()){
         
         if TransactionManager.shared.enableMock {
-            guard let rsp: LoginSceneDataModel.Response = Utils.load(bundle: Bundle(for: APIService.self), fileName: "LoginResponse") else {
-                completion(nil,ApiError(statusCode: -2, message: "Login mock parsing error"))
-                return
+            DispatchQueue.main.async {
+                guard let rsp: LoginSceneDataModel.Response = Utils.load(bundle: Bundle(for: APIService.self), fileName: "LoginResponse") else {
+                    completion(nil,ApiError(statusCode: -2, message: "Login mock parsing error"))
+                    return
+                }
+                completion(rsp,nil)
             }
-            completion(rsp,nil)
         } else {
             let body = request.jsonValue()
             let request = APIRequest(endPoint: EndPoints.login.rawValue, postBody: body!)
@@ -45,11 +58,13 @@ public class APIService: ServiceProtocol {
     }
     public func checkBalances(on completion: @escaping(DashboardSceneDataModel.BalanceResponse?,ApiError?)->()){
         if TransactionManager.shared.enableMock {
-            guard let rsp: DashboardSceneDataModel.BalanceResponse = Utils.load(bundle: Bundle(for: APIService.self), fileName: "Balance") else {
-                completion(nil,ApiError(statusCode: -2, message: "Balance check parsing error"))
-                return
+            DispatchQueue.main.async {
+                guard let rsp: DashboardSceneDataModel.BalanceResponse = Utils.load(bundle: Bundle(for: APIService.self), fileName: "Balance") else {
+                    completion(nil,ApiError(statusCode: -2, message: "Balance check parsing error"))
+                    return
+                }
+                completion(rsp,nil)
             }
-            completion(rsp,nil)
         } else {
             var request = APIRequest(endPoint: EndPoints.balances.rawValue, postBody: [:])
             request.httpMethod = HttpMethod.get
@@ -65,11 +80,13 @@ public class APIService: ServiceProtocol {
     }
     public func getAllPayee(on completion: @escaping(TransferSceneDataModel.PayeeResponse?,ApiError?)->()){
         if TransactionManager.shared.enableMock {
-            guard let rsp: TransferSceneDataModel.PayeeResponse = Utils.load(bundle: Bundle(for: APIService.self), fileName: "Payee") else {
-                completion(nil,ApiError(statusCode: -2, message: "Payee parsing error"))
-                return
+            DispatchQueue.main.async {
+                guard let rsp: TransferSceneDataModel.PayeeResponse = Utils.load(bundle: Bundle(for: APIService.self), fileName: "Payee") else {
+                    completion(nil,ApiError(statusCode: -2, message: "Payee parsing error"))
+                    return
+                }
+                completion(rsp,nil)
             }
-            completion(rsp,nil)
         }else{
             var request = APIRequest(endPoint: EndPoints.payees.rawValue, postBody: [:])
             request.httpMethod = HttpMethod.get
@@ -85,11 +102,13 @@ public class APIService: ServiceProtocol {
     public func getAllTransactions(on completion: @escaping(DashboardSceneDataModel.TransactionResponse?,ApiError?)->()){
         
         if TransactionManager.shared.enableMock {
-            guard let rsp: DashboardSceneDataModel.TransactionResponse = Utils.load(bundle: Bundle(for: APIService.self), fileName: "Transactions") else {
-                completion(nil,ApiError(statusCode: -2, message: "Transaction parsing error"))
-                return
+            DispatchQueue.main.async {
+                guard let rsp: DashboardSceneDataModel.TransactionResponse = Utils.load(bundle: Bundle(for: APIService.self), fileName: "Transactions") else {
+                    completion(nil,ApiError(statusCode: -2, message: "Transaction parsing error"))
+                    return
+                }
+                completion(rsp,nil)
             }
-            completion(rsp,nil)
         } else {
             var request = APIRequest(endPoint: EndPoints.transactions.rawValue, postBody: [:])
             request.httpMethod = HttpMethod.get
@@ -105,11 +124,13 @@ public class APIService: ServiceProtocol {
     }
     public func fundTransfer(params:[String:Any], on completion:@escaping(TransferSceneDataModel.TransferResponse?,ApiError?)->()){
         if TransactionManager.shared.enableMock {
-            guard let rsp: TransferSceneDataModel.TransferResponse = Utils.load(bundle: Bundle(for: APIService.self), fileName: "Transfer") else {
-                completion(nil,ApiError(statusCode: -2, message: "Transfer parsing error"))
-                return
+            DispatchQueue.main.async {
+                guard let rsp: TransferSceneDataModel.TransferResponse = Utils.load(bundle: Bundle(for: APIService.self), fileName: "Transfer") else {
+                    completion(nil,ApiError(statusCode: -2, message: "Transfer parsing error"))
+                    return
+                }
+                completion(rsp,nil)
             }
-            completion(rsp,nil)
         }else{
             var request = APIRequest(endPoint: EndPoints.transfer.rawValue, postBody: [:])
             request.httpMethod = HttpMethod.post

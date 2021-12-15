@@ -16,6 +16,7 @@ extension RegisterScenePresenter:RegisterScenePresentationLogic{
     
     func presentRegister(response: RegisterScene.Response) {
         if let token = response.token{
+            TransactionManager.shared.token = token
             let viewModel = RegisterScene.RegisterViewModel(token: token)
             self.viewController?.displayRegisterSuccess(viewModel: viewModel)
         } else {

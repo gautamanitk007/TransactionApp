@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private let hostName = "google.com"
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        //TransactionManager.shared.enableMock = true
+        TransactionManager.shared.enableMock = true
         UINavigationBar.appearance().isTranslucent = false
         UINavigationBar.appearance().barTintColor = .systemBlue
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]

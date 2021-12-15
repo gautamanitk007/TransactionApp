@@ -19,6 +19,9 @@
 		D2503169275738630086EDC8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22BFA782737D0DA00764BBB /* Utils.swift */; };
 		D250317A275744D00086EDC8 /* DashboardSceneProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2503179275744D00086EDC8 /* DashboardSceneProtocols.swift */; };
 		D2503185275771020086EDC8 /* TransferSceneProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2503184275771020086EDC8 /* TransferSceneProtocols.swift */; };
+		D28B84F92769FC6400786360 /* RegisterResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D28B84F82769FC6400786360 /* RegisterResponse.json */; };
+		D28B85002769FD3600786360 /* RegisterResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D28B84F82769FC6400786360 /* RegisterResponse.json */; };
+		D28B85042769FD3E00786360 /* PayeeEmpty.json in Resources */ = {isa = PBXBuildFile; fileRef = D24AEFBC2740C5C60060F788 /* PayeeEmpty.json */; };
 		D29E4DB5274F364C00DD586D /* LoginSceneProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29E4DB4274F364C00DD586D /* LoginSceneProtocols.swift */; };
 		D29E4DBA274F37F600DD586D /* LoginSceneDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29E4DB9274F37F600DD586D /* LoginSceneDataModel.swift */; };
 		D2C20D06273626CB0061D929 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20D05273626CB0061D929 /* AppDelegate.swift */; };
@@ -110,6 +113,7 @@
 		D24AEFD6274100720060F788 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		D2503179275744D00086EDC8 /* DashboardSceneProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSceneProtocols.swift; sourceTree = "<group>"; };
 		D2503184275771020086EDC8 /* TransferSceneProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferSceneProtocols.swift; sourceTree = "<group>"; };
+		D28B84F82769FC6400786360 /* RegisterResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RegisterResponse.json; sourceTree = "<group>"; };
 		D29E4DB4274F364C00DD586D /* LoginSceneProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSceneProtocols.swift; sourceTree = "<group>"; };
 		D29E4DB9274F37F600DD586D /* LoginSceneDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSceneDataModel.swift; sourceTree = "<group>"; };
 		D2C20D02273626CB0061D929 /* TransactionApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransactionApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -228,6 +232,7 @@
 		D22BFA982737E4F700764BBB /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				D28B84F82769FC6400786360 /* RegisterResponse.json */,
 				D24AEFBC2740C5C60060F788 /* PayeeEmpty.json */,
 				D2FD1DD9273DEF42001386D3 /* Payee.json */,
 				D2FD1DCE273DEF13001386D3 /* Transactions.json */,
@@ -552,6 +557,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D28B85042769FD3E00786360 /* PayeeEmpty.json in Resources */,
 				D2FD1E19273DF4BA001386D3 /* Transfer.json in Resources */,
 				D2C20D12273626D70061D929 /* LaunchScreen.storyboard in Resources */,
 				D2FD1E04273DF3E1001386D3 /* Transactions.json in Resources */,
@@ -559,6 +565,7 @@
 				D2C20DA9273678030061D929 /* LoginResponse.json in Resources */,
 				D22BFA892737D48900764BBB /* Localizable.strings in Resources */,
 				D2C20D0F273626D70061D929 /* Assets.xcassets in Resources */,
+				D28B85002769FD3600786360 /* RegisterResponse.json in Resources */,
 				D2FD1E15273DF438001386D3 /* Payee.json in Resources */,
 				D2C20D0D273626CB0061D929 /* Main.storyboard in Resources */,
 			);
@@ -568,6 +575,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D28B84F92769FC6400786360 /* RegisterResponse.json in Resources */,
 				D2FD1DCF273DEF13001386D3 /* Transactions.json in Resources */,
 				D2FD1DDA273DEF42001386D3 /* Payee.json in Resources */,
 				D24AEFBD2740C5C60060F788 /* PayeeEmpty.json in Resources */,
