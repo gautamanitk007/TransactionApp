@@ -58,6 +58,13 @@ private extension RegisterSceneViewController{
     func setupUI(){
         self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.title = Utils.getLocalisedValue(key:"Page_Register_Title")
+        self.txtUsername.delegate = self
+        self.txtPassword.delegate = self
+        self.txtConfirmPassword.delegate = self
+        self.txtUsername.placeholder = Utils.getLocalisedValue(key:"Login_Text_Field_Placeholder")
+        self.txtPassword.placeholder = Utils.getLocalisedValue(key:"Password_Text_Field_Placeholder")
+        self.txtConfirmPassword.placeholder = Utils.getLocalisedValue(key:"Password_Text_Field_Confirm_Placeholder")
+        self.btnRegister.setTitle(Utils.getLocalisedValue(key:"Register_Button_Title"), for: .normal)
     }
 }
 
@@ -70,5 +77,18 @@ extension RegisterSceneViewController:RegisterSceneDisplayLogic{
     func displayRegisterFailed(errorViewModel: RegisterScene.ErrorViewModel) {
         self.stopActivity()
         self.router?.showFailure(message: errorViewModel.error)
+    }
+}
+//MARK:- UITextFieldDelegate
+extension RegisterSceneViewController: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == self.txtUsername {
+            self.txtPassword.becomeFirstResponder()
+        }else if textField == self.txtPassword{
+            self.txtConfirmPassword.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return false
     }
 }

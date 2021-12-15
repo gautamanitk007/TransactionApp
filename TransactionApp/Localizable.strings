@@ -7,11 +7,13 @@
 */
 "Login_Text_Field_Placeholder" = "Username";
 "Password_Text_Field_Placeholder" = "Password";
+"Password_Text_Field_Confirm_Placeholder" = "Confirm password";
 "Recipient_Text_Field_Placeholder" = "Recipient";
 "DateOfTransfer_Text_Field_Placeholder" = "Date of Transfer";
 "Description_Text_Field_Placeholder" = "Description";
 "Amount_Text_Field_Placeholder" = "Amount";
 "Login_Button_Title" = "Login";
+"Register_Button_Title" = "Register User";
 "Button_Logout_Title" = "Logout";
 "Page_Dashboard_Title" = "Dashboard";
 "Page_Transfer_Title" = "Transfer";
