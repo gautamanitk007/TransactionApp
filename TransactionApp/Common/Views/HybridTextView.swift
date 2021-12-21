@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-
 class HybridTextView: UIView {
     @IBOutlet weak var lblHeader:UILabel!
     @IBOutlet weak var lblFooter:UILabel!
@@ -15,11 +14,6 @@ class HybridTextView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        let bundle = Bundle(for: type(of: self))
-        let nib = UINib.init(nibName: "HybridTextView", bundle: bundle)
-        if let hView = nib.instantiate(withOwner: self, options: nil).first as? UIView {
-            hView.fixInView(self)
-        }
     }
     
     required init?(coder aDecoder: NSCoder) {

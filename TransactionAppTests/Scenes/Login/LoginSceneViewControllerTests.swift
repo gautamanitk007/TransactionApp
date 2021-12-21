@@ -95,4 +95,7 @@ private final class LoginSceneRoutingLogicMock: LoginSceneRoutingLogic{
     func showFailure(message: String) {
         self.loginFailedMsg = message
     }
+    func showRegister() {
+        
+    }
 }

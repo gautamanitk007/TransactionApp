@@ -48,3 +48,4 @@
 "Past_Transfer_Date_Msg" = "Transfer date cannot be less than equal to current date and time";
 "Page_Register_Title" = "Register";
 "Already_Exist" = "User already registered";
+"NotFound" = "not found";

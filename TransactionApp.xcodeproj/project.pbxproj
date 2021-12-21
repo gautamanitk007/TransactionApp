@@ -22,6 +22,8 @@
 		D28B84F92769FC6400786360 /* RegisterResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D28B84F82769FC6400786360 /* RegisterResponse.json */; };
 		D28B85002769FD3600786360 /* RegisterResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D28B84F82769FC6400786360 /* RegisterResponse.json */; };
 		D28B85042769FD3E00786360 /* PayeeEmpty.json in Resources */ = {isa = PBXBuildFile; fileRef = D24AEFBC2740C5C60060F788 /* PayeeEmpty.json */; };
+		D28EBE74276D9ECF00A0A3EA /* HybridTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28EBE73276D9ECF00A0A3EA /* HybridTextView.swift */; };
+		D28EBE79276DAB9600A0A3EA /* HybridTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28EBE78276DAB9600A0A3EA /* HybridTextView.xib */; };
 		D29E4DB5274F364C00DD586D /* LoginSceneProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29E4DB4274F364C00DD586D /* LoginSceneProtocols.swift */; };
 		D29E4DBA274F37F600DD586D /* LoginSceneDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29E4DB9274F37F600DD586D /* LoginSceneDataModel.swift */; };
 		D2C20D06273626CB0061D929 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C20D05273626CB0061D929 /* AppDelegate.swift */; };
@@ -114,6 +116,8 @@
 		D2503179275744D00086EDC8 /* DashboardSceneProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSceneProtocols.swift; sourceTree = "<group>"; };
 		D2503184275771020086EDC8 /* TransferSceneProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferSceneProtocols.swift; sourceTree = "<group>"; };
 		D28B84F82769FC6400786360 /* RegisterResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RegisterResponse.json; sourceTree = "<group>"; };
+		D28EBE73276D9ECF00A0A3EA /* HybridTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridTextView.swift; sourceTree = "<group>"; };
+		D28EBE78276DAB9600A0A3EA /* HybridTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HybridTextView.xib; sourceTree = "<group>"; };
 		D29E4DB4274F364C00DD586D /* LoginSceneProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSceneProtocols.swift; sourceTree = "<group>"; };
 		D29E4DB9274F37F600DD586D /* LoginSceneDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSceneDataModel.swift; sourceTree = "<group>"; };
 		D2C20D02273626CB0061D929 /* TransactionApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransactionApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -381,6 +385,8 @@
 				D22BFAEE27382AC900764BBB /* RoundedView.swift */,
 				D2F9127527395FBB00FC5487 /* TransactionCell.swift */,
 				D2C3804A273BE41E00F71879 /* GeneralCell.swift */,
+				D28EBE73276D9ECF00A0A3EA /* HybridTextView.swift */,
+				D28EBE78276DAB9600A0A3EA /* HybridTextView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -558,6 +564,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D28B85042769FD3E00786360 /* PayeeEmpty.json in Resources */,
+				D28EBE79276DAB9600A0A3EA /* HybridTextView.xib in Resources */,
 				D2FD1E19273DF4BA001386D3 /* Transfer.json in Resources */,
 				D2C20D12273626D70061D929 /* LaunchScreen.storyboard in Resources */,
 				D2FD1E04273DF3E1001386D3 /* Transactions.json in Resources */,
@@ -605,6 +612,7 @@
 				D2C20D66273629160061D929 /* TransferScenePresenter.swift in Sources */,
 				D2503185275771020086EDC8 /* TransferSceneProtocols.swift in Sources */,
 				D2FD1E36273E07A4001386D3 /* LoginSceneRouter.swift in Sources */,
+				D28EBE74276D9ECF00A0A3EA /* HybridTextView.swift in Sources */,
 				D2E354AB27689F5F003DE4C5 /* RegisterSceneProtocols.swift in Sources */,
 				D2E354A6276895BB003DE4C5 /* RegisterSceneInteractor.swift in Sources */,
 				D2F9126E27395EA500FC5487 /* TableViewDatasource.swift in Sources */,

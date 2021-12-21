@@ -13,11 +13,15 @@ public enum HttpMethod: String {
     case put = "PUT"
     case delete = "DELETE"
 }
+public enum ResponseValue:String{
+    case success = "success"
+}
 public enum ResponseCodes: Int {
     case success = 200
     case badrequest = 400
     case token_invalid = 401
     case forbidden = 403
+    case notfound = 404
     case network_timeout = -1001
     case server_notReachable = -1003
     case server_Not_Available = -1009

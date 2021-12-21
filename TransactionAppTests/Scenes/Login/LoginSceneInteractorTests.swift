@@ -50,7 +50,12 @@ final class LoginSceneInteractorTests: XCTestCase  {
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
             guard let self = self else {return}
             loginExp.fulfill()
-            XCTAssertTrue(self.presenter.interactorRespondedSuccess)
+            if TransactionManager.shared.token.count > 1 {
+                XCTAssertTrue(self.presenter.interactorRespondedSuccess)
+            } else {
+                XCTAssertFalse(self.presenter.interactorRespondedSuccess)
+            }
+            
         }
         waitForExpectations(timeout: 2)
         

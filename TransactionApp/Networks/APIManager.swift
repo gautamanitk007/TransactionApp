@@ -28,8 +28,8 @@ public class APIManager: APIManagerProtocol {
                 }
                 DispatchQueue.main.async {
                     if let data = data {
-                        let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: [])
-                        print(jsonResponse)
+                        //let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: [])
+                        //print(jsonResponse)
                         if sError?.statusCode == ResponseCodes.forbidden.rawValue{
                             let err = ApiError(statusCode: ResponseCodes.forbidden.rawValue, message: Utils.getLocalisedValue(key: "Already_Exist"))
                             completion(nil,err)

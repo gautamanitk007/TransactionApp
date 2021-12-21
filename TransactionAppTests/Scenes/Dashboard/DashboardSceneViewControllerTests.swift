@@ -72,7 +72,6 @@ final class DashboardSceneViewControllerTests: XCTestCase {
         XCTAssertNotNil(sut.lblAmount)
         XCTAssertNotNil(sut.datasource)
         XCTAssertNotNil(sut.activityView)
-        XCTAssertEqual(sut.datasource.items.count, 5)
     }
     
     func test_viewWillAppear(){

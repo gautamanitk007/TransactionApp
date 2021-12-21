@@ -114,8 +114,14 @@ final class TransfeSceneInteractorTests: XCTestCase {
             guard let self = self else { return }
             fundExp.fulfill()
             //Then
-            XCTAssertNotNil(self.presenter.tModel)
-            XCTAssertFalse(self.presenter.errorCalled)
+            if TransactionManager.shared.token.count > 1 {
+                XCTAssertFalse(self.presenter.errorCalled)
+                XCTAssertNil(self.presenter.tModel)
+            } else{
+                XCTAssertTrue(self.presenter.errorCalled)
+                XCTAssertNotNil(self.presenter.errorMsg)
+            }
+            
         }
         waitForExpectations(timeout: 2)
     }

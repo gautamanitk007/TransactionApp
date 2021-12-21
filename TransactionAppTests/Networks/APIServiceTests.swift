@@ -29,14 +29,20 @@ final class APIServiceTests: XCTestCase {
         sut.startLogin(request: userModel, on: { (response, error) in
             loginExpectation.fulfill()
             //Then
-            if error?.statusCode == ResponseCodes.server_notReachable.rawValue{
-                XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerNotReachable"))
-            } else if error?.statusCode == ResponseCodes.server_Not_Available.rawValue{
-                XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerDown"))
+            if let resp = response, resp.status == ResponseValue.success.rawValue {
+                XCTAssertNotNil(response?.token)
             } else{
-                XCTAssertEqual(response?.status, Utils.getLocalisedValue(key: "Failed"))
-                XCTAssertNil(response?.token)
-                XCTAssertNotNil(error)
+                if error?.statusCode == ResponseCodes.server_notReachable.rawValue{
+                    XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerNotReachable"))
+                } else if error?.statusCode == ResponseCodes.server_Not_Available.rawValue{
+                    XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerDown"))
+                }else if error?.statusCode == ResponseCodes.notfound.rawValue{
+                    XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "NotFound"))
+                } else{
+                    XCTAssertEqual(response?.status, Utils.getLocalisedValue(key: "Failed"))
+                    XCTAssertNil(response?.token)
+                    XCTAssertNotNil(error)
+                }
             }
         })
         
@@ -52,14 +58,20 @@ final class APIServiceTests: XCTestCase {
         sut.startLogin(request: userModel, on: { (response, error) in
             loginExpectation.fulfill()
             //Then
-            if error?.statusCode == ResponseCodes.server_notReachable.rawValue{
-                XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerNotReachable"))
-            } else if error?.statusCode == ResponseCodes.server_Not_Available.rawValue{
-                XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerDown"))
-            } else{
-                XCTAssertEqual(response?.status, Utils.getLocalisedValue(key: "Failed"))
-                XCTAssertNil(response?.token)
-                XCTAssertNotNil(error)
+            if let resp = response, resp.status == ResponseValue.success.rawValue {
+                XCTAssertNotNil(response?.token)
+            } else {
+                if error?.statusCode == ResponseCodes.server_notReachable.rawValue{
+                    XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerNotReachable"))
+                } else if error?.statusCode == ResponseCodes.server_Not_Available.rawValue{
+                    XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerDown"))
+                }else if error?.statusCode == ResponseCodes.notfound.rawValue{
+                    XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "NotFound"))
+                }else{
+                    XCTAssertEqual(response?.status, Utils.getLocalisedValue(key: "Failed"))
+                    XCTAssertNil(response?.token)
+                    XCTAssertNotNil(error)
+                }
             }
         })
         
@@ -75,13 +87,19 @@ final class APIServiceTests: XCTestCase {
         sut.startLogin(request: userModel, on: { (response, error) in
             loginExpectation.fulfill()
             //Then
-            if error?.statusCode == ResponseCodes.server_notReachable.rawValue{
-                XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerNotReachable"))
-            } else if error?.statusCode == ResponseCodes.server_Not_Available.rawValue{
-                XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerDown"))
-            }else{
-                XCTAssertNotNil(error)
-                XCTAssertEqual(error!.message,Utils.getLocalisedValue(key: "ForBidden"))
+            if let resp = response, resp.status == ResponseValue.success.rawValue {
+                XCTAssertNotNil(response?.token)
+            } else {
+                if error?.statusCode == ResponseCodes.server_notReachable.rawValue{
+                    XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerNotReachable"))
+                } else if error?.statusCode == ResponseCodes.server_Not_Available.rawValue{
+                    XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "ServerDown"))
+                }else if error?.statusCode == ResponseCodes.notfound.rawValue{
+                    XCTAssertEqual(error?.message, Utils.getLocalisedValue(key: "NotFound"))
+                } else{
+                    XCTAssertNotNil(error)
+                    XCTAssertEqual(error!.message,Utils.getLocalisedValue(key: "ForBidden"))
+                }
             }
         })
         
@@ -138,6 +156,7 @@ final class APIServiceTests: XCTestCase {
                         }
                     }
                 } else {
+                    checkBalanceExp.fulfill()
                     XCTAssertNotNil(error)
                     XCTAssertTrue(error!.message!.count > 0)
                 }
@@ -179,6 +198,7 @@ final class APIServiceTests: XCTestCase {
                         }
                     }
                 } else {
+                    transactionExp.fulfill()
                     XCTAssertNotNil(error)
                     XCTAssertTrue(error!.message!.count > 0)
                 }
@@ -220,6 +240,7 @@ final class APIServiceTests: XCTestCase {
                         }
                     }
                 } else {
+                    payeeExp.fulfill()
                     XCTAssertNotNil(error)
                     XCTAssertTrue(error!.message!.count > 0)
                 }
@@ -251,20 +272,22 @@ final class APIServiceTests: XCTestCase {
                         //Given
                         TransactionManager.shared.token = token
                         //When
-                        let transferModel = TransferSceneDataModel.TransferSceneViewModel(recipientAccountNo: "1234", amount: "100", date: Date().convertToString(), description: "Rental")
+                        let transferModel = TransferSceneDataModel.TransferSceneViewModel(recipientAccountNo: "4489-991-0023", amount: "500", date: Date().convertToString(), description: "xxxx")
                         
                         self.sut.fundTransfer(params: transferModel.jsonValue()!) { (ftResponse, ftError) in
                             transferExp.fulfill()
                             TransactionManager.shared.token = ""
-                            if ftResponse != nil{
-                                XCTAssertEqual(ftResponse?.status, "success")
-                                XCTAssertEqual(ftResponse?.data?.amount, "100")
-                                XCTAssertEqual(ftResponse?.data?.description, "Rental")
-                                XCTAssertEqual(ftResponse?.data?.recipientAccountNo, "1234")
+                            if let resp = ftResponse, resp.status == ResponseValue.success.rawValue {
+                                XCTAssertEqual(resp.data?.amount, transferModel.amount)
+                                XCTAssertEqual(resp.data?.description, transferModel.description)
+                                XCTAssertEqual(resp.data?.recipientAccountNo, transferModel.recipientAccountNo)
+                            }else{
+                                XCTAssertNotNil(ftError)
                             }
                         }
                     }
                 } else {
+                    transferExp.fulfill()
                     XCTAssertNotNil(error)
                     XCTAssertTrue(error!.message!.count > 0)
                 }
